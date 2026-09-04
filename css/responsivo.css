@@ -1,0 +1,23 @@
+
+@media(max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        margin-top: 20px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+
+    .card {
+        width: 90%;
+    }
+}

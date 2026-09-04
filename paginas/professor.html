@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professor Wendel - Química</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    .painel-admin {
+        background: rgba(0, 0, 0, 0.3);
+        border: 2px dashed #00d2ff;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        border-radius: 12px;
+        text-align: center;
+        display: none; /* Escondido por padrão */
+    }
+    .painel-admin input, .painel-admin textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background: #222;
+        color: #fff;
+    }
+    .painel-admin button {
+        background: #00d2ff;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .painel-admin button:hover {
+        background: #0099bb;
+    }
+    .btn-card-action {
+        background: #333;
+        color: #fff;
+        border: 1px solid #555;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px 3px;
+        font-size: 13px;
+    }
+    .btn-card-action:hover {
+        background: #555;
+    }
+    .btn-excluir {
+        background: #ff4d4d;
+        border-color: #cc0000;
+    }
+    .btn-excluir:hover {
+        background: #cc0000;
+    }
+    .card-actions {
+        margin-top: 15px;
+        border-top: 1px solid #444;
+        padding-top: 10px;
+        display: none; /* Escondido por padrão nos cards */
+    }
+    .btn-login-container {
+        text-align: center;
+        margin: 15px 0;
+    }
+    .btn-login {
+        background: #28a745;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .btn-login:hover {
+        background: #218838;
+    }
+    .logo img {
+        height: 40px;
+        object-fit: contain;
+        vertical-align: middle;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+
+<nav>
+<a href="../index.html">Início</a>
+<a href="videos.html">Vídeos</a>
+<a href="experimentos.html">Experimentos</a>
+<a href="perguntas.html">Perguntas</a>
+<a href="professor.html">Professor</a>
+</nav>
+</header>
+
+<section class="banner">
+<div>
+<h1>👨‍🏫 Professor Wendel</h1>
+<p>Conheça o criador do ambiente de estudos de Química.</p>
+</div>
+</section>
+
+<!-- BOTÃO DE LOGIN / ACESSO DO PROFESSOR -->
+<div class="btn-login-container">
+    <button id="btnAuth" class="btn-login" onclick="alternarAuth()">🔐 Entrar no Painel do Professor</button>
+</div>
+
+<!-- PAINEL DO PROFESSOR (Só aparece logado) -->
+<div class="painel-admin" id="painelAdmin">
+    <h3>🛠️ Painel do Professor (Gerenciar Cards)</h3>
+    <p style="font-size: 14px; color: #ccc;">Adicione um novo card preenchendo os campos abaixo.</p>
+    <form id="formAdicionarCard" onsubmit="adicionarCard(event)">
+        <input type="text" id="novoTitulo" placeholder="Título do Card (Ex: Avisos Importantes)" required>
+        <textarea id="novoTexto" rows="3" placeholder="Texto/Conteúdo do Card..." required></textarea>
+        <button type="submit">➕ Adicionar Novo Card</button>
+    </form>
+</div>
+
+<section>
+<div class="container" id="containerCards">
+    <!-- Os cards serão carregados dinamicamente aqui via JavaScript -->
+</div>
+</section>
+
+<footer>
+<p>© 2026 - Química com Professor Wendel</p>
+</footer>
+
+<script>
+// SENHA DE ACESSO DO PROFESSOR
+const SENHA_ADMIN = "@WENDELquimica26";
+let logado = false;
+
+// Cards padrão iniciais
+const cardsIniciais = [
+    {
+        id: 1,
+        tipo: 'sobre',
+        titulo: 'Sobre o Professor',
+        conteudo: 'Olá, eu sou o Professor Wendel, professor de Química e criador deste espaço de aprendizagem.<br><br>Este site foi desenvolvido para ajudar alunos a aprenderem Química de uma maneira mais simples, interativa e prática.<br><br>Aqui você encontrará conteúdos, vídeos, experimentos, perguntas e quizzes para melhorar seus conhecimentos.',
+        imagem: '../assets/imagens/professor/wendel.png'
+    },
+    {
+        id: 2,
+        tipo: 'normal',
+        titulo: '🎯 Objetivo do Site',
+        conteudo: 'O objetivo deste projeto é tornar o estudo da Química mais interessante e acessível para todos os alunos.<br><br>Através de explicações, exemplos do cotidiano, experimentos e atividades interativas, o aprendizado fica mais fácil e divertido.'
+    },
+    {
+        id: 3,
+        tipo: 'normal',
+        titulo: '📚 O que você encontra aqui?',
+        conteudo: '🧪 Experimentos de Química<br><br>🎥 Vídeos educativos<br><br>📖 Conteúdos separados por séries<br><br>❓ Perguntas e respostas<br><br>🧠 Quiz interativo'
+    },
+    {
+        id: 4,
+        tipo: 'normal',
+        titulo: '💬 Mensagem aos alunos',
+        conteudo: '"A Química está presente em tudo ao nosso redor. Meu objetivo é mostrar que aprender Química pode ser simples, interessante e divertido."<br><br>Estudem, pratiquem e nunca tenham medo de fazer perguntas. A curiosidade é o primeiro passo para aprender ciência.'
+    }
+];
+
+function carregarCards() {
+    let cardsSalvos = localStorage.getItem('cardsProfessorWendel');
+    if (!cardsSalvos) {
+        cardsSalvos = JSON.stringify(cardsIniciais);
+        localStorage.setItem('cardsProfessorWendel', cardsSalvos);
+    }
+    return JSON.parse(cardsSalvos);
+}
+
+function renderizarCards() {
+    const container = document.getElementById('containerCards');
+    const cards = carregarCards();
+    container.innerHTML = '';
+
+    cards.forEach(card => {
+        const divCard = document.createElement('div');
+        divCard.className = 'card';
+        divCard.style.textAlign = 'center';
+        divCard.style.display = 'block';
+
+        let htmlConteudo = '';
+
+        if (card.tipo === 'sobre' && card.imagem) {
+            htmlConteudo += `
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <img src="${card.imagem}" alt="Professor Wendel" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; display: block;">
+                </div>
+            `;
+        }
+
+        htmlConteudo += `<h2>${card.titulo}</h2>`;
+        htmlConteudo += `<p style="margin-bottom: 15px; text-align: left; padding: 0 10px;">${card.conteudo}</p>`;
+
+        // Botões de ação só aparecem se 'logado' for true
+        let estiloAcoes = logado ? 'display: block;' : 'display: none;';
+        htmlConteudo += `
+            <div class="card-actions" style="${estiloAcoes}">
+                <button class="btn-card-action" onclick="editarCard(${card.id})">✏️ Editar</button>
+                <button class="btn-card-action btn-excluir" onclick="excluirCard(${card.id})">🗑️ Excluir</button>
+            </div>
+        `;
+
+        divCard.innerHTML = htmlConteudo;
+        container.appendChild(divCard);
+    });
+}
+
+// Entrar ou Sair do Painel com senha
+function alternarAuth() {
+    if (!logado) {
+        let senhaDigitada = prompt("Digite a senha do professor:");
+        if (senhaDigitada === SENHA_ADMIN) {
+            logado = true;
+            document.getElementById('painelAdmin').style.display = 'block';
+            document.getElementById('btnAuth').innerText = '🔓 Sair do Painel do Professor';
+            document.getElementById('btnAuth').style.background = '#dc3545';
+            renderizarCards();
+            alert("Painel desbloqueado com sucesso!");
+        } else if (senhaDigitada !== null) {
+            alert("Senha incorreta!");
+        }
+    } else {
+        logado = false;
+        document.getElementById('painelAdmin').style.display = 'none';
+        document.getElementById('btnAuth').innerText = '🔐 Entrar no Painel do Professor';
+        document.getElementById('btnAuth').style.background = '#28a745';
+        renderizarCards();
+        alert("Você saiu do painel administrativo.");
+    }
+}
+
+function adicionarCard(event) {
+    event.preventDefault();
+    if (!logado) return;
+
+    const titulo = document.getElementById('novoTitulo').value;
+    let texto = document.getElementById('novoTexto').value;
+    texto = texto.replace(/\n/g, '<br>');
+
+    const cards = carregarCards();
+    const novoCard = {
+        id: Date.now(),
+        tipo: 'normal',
+        titulo: titulo,
+        conteudo: texto
+    };
+
+    cards.push(novoCard);
+    localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
+
+    document.getElementById('formAdicionarCard').reset();
+    renderizarCards();
+    alert("Card adicionado com sucesso!");
+}
+
+function excluirCard(id) {
+    if (!logado) return;
+
+    if (confirm('Tem certeza que deseja excluir este card completamente?')) {
+        let cards = carregarCards();
+        cards = cards.filter(card => card.id !== id);
+        localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
+        renderizarCards();
+        alert("Card excluído com sucesso!");
+    }
+}
+
+function editarCard(id) {
+    if (!logado) return;
+
+    let cards = carregarCards();
+    let card = cards.find(c => c.id === id);
+    if (!card) return;
+
+    let conteudoLimpo = card.conteudo.replace(/<br\s*[\/]?>/gi, '\n');
+
+    let novoTitulo = prompt("Edite o Título do Card:", card.titulo);
+    if (novoTitulo === null) return;
+
+    let novoConteudo = prompt("Edite o Texto do Card:", conteudoLimpo);
+    if (novoConteudo === null) return;
+
+    novoConteudo = novoConteudo.replace(/\n/g, '<br>');
+
+    card.titulo = novoTitulo;
+    card.conteudo = novoConteudo;
+
+    localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
+    renderizarCards();
+    alert("Card alterado com sucesso!");
+}
+
+window.onload = renderizarCards;
+</script>
+
+</body>
+</html>

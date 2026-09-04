@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Experimentos de Química - Professor Wendel</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+    /* Organiza o container em grade moderna (Grid) para evitar quebrete de layout do Flexbox */
+    .container {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+        gap: 20px !important;
+        align-items: stretch !important;
+    }
+
+    /* Cada card vira uma caixa estrita de coluna única com alinhamento garantido */
+    .card {
+        background: #1e1e1e !important;
+        border: 1px solid #333 !important;
+        padding: 20px !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: auto !important;
+        min-height: 100% !important;
+        box-sizing: border-box !important;
+        float: none !important;
+    }
+
+    /* Mantém o bloco de conteúdo interno livre e o rodapé preso embaixo */
+    .card > div:first-child {
+        flex-grow: 1;
+    }
+
+    .secao-comentarios-card {
+        margin-top: 20px !important;
+        border-top: 1px solid #444;
+        padding-top: 10px;
+    }
+
+    .form-inputs-comentario {
+        display: flex;
+        gap: 2%;
+        margin-bottom: 5px;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+
+
+<nav>
+
+<a href="../index.html">Início</a>
+<a href="videos.html">Vídeos</a>
+<a href="experimentos.html">Experimentos</a>
+<a href="perguntas.html">Perguntas</a>
+<a href="professor.html">Professor</a>
+
+</nav>
+
+</header>
+
+
+
+
+<section class="banner">
+
+<div>
+
+<h1>
+🧪 Experimentos de Química
+</h1>
+
+<p>
+Aprenda Química observando experiências práticas.
+</p>
+
+</div>
+
+</section>
+
+
+
+
+
+<section>
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+    <h2 style="margin: 0;">Experimentos para estudar Química</h2>
+    <div style="display: flex; gap: 10px;">
+        <button onclick="abrirPainelAdicionar()" id="btn-novo-exp" style="background: #16a34a; color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; display: none;">➕ Novo Experimento</button>
+        <button onclick="alternarPainelAdmin()" id="btn-painel-toggle" style="background: #7c3aed; color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold;">🔐 Painel do Professor</button>
+    </div>
+</div>
+
+
+
+<div id="painel-admin" style="display: none; background: #18181b; border: 1px solid #7c3aed; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h3 style="color: #c084fc; margin: 0;">➕ Adicionar Novo Experimento</h3>
+        <button onclick="sairModoProfessor()" style="background: #374151; color: #f87171; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">🔒 Sair do modo Professor</button>
+    </div>
+    <div style="display: grid; gap: 10px;">
+        <input type="text" id="novo-titulo" placeholder="Título do Experimento (ex: 🌋 Vulcão...)" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
+        <input type="text" id="novo-video" placeholder="Link normal do YouTube (ex: https://www.youtube.com/watch?v=...)" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
+        <textarea id="novo-acontece" placeholder="O que acontece?" rows="2" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; resize: vertical;"></textarea>
+        <textarea id="novo-materiais" placeholder="Materiais necessários (use quebras de linha se preferir)" rows="2" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; resize: vertical;"></textarea>
+        <input type="text" id="novo-conteudo" placeholder="Conteúdo relacionado" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
+        <button onclick="salvarNovoExperimento()" style="background: #16a34a; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 5px;">Salvar e Publicar Experimento</button>
+    </div>
+</div>
+
+
+
+<div class="container" id="container-experimentos">
+
+    </div>
+
+</section>
+
+
+
+
+
+
+<section style="text-align: center;">
+
+<h2 style="text-align: center;">
+⚠️ Segurança nos Experimentos
+</h2>
+
+<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center; float: none;">
+
+<p>
+Mesmo sendo experiências educativas,
+sempre realize os experimentos com supervisão
+de um professor ou responsável.
+</p>
+
+<p>
+Utilize equipamentos de proteção quando necessário
+e nunca misture produtos desconhecidos.
+</p>
+
+</div>
+
+</section>
+
+
+
+
+
+<footer>
+
+<p>
+© 2026 - Química com Professor Wendel
+</p>
+
+</footer>
+
+
+<script>
+const experimentosPadrao = [
+    {
+        id: 'exp-1',
+        titulo: '🌋 Vulcão de Bicarbonato e Vinagre',
+        video: 'https://www.youtube.com/watch?v=TbBWnCT18wM',
+        acontece: 'O bicarbonato de sódio reage com o vinagre, formando gás carbônico e causando a espuma.',
+        materiais: '- Bicarbonato de sódio<br>- Vinagre<br>- Corante (opcional)<br>- Recipiente',
+        conteudo: 'Reações químicas e produção de gases.'
+    },
+    {
+        id: 'exp-2',
+        titulo: '🥬 Indicador de pH com Repolho Roxo',
+        video: 'https://www.youtube.com/watch?v=BwHfw9R575c',
+        acontece: 'O repolho roxo possui uma substância chamada antocianina que muda de cor em contato com ácidos e bases.',
+        materiais: '- Folhas de repolho roxo<br>- Água quente<br>- Copos<br>- Substâncias para testar',
+        conteudo: 'Ácidos, bases e escala de pH.'
+    },
+    {
+        id: 'exp-3',
+        titulo: '💧 Separação de Água e Óleo',
+        video: 'https://www.youtube.com/watch?v=Gq-ZwoAv1xQ',
+        acontece: 'A água e o óleo não se misturam por possuírem diferentes propriedades químicas.',
+        materiais: '- Água<br>- Óleo<br>- Recipiente transparente',
+        conteudo: 'Misturas e métodos de separação.'
+    },
+    {
+        id: 'exp-4',
+        titulo: '🎨 Cromatografia com Papel',
+        video: 'https://www.youtube.com/watch?v=7vrL-BNcTpw',
+        acontece: 'A tinta das canetas possui vários pigmentos que são separados pelo papel.',
+        materiais: '- Papel filtro ou papel toalha<br>- Canetinhas<br>- Água',
+        conteudo: 'Separação de misturas.'
+    },
+    {
+        id: 'exp-5',
+        titulo: '🧂 Cristalização do Sal',
+        video: 'https://www.youtube.com/watch?v=UvwfKpHtJeU',
+        acontece: 'A água evapora e deixa os cristais de sal formados novamente.',
+        materiais: '- Água salgada<br>- Recipiente<br>- Local para evaporação',
+        conteudo: 'Separação de misturas e cristalização.'
+    }
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+    carregarExperimentos();
+    verificarEstadoProfessorInicial();
+});
+
+function verificarSeProfessor() {
+    return sessionStorage.getItem('professor_autenticado') === 'true';
+}
+
+function verificarEstadoProfessorInicial() {
+    if (verificarSeProfessor()) {
+        document.getElementById('btn-painel-toggle').style.background = '#16a34a';
+        document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
+        document.getElementById('btn-novo-exp').style.display = 'block';
+    } else {
+        document.getElementById('btn-novo-exp').style.display = 'none';
+    }
+}
+
+function alternarPainelAdmin() {
+    let painel = document.getElementById('painel-admin');
+    
+    if (!verificarSeProfessor()) {
+        let senha = prompt("Digite a senha do Professor:");
+        if (senha === "@WENDELquimica26") {
+            sessionStorage.setItem('professor_autenticado', 'true');
+            document.getElementById('btn-painel-toggle').style.background = '#16a34a';
+            document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
+            document.getElementById('btn-novo-exp').style.display = 'block';
+            carregarExperimentos(); 
+        } else if (senha !== null) {
+            alert("Senha incorreta!");
+            return;
+        } else {
+            return;
+        }
+    }
+
+    painel.style.display = painel.style.display === "none" ? "block" : "none";
+}
+
+function abrirPainelAdicionar() {
+    if (!verificarSeProfessor()) {
+        if (!pedirSenhaOuLiberar()) return;
+    }
+    let painel = document.getElementById('painel-admin');
+    painel.style.display = "block";
+    painel.scrollIntoView({ behavior: 'smooth' });
+}
+
+function sairModoProfessor() {
+    sessionStorage.removeItem('professor_autenticado');
+    document.getElementById('painel-admin').style.display = 'none';
+    document.getElementById('btn-painel-toggle').style.background = '#7c3aed';
+    document.getElementById('btn-painel-toggle').innerText = '🔐 Painel do Professor';
+    document.getElementById('btn-novo-exp').style.display = 'none';
+    carregarExperimentos();
+}
+
+function pedirSenhaOuLiberar() {
+    if (verificarSeProfessor()) return true;
+
+    let senha = prompt("Digite a senha do Professor:");
+    if (senha === "1234") {
+        sessionStorage.setItem('professor_autenticado', 'true');
+        document.getElementById('btn-painel-toggle').style.background = '#16a34a';
+        document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
+        document.getElementById('btn-novo-exp').style.display = 'block';
+        carregarExperimentos();
+        return true;
+    } else if (senha !== null) {
+        alert("Senha incorreta!");
+    }
+    return false;
+}
+
+function converterParaEmbed(url) {
+    if (!url) return "";
+    if (url.includes('/embed/')) return url;
+
+    let videoId = "";
+    if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1]?.split('?')[0];
+    } else if (url.includes('watch?v=')) {
+        videoId = url.split('watch?v=')[1]?.split('&')[0];
+    }
+
+    if (videoId) {
+        return "https://www.youtube.com/embed/" + videoId;
+    }
+    return url;
+}
+
+function obterExperimentos() {
+    let salvos = localStorage.getItem('lista_experimentos_cadastrados');
+    if (!salvos) {
+        localStorage.setItem('lista_experimentos_cadastrados', JSON.stringify(experimentosPadrao));
+        return experimentosPadrao;
+    }
+    return JSON.parse(salvos);
+}
+
+function carregarExperimentos() {
+    let container = document.getElementById('container-experimentos');
+    container.innerHTML = "";
+    let experimentos = obterExperimentos();
+    let eProfessor = verificarSeProfessor();
+
+    experimentos.forEach((exp) => {
+        let cardDiv = document.createElement('div');
+        cardDiv.className = "card";
+        
+        let likes = localStorage.getItem(exp.id + '_likes') || '0';
+        let curtido = localStorage.getItem(exp.id + '_curtido') === 'true';
+        let corBtnCurtir = curtido ? '#dc2626' : '#2563eb';
+        let linkVideoEmbed = converterParaEmbed(exp.video);
+
+        let botoesAdminHtml = eProfessor ? `
+            <div>
+                <button onclick="editarExperimento('${exp.id}')" style="background: #374151; color: white; border: none; padding: 3px 6px; border-radius: 3px; cursor: pointer; font-size: 11px;">✏️ Editar</button>
+                <button onclick="excluirExperimento('${exp.id}')" style="background: #b91c1c; color: white; border: none; padding: 3px 6px; border-radius: 3px; cursor: pointer; font-size: 11px;">🗑️ Excluir</button>
+            </div>
+        ` : '';
+
+        cardDiv.innerHTML = `
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
+                    <h3 style="margin-top: 0; color: #fff;">${exp.titulo}</h3>
+                    ${botoesAdminHtml}
+                </div>
+
+                <iframe width="100%" height="220" src="${linkVideoEmbed}" style="border: none; border-radius: 4px;" allowfullscreen></iframe>
+
+                <p style="margin-top: 15px;"><strong>O que acontece?</strong></p>
+                <p>${exp.acontece}</p>
+
+                <p><strong>Materiais:</strong></p>
+                <p>${exp.materiais}</p>
+
+                <p><strong>Conteúdo relacionado:</strong><br>${exp.conteudo}</p>
+            </div>
+
+            <div class="secao-comentarios-card">
+                <button id="btn-${exp.id}" onclick="curtir('${exp.id}')" style="background: ${corBtnCurtir}; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;" data-curtido="${curtido}">❤️ Curtir (<span id="likes-${exp.id}">${likes}</span>)</button>
+                <div style="margin-top: 10px;">
+                    <div class="form-inputs-comentario">
+                        <input type="text" id="autor-${exp.id}" placeholder="Seu nome..." style="width: 32%; padding: 5px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
+                        <input type="text" id="input-${exp.id}" placeholder="Escreva um comentário... (Pressione Enter)" onkeypress="verificarEnter(event, 'autor-${exp.id}', 'input-${exp.id}', '${exp.id}')" style="width: 66%; padding: 5px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
+                    </div>
+                    <button onclick="comentar('autor-${exp.id}', 'input-${exp.id}', '${exp.id}')" style="background: #16a34a; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px;">Enviar Comentário</button>
+                </div>
+                <div id="lista-${exp.id}" style="margin-top: 10px; text-align: left;"></div>
+            </div>
+        `;
+
+        container.appendChild(cardDiv);
+        carregarComentariosDoCard(exp.id);
+    });
+}
+
+function salvarNovoExperimento() {
+    let titulo = document.getElementById('novo-titulo').value.trim();
+    let video = document.getElementById('novo-video').value.trim();
+    let acontece = document.getElementById('novo-acontece').value.trim();
+    let materiais = document.getElementById('novo-materiais').value.trim().replace(/\n/g, '<br>');
+    let conteudo = document.getElementById('novo-conteudo').value.trim();
+
+    if (!titulo || !video) {
+        alert("Preencha pelo menos o Título e o Link do Vídeo!");
+        return;
+    }
+
+    let experimentos = obterExperimentos();
+    let novoId = 'exp-' + new Date().getTime();
+
+    experimentos.push({
+        id: novoId,
+        titulo: titulo,
+        video: video,
+        acontece: acontece,
+        materiais: materiais,
+        conteudo: conteudo
+    });
+
+    localStorage.setItem('lista_experimentos_cadastrados', JSON.stringify(experimentos));
+
+    document.getElementById('novo-titulo').value = '';
+    document.getElementById('novo-video').value = '';
+    document.getElementById('novo-acontece').value = '';
+    document.getElementById('novo-materiais').value = '';
+    document.getElementById('novo-conteudo').value = '';
+    document.getElementById('painel-admin').style.display = 'none';
+
+    carregarExperimentos();
+}
+
+function excluirExperimento(idExp) {
+    if (!pedirSenhaOuLiberar()) return;
+
+    if (confirm("Tem certeza que deseja apagar este experimento?")) {
+        let experimentos = obterExperimentos();
+        let filtrados = experimentos.filter(exp => exp.id !== idExp);
+        localStorage.setItem('lista_experimentos_cadastrados', JSON.stringify(filtrados));
+        carregarExperimentos();
+    }
+}
+
+function editarExperimento(idExp) {
+    if (!pedirSenhaOuLiberar()) return;
+
+    let experimentos = obterExperimentos();
+    let exp = experimentos.find(e => e.id === idExp);
+    if (!exp) return;
+
+    let novoTitulo = prompt("Edite o Título:", exp.titulo);
+    if (novoTitulo === null) return;
+    
+    let novoVideo = prompt("Edite o Link do YouTube:", exp.video);
+    if (novoVideo === null) return;
+    
+    let novoAcontece = prompt("Edite o que acontece:", exp.acontece);
+    if (novoAcontece === null) return;
+
+    let materiaisPuro = exp.materiais ? exp.materiais.replace(/<br>/g, '\n') : '';
+    let novosMateriais = prompt("Edite os Materiais (use quebras de linha):", materiaisPuro);
+    if (novosMateriais === null) return;
+    novosMateriais = novosMateriais.trim().replace(/\n/g, '<br>');
+
+    let novoConteudo = prompt("Edite o conteúdo relacionado:", exp.conteudo);
+    if (novoConteudo === null) return;
+
+    exp.titulo = novoTitulo;
+    exp.video = novoVideo;
+    exp.acontece = novoAcontece;
+    exp.materiais = novosMateriais;
+    exp.conteudo = novoConteudo;
+
+    localStorage.setItem('lista_experimentos_cadastrados', JSON.stringify(experimentos));
+    carregarExperimentos();
+}
+
+function curtir(idExp) {
+    let span = document.getElementById('likes-' + idExp);
+    let btn = document.getElementById('btn-' + idExp);
+    let atual = parseInt(span.innerText);
+    let curtido = btn.dataset.curtido === 'true';
+
+    if (curtido) {
+        atual -= 1;
+        btn.dataset.curtido = 'false';
+        btn.style.background = '#2563eb';
+    } else {
+        atual += 1;
+        btn.dataset.curtido = 'true';
+        btn.style.background = '#dc2626';
+    }
+
+    span.innerText = atual;
+    localStorage.setItem(idExp + '_likes', atual);
+    localStorage.setItem(idExp + '_curtido', btn.dataset.curtido);
+}
+
+function comentar(idAutorElem, idInputElem, idExp) {
+    let inputAutor = document.getElementById(idAutorElem);
+    let inputTexto = document.getElementById(idInputElem);
+    
+    let autor = inputAutor.value.trim();
+    if (autor === "") {
+        autor = "Visitante";
+    }
+    
+    let texto = inputTexto.value.trim();
+    
+    if (texto !== "") {
+        let timestampAtual = new Date().getTime();
+        let comentariosSalvos = JSON.parse(localStorage.getItem(idExp + '_comentarios')) || [];
+        
+        comentariosSalvos.push({ autor: autor, texto: texto, timestamp: timestampAtual });
+        localStorage.setItem(idExp + '_comentarios', JSON.stringify(comentariosSalvos));
+
+        recarregarListaComentarios(idExp);
+
+        inputTexto.value = "";
+        inputAutor.value = "";
+    }
+}
+
+function verificarEnter(event, idAutorElem, idInputElem, idExp) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        comentar(idAutorElem, idInputElem, idExp);
+    }
+}
+
+function editarComentario(idExp, index) {
+    let comentariosSalvos = JSON.parse(localStorage.getItem(idExp + '_comentarios')) || [];
+    let comentarioAtual = comentariosSalvos[index];
+
+    let novoTexto = prompt("Edite seu comentário:", comentarioAtual.texto);
+    if (novoTexto !== null && novoTexto.trim() !== "") {
+        comentariosSalvos[index].texto = novoTexto.trim();
+        localStorage.setItem(idExp + '_comentarios', JSON.stringify(comentariosSalvos));
+        recarregarListaComentarios(idExp);
+    }
+}
+
+function excluirComentario(idExp, index) {
+    if (!verificarSeProfessor()) {
+        alert("Apenas o Professor pode apagar comentários. Ative o Painel do Professor primeiro!");
+        return;
+    }
+
+    if (confirm("Tem certeza que deseja apagar este comentário?")) {
+        let comentariosSalvos = JSON.parse(localStorage.getItem(idExp + '_comentarios')) || [];
+        comentariosSalvos.splice(index, 1);
+        localStorage.setItem(idExp + '_comentarios', JSON.stringify(comentariosSalvos));
+        recarregarListaComentarios(idExp);
+    }
+}
+
+function carregarComentariosDoCard(idExp) {
+    let lista = document.getElementById('lista-' + idExp);
+    lista.innerHTML = "";
+
+    let dadosSalvos = JSON.parse(localStorage.getItem(idExp + '_comentarios')) || [];
+    dadosSalvos.forEach((item, index) => {
+        let autor = item.autor;
+        if (!autor || autor === "undefined" || autor.trim() === "") {
+            autor = "Visitante";
+        }
+        let tempoFormatado = calcularTempoRelativo(item.timestamp || new Date().getTime());
+        adicionarElementoComentario(lista, autor, item.texto, tempoFormatado, idExp, index);
+    });
+}
+
+function recarregarListaComentarios(idExp) {
+    carregarComentariosDoCard(idExp);
+}
+
+function calcularTempoRelativo(timestamp) {
+    let agora = new Date().getTime();
+    let diferencaSegundos = Math.floor((agora - timestamp) / 1000);
+
+    if (diferencaSegundos < 60) return "agora mesmo";
+    let diferencaMinutos = Math.floor(diferencaSegundos / 60);
+    if (diferencaMinutos < 60) return "há " + diferencaMinutos + (diferencaMinutos === 1 ? " minuto" : " minutos");
+    let diferencaHoras = Math.floor(diferencaMinutos / 60);
+    if (diferencaHoras < 24) return "há " + diferencaHoras + (diferencaHoras === 1 ? " hora" : " horas");
+    let diferencaDias = Math.floor(diferencaHoras / 24);
+    return "há " + diferencaDias + (diferencaDias === 1 ? " dia" : " dias");
+}
+
+function adicionarElementoComentario(lista, autor, texto, tempo, idExp, index) {
+    let eProfessor = verificarSeProfessor();
+
+    let novoComentario = document.createElement("div");
+    novoComentario.style.background = "#2a2a2a";
+    novoComentario.style.borderLeft = "4px solid #16a34a";
+    novoComentario.style.padding = "8px 10px";
+    novoComentario.style.borderRadius = "4px";
+    novoComentario.style.marginTop = "6px";
+    novoComentario.style.fontSize = "14px";
+
+    let cabecalho = document.createElement("div");
+    cabecalho.style.display = "flex";
+    cabecalho.style.justifyContent = "space-between";
+    cabecalho.style.marginBottom = "4px";
+
+    let autorSpan = document.createElement("span");
+    autorSpan.innerText = "👤 " + autor;
+    autorSpan.style.fontWeight = "bold";
+    autorSpan.style.color = "#4ade80";
+
+    let horaSpan = document.createElement("span");
+    horaSpan.innerText = tempo;
+    horaSpan.style.fontSize = "11px";
+    horaSpan.style.color = "#aaa";
+
+    cabecalho.appendChild(autorSpan);
+    cabecalho.appendChild(horaSpan);
+
+    let corpo = document.createElement("div");
+    corpo.style.display = "flex";
+    corpo.style.justifyContent = "space-between";
+    corpo.style.alignItems = "center";
+
+    let textoSpan = document.createElement("span");
+    textoSpan.innerText = texto;
+    textoSpan.style.wordBreak = "break-word";
+    textoSpan.style.marginRight = "10px";
+    textoSpan.style.color = "#fff";
+
+    let acoesDiv = document.createElement("div");
+    acoesDiv.style.display = "flex";
+    acoesDiv.style.gap = "4px";
+    acoesDiv.style.whiteSpace = "nowrap";
+
+    let btnEditar = document.createElement("button");
+    btnEditar.innerText = "✏️";
+    btnEditar.style.background = "#374151";
+    btnEditar.style.color = "white";
+    btnEditar.style.border = "none";
+    btnEditar.style.padding = "3px 6px";
+    btnEditar.style.borderRadius = "3px";
+    btnEditar.style.cursor = "pointer";
+    btnEditar.style.fontSize = "11px";
+    btnEditar.title = "Editar comentário";
+    btnEditar.onclick = function() {
+        editarComentario(idExp, index);
+    };
+    acoesDiv.appendChild(btnEditar);
+
+    if (eProfessor) {
+        let btnExcluir = document.createElement("button");
+        btnExcluir.innerText = "🗑️";
+        btnExcluir.style.background = "#b91c1c";
+        btnExcluir.style.color = "white";
+        btnExcluir.style.border = "none";
+        btnExcluir.style.padding = "3px 6px";
+        btnExcluir.style.borderRadius = "3px";
+        btnExcluir.style.cursor = "pointer";
+        btnExcluir.style.fontSize = "11px";
+        btnExcluir.title = "Apagar comentário (Modo Professor)";
+        btnExcluir.onclick = function() {
+            excluirComentario(idExp, index);
+        };
+        acoesDiv.appendChild(btnExcluir);
+    }
+
+    corpo.appendChild(textoSpan);
+    corpo.appendChild(acoesDiv);
+
+    novoComentario.appendChild(cabecalho);
+    novoComentario.appendChild(corpo);
+    lista.appendChild(novoComentario);
+}
+</script>
+
+</body>
+
+</html>

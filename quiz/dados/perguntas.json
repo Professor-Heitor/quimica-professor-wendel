@@ -1,0 +1,2327 @@
+{
+  "6ano": [
+    {
+      "pergunta": "O que é matéria?",
+      "alternativas": [
+        "Tudo aquilo que possui massa e ocupa lugar no espaço",
+        "Apenas os líquidos que bebemos",
+        "Somente os gases que respiramos",
+        "A energia gerada pelo Sol"
+      ],
+      "resposta": 0,
+      "explicacao": "Na Física e na Química, matéria é definida como tudo aquilo que possui massa e ocupa um lugar no espaço (volume)."
+    },
+    {
+      "pergunta": "Qual mudança de estado físico ocorre quando a água passa do estado líquido para o sólido?",
+      "alternativas": [
+        "Fusão",
+        "Vaporização",
+        "Solidificação",
+        "Condensação"
+      ],
+      "resposta": 2,
+      "explicacao": "A solidificação é a passagem do estado líquido para o sólido, como ocorre quando colocamos água líquida no congelador para virar gelo."
+    },
+    {
+      "pergunta": "Como é chamada a passagem do estado sólido diretamente para o estado gasoso?",
+      "alternativas": [
+        "Fusão",
+        "Sublimação",
+        "Condensação",
+        "Solidificação"
+      ],
+      "resposta": 1,
+      "explicacao": "A sublimação ocorre quando uma substância passa do estado sólido para o gasoso (ou vice-versa) sem passar pelo estado líquido."
+    },
+    {
+      "pergunta": "Qual dos seguintes materiais é considerado um bom condutor de calor e eletricidade?",
+      "alternativas": [
+        "Plástico",
+        "Isopor",
+        "Metal",
+        "Madeira"
+      ],
+      "resposta": 2,
+      "explicacao": "Os metais possuem alta condutividade térmica e elétrica, diferentemente dos isolantes como plástico, isopor e madeira."
+    },
+    {
+      "pergunta": "O que caracteriza uma mistura homogênea?",
+      "alternativas": [
+        "Apresenta duas ou mais fases visíveis a olho nu",
+        "Apresenta apenas uma única fase em toda a sua extensão",
+        "Possui pedaços sólidos misturados com líquido",
+        "É sempre formada por substâncias sólidas"
+      ],
+      "resposta": 1,
+      "explicacao": "A mistura homogênea (como água e sal totalmente dissolvido) apresenta aspecto uniforme e apenas uma fase."
+    },
+    {
+      "pergunta": "Dentre as opções abaixo, qual é um exemplo de mistura heterogênea?",
+      "alternativas": [
+        "Água filtrada",
+        "Água com açúcar totalmente dissolvido",
+        "Água e óleo",
+        "Ar atmosférico limpo"
+      ],
+      "resposta": 2,
+      "explicacao": "Água e óleo não se misturam completamente e formam duas fases visíveis, caracterizando uma mistura heterogênea."
+    },
+    {
+      "pergunta": "Qual é o nome do processo de separação usado para separar água e areia?",
+      "alternativas": [
+        "Destilação",
+        "Filtração",
+        "Evaporação",
+        "Imantação"
+      ],
+      "resposta": 1,
+      "explicacao": "A filtração retém o componente sólido insolúvel (como a areia) no filtro, permitindo que o líquido passe."
+    },
+    {
+      "pergunta": "O que acontece com o volume da água quando ela congela e vira gelo?",
+      "alternativas": [
+        "Diminui",
+        "Aumenta",
+        "Permanece exatamente igual",
+        "Desaparece"
+      ],
+      "resposta": 1,
+      "explicacao": "Diferente da maioria das substâncias, a água expande seu volume quando passa do estado líquido para o sólido (gelo)."
+    },
+    {
+      "pergunta": "Qual é o nome dado à passagem do estado líquido para o estado gasoso de forma lenta?",
+      "alternativas": [
+        "Ebulição",
+        "Fusão",
+        "Evaporação",
+        "Sublimação"
+      ],
+      "resposta": 2,
+      "explicacao": "A evaporação é a vaporização que ocorre de forma lenta na superfície do líquido, como a roupa secando no varal."
+    },
+    {
+      "pergunta": "O ar atmosférico que respiramos é classificado quimicamente como:",
+      "alternativas": [
+        "Uma substância pura simples",
+        "Uma substância pura composta",
+        "Uma mistura homogênea de gases",
+        "Um elemento químico isolado"
+      ],
+      "resposta": 2,
+      "explicacao": "O ar é uma mistura homogênea composta principalmente por nitrogênio, oxigênio, argônio e outros gases."
+    },
+    {
+      "pergunta": "Qual propriedade geral da matéria indica a quantidade de matéria que um corpo possui?",
+      "alternativas": [
+        "Volume",
+        "Massa",
+        "Impenetrabilidade",
+        "Divisibilidade"
+      ],
+      "resposta": 1,
+      "explicacao": "A massa mede a quantidade de matéria de um corpo, geralmente expressa em gramas ou quilogramas."
+    },
+    {
+      "pergunta": "O que significa dizer que dois corpos não podem ocupar o mesmo lugar no espaço ao mesmo tempo?",
+      "alternativas": [
+        "Inércia",
+        "Impenetrabilidade",
+        "Compressibilidade",
+        "Elasticidade"
+      ],
+      "resposta": 1,
+      "explicacao": "A impenetrabilidade é a propriedade geral da matéria que impede que dois corpos ocupem o mesmo espaço simultaneamente."
+    },
+    {
+      "pergunta": "Como se chama a propriedade que permite que os gases sejam comprimidos reduzindo seu volume?",
+      "alternativas": [
+        "Compressibilidade",
+        "Divisibilidade",
+        "Indestrutibilidade",
+        "Dureza"
+      ],
+      "resposta": 0,
+      "explicacao": "A compressibilidade é a capacidade que a matéria (principalmente os gases) tem de ter seu volume reduzido sob pressão."
+    },
+    {
+      "pergunta": "Qual dos métodos abaixo é ideal para separar sal dissolvido em água?",
+      "alternativas": [
+        "Filtração simples",
+        "Evaporação (ou cristalização)",
+        "Decantação",
+        "Ventilação"
+      ],
+      "resposta": 1,
+      "explicacao": "Na evaporação, a água evapora para a atmosfera e o sal fica retido no recipiente."
+    },
+    {
+      "pergunta": "O que é um objeto, dentro dos conceitos iniciais de química?",
+      "alternativas": [
+        "Qualquer porção ilimitada de matéria",
+        "Um corpo produzido pelo ser humano com alguma finalidade",
+        "Apenas os materiais encontrados no fundo do mar",
+        "Uma substância gasosa invisível"
+      ],
+      "resposta": 1,
+      "explicacao": "Objeto é um corpo que possui uma utilidade prática para o ser humano, como uma cadeira, uma faca ou um copo."
+    },
+    {
+      "pergunta": "Qual processo de separação utiliza um imã para separar limalha de ferro de areia?",
+      "alternativas": [
+        "Filtração",
+        "Levigação",
+        "Imantação (ou separação magnética)",
+        "Destilação simples"
+      ],
+      "resposta": 2,
+      "explicacao": "A imantação atrai os materiais magnéticos (como o ferro), separando-os dos demais componentes da mistura."
+    },
+    {
+      "pergunta": "O ponto em que um líquido começa a ferver e passar rapidamente para gás é chamado de:",
+      "alternativas": [
+        "Ponto de fusão",
+        "Ponto de ebulição",
+        "Ponto de solidificação",
+        "Ponto de condensação"
+      ],
+      "resposta": 1,
+      "explicacao": "O ponto de ebulição é a temperatura exata em que ocorre a ebulição (vaporização rápida) de uma substância pura."
+    },
+    {
+      "pergunta": "Qual estado físico da matéria possui forma variável e volume constante?",
+      "alternativas": [
+        "Sólido",
+        "Líquido",
+        "Gasoso",
+        "Plasma"
+      ],
+      "resposta": 1,
+      "explicacao": "O líquido mantém seu volume constante, mas adapta sua forma ao formato do recipiente que o contém."
+    },
+    {
+      "pergunta": "O suco de laranja com polpa e sementes é um exemplo de:",
+      "alternativas": [
+        "Mistura homogênea",
+        "Mistura heterogênea",
+        "Substância pura simples",
+        "Elemento químico"
+      ],
+      "resposta": 1,
+      "explicacao": "Como conseguimos ver partes sólidas (a polpa) separadas do líquido, trata-se de uma mistura heterogênea."
+    },
+    {
+      "pergunta": "Qual é a principal característica do estado sólido em relação às suas partículas?",
+      "alternativas": [
+        "Partículas muito separadas e em alta velocidade",
+        "Partículas bem próximas e organizadas, vibrando em posições fixas",
+        "Partículas totalmente livres para flutuar em qualquer direção",
+        "Não existem partículas no estado sólido"
+      ],
+      "resposta": 1,
+      "explicacao": "No estado sólido, as partículas ficam fortemente unidas e organizadas, o que garante a forma e o volume definidos."
+    },
+    {
+      "pergunta": "O que ocorre na fusão de um material?",
+      "alternativas": [
+        "Passagem do estado sólido para o líquido",
+        "Passagem do estado gasoso para o líquido",
+        "Passagem do estado líquido para o sólido",
+        "Queima do material"
+      ],
+      "resposta": 0,
+      "explicacao": "A fusão é a mudança do estado sólido para o líquido, como o gelo derretendo."
+    },
+    {
+      "pergunta": "Como se chama a separação de ouro em pó misturado com cascalho e água usando uma bateia?",
+      "alternativas": [
+        "Destilação",
+        "Levigação",
+        "Filtração",
+        "Flutuação"
+      ],
+      "resposta": 1,
+      "explicacao": "A levigação usa a corrente de água para arrastar os materiais mais leves (cascalho) e deixar os mais pesados (ouro) no fundo."
+    },
+    {
+      "pergunta": "Uma barra de ouro é cortada em dez pedaços menores. Cada pedaço continuará sendo ouro. Qual propriedade explica isso?",
+      "alternativas": [
+        "Divisibilidade",
+        "Impenetrabilidade",
+        "Inércia",
+        "Compressibilidade"
+      ],
+      "resposta": 0,
+      "explicacao": "A divisibilidade é a propriedade pela qual a matéria pode ser dividida em pedaços cada vez menores sem alterar sua natureza química."
+    },
+    {
+      "pergunta": "Qual dos fenômenos abaixo representa uma mudança de estado físico chamada condensação?",
+      "alternativas": [
+        "O suor da lata de refrigerante gelada formando gotículas de água na parte externa",
+        "A água da poça de poça secando no sol",
+        "O ferro derretendo na siderúrgica",
+        "A naftalina sumindo no armário"
+      ],
+      "resposta": 0,
+      "explicacao": "A condensação (ou liquefação) é a passagem do estado gasoso para o líquido, como o vapor de água do ar tocando a lata fria."
+    },
+    {
+      "pergunta": "O que é um corpo na química?",
+      "alternativas": [
+        "Qualquer objeto tecnológico avançado",
+        "Uma porção limitada de matéria",
+        "Uma substância artificial criada em laboratório",
+        "Um ser vivo completo"
+      ],
+      "resposta": 1,
+      "explicacao": "Corpo é uma porção limitada de matéria, como um pedaço de madeira cortado, antes de virar um objeto específico."
+    },
+    {
+      "pergunta": "Qual método de separação de misturas aproveita a diferença de densidade entre um sólido e um líquido, deixando o sólido repousar no fundo?",
+      "alternativas": [
+        "Decantação",
+        "Filtração",
+        "Evaporação",
+        "Destilação"
+      ],
+      "resposta": 0,
+      "explicacao": "Na decantação, o componente mais denso deposita-se no fundo do recipiente por ação da gravidade após um tempo de repouso."
+    },
+    {
+      "pergunta": "O gás oxigênio puro encontrado na natureza é composto por moléculas formadas apenas por átomos de oxigênio. Ele é classificado como:",
+      "alternativas": [
+        "Mistura heterogênea",
+        "Substância pura simples",
+        "Substância pura composta",
+        "Solução aquosa"
+      ],
+      "resposta": 1,
+      "explicacao": "Substâncias puras simples são formadas por átomos de um único elemento químico."
+    },
+    {
+      "pergunta": "Qual é o estado físico da matéria que preenche totalmente qualquer recipiente onde é colocado, independente do seu tamanho?",
+      "alternativas": [
+        "Sólido",
+        "Líquido",
+        "Gasoso",
+        "Nenhum deles"
+      ],
+      "resposta": 2,
+      "explicacao": "O gás não tem forma nem volume próprios, expandindo-se para ocupar todo o espaço do recipiente."
+    },
+    {
+      "pergunta": "Se misturarmos água, álcool e sal de cozinha e obtermos um líquido perfeitamente transparente, quantas fases essa mistura terá?",
+      "alternativas": [
+        "Uma fase (homogênea)",
+        "Duas fases",
+        "Três fases",
+        "Quatro fases"
+      ],
+      "resposta": 0,
+      "explicacao": "O álcool e o sal dissolvem-se completamente na água, formando uma única fase homogênea."
+    },
+    {
+      "pergunta": "O termômetro mede a temperatura. O que a temperatura mede indiretamente nas partículas da matéria?",
+      "alternativas": [
+        "O peso total do objeto",
+        "O grau de agitação (energia cinética) das partículas",
+        "A quantidade de luz refletida",
+        "O volume ocupado pelo ar"
+      ],
+      "resposta": 1,
+      "explicacao": "A temperatura está diretamente relacionada com a velocidade e o grau de agitação das partículas que compõem a matéria."
+    }
+  ],
+  "7ano": [
+    {
+      "pergunta": "Quais são as três principais partículas que formam o átomo?",
+      "alternativas": [
+        "Água, óleo e sal",
+        "Prótons, nêutrons e elétrons",
+        "Moléculas, átomos e misturas",
+        "Ácidos, bases e sais"
+      ],
+      "resposta": 1,
+      "explicacao": "O átomo é formado por prótons e nêutrons (que ficam agrupados no núcleo) e por elétrons (que ficam girando na eletrosfera ao redor do núcleo)."
+    },
+    {
+      "pergunta": "Qual é a carga elétrica de um próton?",
+      "alternativas": [
+        "Positiva",
+        "Negativa",
+        "Neutra (sem carga)",
+        "Variável"
+      ],
+      "resposta": 0,
+      "explicacao": "Os prótons possuem carga elétrica positiva, enquanto os elétrons são negativos e os nêutrons são neutros."
+    },
+    {
+      "pergunta": "Onde se localizam os elétrons em um átomo?",
+      "alternativas": [
+        "Apenas no núcleo",
+        "Na eletrosfera",
+        "Fora do átomo flutuando no ar",
+        "Junto com os nêutrons no centro"
+      ],
+      "resposta": 1,
+      "explicacao": "A eletrosfera é a região externa ao núcleo onde os elétrons orbitam em alta velocidade."
+    },
+    {
+      "pergunta": "O que define o número atômico (Z) de um elemento químico?",
+      "alternativas": [
+        "A soma de prótons e nêutrons",
+        "A quantidade de elétrons na última camada",
+        "O número de prótons presentes no núcleo",
+        "A massa total do átomo em gramas"
+      ],
+      "resposta": 2,
+      "explicacao": "O número atômico corresponde estritamente ao número de prótons no núcleo de um átomo, sendo a identidade do elemento."
+    },
+    {
+      "pergunta": "O que são íons?",
+      "alternativas": [
+        "Átomos que ganharam ou perderam elétrons, ficando eletrizados",
+        "Átomos que mudaram de número de prótons",
+        "Moléculas formadas apenas por gases nobres",
+        "Partículas sem nenhuma utilidade na química"
+      ],
+      "resposta": 0,
+      "explicacao": "Íons são átomos ou grupos de átomos que perderam ou ganharam elétrons, adquirindo carga elétrica positiva (cátion) ou negativa (ânion)."
+    },
+    {
+      "pergunta": "Como se chama um íon que possui carga positiva por ter perdido elétrons?",
+      "alternativas": [
+        "Ânion",
+        "Cátion",
+        "Isótopo",
+        "Neutron"
+      ],
+      "resposta": 1,
+      "explicacao": "O cátion é o íon com carga positiva resultante da perda de elétrons."
+    },
+    {
+      "pergunta": "O que são isótopos?",
+      "alternativas": [
+        "Átomos do mesmo elemento químico que possuem o mesmo número de prótons, mas diferentes números de nêutrons",
+        "Átomos de elementos totalmente diferentes com o mesmo peso",
+        "Moléculas que possuem cargas opostas",
+        "Substâncias formadas por metais pesados"
+      ],
+      "resposta": 0,
+      "explicacao": "Isótopos pertencem ao mesmo elemento (mesmo número de prótons), porém diferem na massa devido à quantidade de nêutrons."
+    },
+    {
+      "pergunta": "Qual partícula subatômica tem massa desprezível se comparada aos prótons e nêutrons?",
+      "alternativas": [
+        "Próton",
+        "Nêutron",
+        "Elétron",
+        "Todas possuem a mesma massa"
+      ],
+      "resposta": 2,
+      "explicacao": "O elétron é extremamente leve, tendo massa cerca de 1836 vezes menor que a de um próton."
+    },
+    {
+      "pergunta": "O que compõe o núcleo de um átomo comum?",
+      "alternativas": [
+        "Apenas elétrons",
+        "Prótons e nêutrons",
+        "Apenas nêutrons livres",
+        "Elétrons e prótons"
+      ],
+      "resposta": 1,
+      "explicacao": "O núcleo atômico concentra praticamente toda a massa do átomo e é formado por prótons e nêutrons."
+    },
+    {
+      "pergunta": "Se um átomo neutro possui 11 prótons, quantos elétrons ele possui?",
+      "alternativas": [
+        "5",
+        "11",
+        "22",
+        "0"
+      ],
+      "resposta": 1,
+      "explicacao": "Em um átomo neutro, o número de cargas positivas (prótons) é exatamente igual ao número de cargas negativas (elétrons)."
+    },
+    {
+      "pergunta": "Qual cientista é famoso pelo modelo atômico conhecido como 'pudim de passas'?",
+      "alternativas": [
+        "John Dalton",
+        "J.J. Thomson",
+        "Ernest Rutherford",
+        "Niels Bohr"
+      ],
+      "resposta": 1,
+      "explicacao": "J.J. Thomson propôs o modelo do pudim de passas em 1897, onde o átomo seria uma esfera positiva com elétrons incrustados."
+    },
+    {
+      "pergunta": "No modelo de Rutherford, o átomo foi comparado a qual sistema devido ao seu grande espaço vazio?",
+      "alternativas": [
+        "Sistema Solar",
+        "Uma colmeia de abelhas",
+        "Um relógio de pêndulo",
+        "Uma matriz de cristais"
+      ],
+      "resposta": 0,
+      "explicacao": "Rutherford sugeriu que o átomo lembrava o Sistema Solar, com o núcleo no centro (como o Sol) e os elétrons orbitando ao redor (como os planetas)."
+    },
+    {
+      "pergunta": "O que significa o termo 'número massa' (A) de um átomo?",
+      "alternativas": [
+        "Apenas o número de elétrons",
+        "A soma do número de prótons e nêutrons",
+        "A quantidade de camadas eletrônicas",
+        "O peso do átomo em quilogramas"
+      ],
+      "resposta": 1,
+      "explicacao": "O número de massa (A) é a soma dos nucleons, ou seja, prótons mais nêutrons localizados no núcleo."
+    },
+    {
+      "pergunta": "Como se chama um íon com carga negativa, formado pelo ganho de elétrons?",
+      "alternativas": [
+        "Cátion",
+        "Ânion",
+        "Isóbaro",
+        "Átomo neutro"
+      ],
+      "resposta": 1,
+      "explicacao": "O ânion adquire carga negativa porque recebeu elétrons extras em sua eletrosfera."
+    },
+    {
+      "pergunta": "Qual é a carga elétrica de um nêutron?",
+      "alternativas": [
+        "Positiva",
+        "Negativa",
+        "Neutra (não possui carga)",
+        "Variável conforme o elemento"
+      ],
+      "resposta": 2,
+      "explicacao": "O nêutron é uma partícula eletricamente neutra encontrada no núcleo atômico."
+    },
+    {
+      "pergunta": "Quem descobriu o elétron, a primeira partícula subatômica conhecida?",
+      "alternativas": [
+        "Ernest Rutherford",
+        "J.J. Thomson",
+        "John Dalton",
+        "Dmitri Mendeleev"
+      ],
+      "resposta": 1,
+      "explicacao": "J.J. Thomson descobriu o elétron em experimentos com raios catódicos em 1897."
+    },
+    {
+      "pergunta": "O modelo atômico de Dalton (1808) comparava o átomo a quê?",
+      "alternativas": [
+        "Uma esfera maciça, indestrutível e indivisível (bola de bilhar)",
+        "Um sistema solar em miniatura",
+        "Uma nuvem quântica de probabilidade",
+        "Um campo magnético flutuante"
+      ],
+      "resposta": 0,
+      "explicacao": "Dalton imaginava o átomo como uma esfera rígida e maciça, semelhante a uma bola de bilhar."
+    },
+    {
+      "pergunta": "Se um átomo possui Z = 6 e número de massa A = 14, quantos nêutrons ele tem?",
+      "alternativas": [
+        "6",
+        "8",
+        "14",
+        "20"
+      ],
+      "resposta": 1,
+      "explicacao": "O número de nêutrons é calculado por A - Z. Logo, 14 - 6 = 8 nêutrons."
+    },
+    {
+      "pergunta": "O que distingue átomos de elementos químicos diferentes?",
+      "alternativas": [
+        "O número de prótons no núcleo",
+        "A cor do elemento no estado gasoso",
+        "A quantidade de calor que eles absorvem",
+        "O formato geométrico externo"
+      ],
+      "resposta": 0,
+      "explicacao": "Cada elemento químico possui um número de prótons único e exclusivo (número atômico)."
+    },
+    {
+      "pergunta": "Qual camada eletrônica fica mais distante do núcleo atômico?",
+      "alternativas": [
+        "A camada mais interna",
+        "A camada de valência (mais externa)",
+        "O núcleo central",
+        "A camada intermediária"
+      ],
+      "resposta": 1,
+      "explicacao": "A camada de valência é a última camada da eletrosfera, sendo a mais externa e responsável pelas ligações químicas."
+    },
+    {
+      "pergunta": "O que acontece com a carga de um átomo neutro se ele perde 2 elétrons?",
+      "alternativas": [
+        "Fica com carga -2",
+        "Fica com carga +2 (cátion)",
+        "Deixa de existir",
+        "Fica totalmente neutro"
+      ],
+      "resposta": 1,
+      "explicacao": "Ao perder 2 cargas negativas (elétrons), o átomo passa a ter mais prótons que elétrons, formando um cátion de carga +2."
+    },
+    {
+      "pergunta": "Qual é o nome da região central extremamente densa do átomo?",
+      "alternativas": [
+        "Eletrosfera",
+        "Núcleo",
+        "Camada de valência",
+        "Orbital livre"
+      ],
+      "resposta": 1,
+      "explicacao": "O núcleo é a parte central, densa e pesada do átomo onde se concentram os prótons e nêutrons."
+    },
+    {
+      "pergunta": "Qual dos seguintes cientistas introduziu a ideia de que os elétrons giram em órbitas circulares com níveis específicos de energia?",
+      "alternativas": [
+        "Niels Bohr",
+        "John Dalton",
+        "J.J. Thomson",
+        "Demócrito"
+      ],
+      "resposta": 0,
+      "explicacao": "O modelo atômico de Bohr (evolução do modelo de Rutherford) estabeleceu que os elétrons ocupam níveis de energia bem definidos (camadas)."
+    },
+    {
+      "pergunta": "O que significa dizer que a matéria é eletricamente neutra em condições normais?",
+      "alternativas": [
+        "Que ela não tem nenhuma partícula subatômica",
+        "Que o número de prótons é igual ao número de elétrons",
+        "Que ela só possui nêutrons",
+        "Que seus elétrons não se movem"
+      ],
+      "resposta": 1,
+      "explicacao": "A neutralidade elétrica ocorre quando as cargas positivas dos prótons anulam exatamente as cargas negativas dos elétrons."
+    },
+    {
+      "pergunta": "Quantas camadas ou níveis principais de energia os elétrons podem ocupar na eletrosfera?",
+      "alternativas": [
+        "Até 3 camadas (A, B, C)",
+        "Até 7 camadas (K, L, M, N, O, P, Q)",
+        "Apenas 1 camada",
+        "Infinitas camadas sem limite"
+      ],
+      "resposta": 1,
+      "explicacao": "Os elementos conhecidos distribuem seus elétrons em no máximo 7 camadas eletrônicas principais, representadas pelas letras de K a Q."
+    },
+    {
+      "pergunta": "Qual partícula subatômica tem carga negativa?",
+      "alternativas": [
+        "Próton",
+        "Nêutron",
+        "Elétron",
+        "Nenhum deles"
+      ],
+      "resposta": 2,
+      "explicacao": "O elétron é a partícula subatômica fundamental portadora de carga elétrica negativa."
+    },
+    {
+      "pergunta": "O que são isóbaros?",
+      "alternativas": [
+        "Átomos de elementos diferentes que possuem o mesmo número de massa (A)",
+        "Átomos iguais com o mesmo número de nêutrons",
+        "Moléculas com a mesma quantidade de oxigênio",
+        "Íons com cargas opostas"
+      ],
+      "resposta": 0,
+      "explicacao": "Isóbaros são átomos de elementos químicos distintos que apresentam o mesmo número de massa (soma de prótons e nêutrons igual)."
+    },
+    {
+      "pergunta": "O que são isótonos?",
+      "alternativas": [
+        "Átomos com o mesmo número de prótons",
+        "Átomos com o mesmo número de nêutrons",
+        "Átomos com o mesmo número de elétrons",
+        "Átomos com a mesma massa total"
+      ],
+      "resposta": 1,
+      "explicacao": "Isótonos são átomos diferentes que possuem a mesma quantidade de nêutrons em seus núcleos."
+    },
+    {
+      "pergunta": "Quem foi o filósofo grego da antiguidade que idealizou a palavra 'átomo' significando 'indivisível'?",
+      "alternativas": [
+        "Aristóteles e Platão",
+        "Leucipo e Demócrito",
+        "Sócrates e Pitágoras",
+        "Arquimedes e Euclides"
+      ],
+      "resposta": 1,
+      "explicacao": "Os filósofos gregos Leucipo e Demócrito foram os pioneiros na ideia de que a matéria era formada por pequenas partículas indivisíveis chamadas átomos."
+    },
+    {
+      "pergunta": "Por que o modelo de Rutherford representou um avanço importante?",
+      "alternativas": [
+        "Porque provou que o átomo tem um núcleo denso e positivo, separado da eletrosfera vazia",
+        "Porque eliminou a existência dos elétrons",
+        "Porque provou que o átomo é uma esfera maciça indivisível",
+        "Porque explicou a eletricidade estática das roupas"
+      ],
+      "resposta": 0,
+      "explicacao": "O experimento da lâmina de ouro de Rutherford demonstrou que o átomo é predominantemente espaço vazio com um núcleo central denso."
+    }
+  ],
+  "8ano": [
+    {
+      "pergunta": "O que a Tabela Periódica organiza?",
+      "alternativas": [
+        "Os planetas do sistema solar",
+        "Os elementos químicos de acordo com suas propriedades",
+        "As fórmulas matemáticas da física",
+        "Os estados físicos da água"
+      ],
+      "resposta": 1,
+      "explicacao": "A Tabela Periódica organiza todos os elementos químicos conhecidos em ordem crescente de número atômico e agrupados por semelhanças em suas propriedades."
+    },
+    {
+      "pergunta": "Como são chamadas as linhas horizontais da Tabela Periódica?",
+      "alternativas": [
+        "Famílias ou Grupos",
+        "Períodos",
+        "Blocos de transição",
+        "Séries orgânicas"
+      ],
+      "resposta": 1,
+      "explicacao": "As linhas horizontais da tabela são chamadas de períodos e indicam o número de camadas eletrônicas dos átomos."
+    },
+    {
+      "pergunta": "Como são chamadas as colunas verticais da Tabela Periódica?",
+      "alternativas": [
+        "Períodos",
+        "Famílias ou Grupos",
+        "Camadas de valência",
+        "Níveis energéticos"
+      ],
+      "resposta": 1,
+      "explicacao": "As colunas verticais são chamadas de famílias ou grupos, cujos elementos possuem propriedades químicas semelhantes devido aos elétrons na camada de valência."
+    },
+    {
+      "pergunta": "Qual grupo da Tabela Periódica é conhecido por sua enorme estabilidade e falta de reatividade química?",
+      "alternativas": [
+        "Metais Alcalinos",
+        "Halogênios",
+        "Gases Nobres",
+        "Metais de Transição"
+      ],
+      "resposta": 2,
+      "explicacao": "Os gases nobres (família 18) possuem a camada de valência completa, o que os torna quimicamente inertes na maioria das condições."
+    },
+    {
+      "pergunta": "A qual família pertencem elementos como o Sódio (Na) e o Potássio (K)?",
+      "alternativas": [
+        "Metais Alcalinos",
+        "Metais Alcalino-Terrosos",
+        "Halogênios",
+        "Gases Nobres"
+      ],
+      "resposta": 0,
+      "explicacao": "O grupo 1 da tabela é formado pelos metais alcalinos, metais altamente reativos que possuem 1 elétron na camada de valência."
+    },
+    {
+      "pergunta": "Qual é a principal característica dos elementos classificados como ametais (não-metais)?",
+      "alternativas": [
+        "São ótimos condutores de eletricidade e brilham muito",
+        "São maus condutores de calor e eletricidade, podendo ser sólidos, líquidos ou gases",
+        "São todos líquidos à temperatura ambiente",
+        "Possuem alta maleabilidade e ductilidade"
+      ],
+      "resposta": 1,
+      "explicacao": "Os ametais não conduzem bem eletricidade nem calor, têm baixa maleabilidade e aparecem em vários estados físicos na temperatura ambiente."
+    },
+    {
+      "pergunta": "O que é uma ligação iônica?",
+      "alternativas": [
+        "Ligação formada pelo compartilhamento de pares de elétrons entre ametais",
+        "Ligação baseada na atração eletrostática entre íons de cargas opostas (cátions e ânions)",
+        "União exclusiva entre átomos de metais puros",
+        "Força gravitacional entre núcleos atômicos"
+      ],
+      "resposta": 1,
+      "explicacao": "A ligação iônica ocorre geralmente entre um metal e um ametal através da transferência de elétrons, gerando íons que se atraem."
+    },
+    {
+      "pergunta": "O que caracteriza uma ligação covalente?",
+      "alternativas": [
+        "Transferência definitiva de elétrons de metal para ametal",
+        "Compartilhamento de pares de elétrons entre átomos (geralmente ametais)",
+        "Mar de elétrons livres circundando íons positivos",
+        "Atração magnética fraca entre gases"
+      ],
+      "resposta": 1,
+      "explicacao": "Na ligação covalente, os átomos compartilham elétrons para atingirem a estabilidade da regra do octeto."
+    },
+    {
+      "pergunta": "Qual tipo de ligação química ocorre entre átomos de metais, formando um 'mar de elétrons' livres?",
+      "alternativas": [
+        "Ligação iônica",
+        "Ligação covalente",
+        "Ligação metálica",
+        "Ponte de hidrogênio"
+      ],
+      "resposta": 2,
+      "explicacao": "A ligação metálica é típica de metais puros ou ligas metálicas, onde os elétrons de valência movem-se livremente entre os cátions metálicos."
+    },
+    {
+      "pergunta": "Quem criou a primeira proposta de organização da Tabela Periódica moderna por ordem de massa atômica e semelhanças?",
+      "alternativas": [
+        "Albert Einstein",
+        "Dmitri Mendeleev",
+        "Antoine Lavoisier",
+        "Marie Curie"
+      ],
+      "resposta": 1,
+      "explicacao": "O químico russo Dmitri Mendeleev organizou a primeira tabela periódica precursora, deixando espaços vazios para elementos ainda não descobertos."
+    },
+    {
+      "pergunta": "Qual é o nome do elemento químico cujo símbolo é 'Fe'?",
+      "alternativas": [
+        "Flúor",
+        "Ferro",
+        "Fósforo",
+        "Frâncio"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo 'Fe' vem do latim *ferrum*, que significa ferro."
+    },
+    {
+      "pergunta": "O sal de cozinha (NaCl) é formado por qual tipo de ligação química?",
+      "alternativas": [
+        "Covalente",
+        "Metálica",
+        "Iônica",
+        "Hidrogenada"
+      ],
+      "resposta": 2,
+      "explicacao": "O cloreto de sódio (NaCl) resulta da união do sódio (metal) com o cloro (ametal) através de uma ligação iônica."
+    },
+    {
+      "pergunta": "O gás oxigênio ($O_2$) possui qual tipo de ligação entre seus átomos?",
+      "alternativas": [
+        "Covalente",
+        "Iônica",
+        "Metálica",
+        "Ponte iônica"
+      ],
+      "resposta": 0,
+      "explicacao": "O oxigênio é um ametal ligado a outro ametal através do compartilhamento de elétrons (ligação covalente)."
+    },
+    {
+      "pergunta": "Qual é a principal propriedade dos metais em termos de maleabilidade?",
+      "alternativas": [
+        "Eles quebram facilmente ao menor impacto",
+        "Eles podem ser moldados e transformados em lâminas finas",
+        "Eles evaporam com facilidade ao toque",
+        "Eles dissolvem-se completamente na água fria"
+      ],
+      "resposta": 1,
+      "explicacao": "A maleabilidade é a capacidade dos metais de serem laminados sem se romperem."
+    },
+    {
+      "pergunta": "Como são chamados os elementos da família 17 da Tabela Periódica?",
+      "alternativas": [
+        "Metais Alcalinos",
+        "Gases Nobres",
+        "Halogênios",
+        "Calcogênios"
+      ],
+      "resposta": 2,
+      "explicacao": "Os halogênios (como flúor, cloro, bromo e iodo) compõem a família 17 e são altamente reativos."
+    },
+    {
+      "pergunta": "Qual elemento químico possui o símbolo 'Na'?",
+      "alternativas": [
+        "Nitrogênio",
+        "Sódio",
+        "Níquel",
+        "Neônio"
+      ],
+      "resposta": 1,
+      "explicacao": "O símbolo 'Na' deriva do latim *natrium*, correspondente ao sódio."
+    },
+    {
+      "pergunta": "O que indica o número de um período na Tabela Periódica?",
+      "difuculdade": "facil",
+      "alternativas": [
+        "O número de camadas eletrônicas que o átomo possui",
+        "A quantidade de prótons no núcleo",
+        "O estado físico padrão do elemento",
+        "O ano em que o elemento foi descoberto"
+      ],
+      "resposta": 0,
+      "explicacao": "Os 7 períodos da tabela correspondem exatamente ao número de camadas eletrônicas (de K a Q) que os átomos desses elementos possuem."
+    },
+    {
+      "pergunta": "Qual das substâncias abaixo apresenta ligação iônica?",
+      "alternativas": [
+        "$H_2O$",
+        "$CO_2$",
+        "$MgO$ (Óxido de Magnésio)",
+        "$O_2$"
+      ],
+      "resposta": 2,
+      "explicacao": "O óxido de magnésio é formado por magnésio (metal) e oxigênio (ametal), caracterizando uma ligação iônica."
+    },
+    {
+      "pergunta": "Qual propriedade permite aos metais serem puxados transformando-se em fios?",
+      "alternativas": [
+        "Ductilidade",
+        "Fragilidade",
+        "Sublimação",
+        "Radioatividade"
+      ],
+      "resposta": 0,
+      "explicacao": "A ductilidade é a propriedade física que possibilita transformar metais em fios compridos e finos, como os fios de cobre."
+    },
+    {
+      "pergunta": "O que são substâncias puras simples?",
+      "alternativas": [
+        "Formadas por átomos de dois ou mais elementos diferentes combinados",
+        "Formadas por átomos de um único elemento químico",
+        "Misturas homogêneas de dois gases",
+        "Compostos orgânicos complexos"
+      ],
+      "resposta": 1,
+      "explicacao": "Substâncias puras simples contêm apenas um tipo de elemento químico em sua estrutura (ex: $O_2$, $H_2$, $Fe$)."
+    },
+    {
+      "pergunta": "O que são substâncias puras compostas (ou compostos químicos)?",
+      "alternativas": [
+        "Formadas por átomos de dois ou mais elementos químicos diferentes unidos quimicamente",
+        "Formadas por um único tipo de átomo isolado",
+        "Misturas heterogêneas de líquidos",
+        "Soluções aquosas de sais minerais"
+      ],
+      "resposta": 0,
+      "explicacao": "Substâncias compostas possuem moléculas formadas por dois ou mais elementos químicos diferentes (ex: $H_2O$, $CO_2$)."
+    },
+    {
+      "pergunta": "Qual dos seguintes elementos é um gás nobre?",
+      "alternativas": [
+        "Cloro",
+        "Hélio",
+        "Oxigênio",
+        "Hidrogênio"
+      ],
+      "resposta": 1,
+      "explicacao": "O hélio (He) faz parte da família dos gases nobres, caracterizados pela baixa reatividade."
+    },
+    {
+      "pergunta": "Qual é a principal utilidade da regra do octeto na explicação das ligações químicas?",
+      "alternativas": [
+        "Prever como os átomos ganham, perdem ou compartilham elétrons para atingir 8 elétrons na camada de valência",
+        "Calcular a massa exata de um elétron",
+        "Medir a temperatura de ebulição dos metais",
+        "Contar o número de nêutrons no núcleo"
+      ],
+      "resposta": 0,
+      "explicacao": "A regra do octeto estabelece que a maioria dos átomos busca estabilidade adquirindo uma configuração eletrônica semelhante à de um gás nobre (geralmente 8 elétrons na última camada)."
+    },
+    {
+      "pergunta": "Qual é o símbolo químico do Potássio?",
+      "alternativas": [
+        "P",
+        "Po",
+        "K",
+        "Pt"
+      ],
+      "resposta": 2,
+      "explicacao": "O símbolo do potássio é K, derivado da palavra neo-latina *kalium*."
+    },
+    {
+      "pergunta": "Em qual bloco da Tabela Periódica encontram-se os elementos conhecidos como metais de transição?",
+      "alternativas": [
+        "Nas colunas centrais (grupos 3 a 12)",
+        "Apenas na primeira coluna da esquerda",
+        "Na última coluna da direita",
+        "Separados no rodapé em duas linhas isoladas"
+      ],
+      "resposta": 0,
+      "explicacao": "Os metais de transição ocupam o bloco central da tabela periódica, compreendendo os grupos de 3 a 12."
+    },
+    {
+      "pergunta": "Qual ligação química é responsável por manter os átomos de uma molécula de água ($H_2O$) unidos?",
+      "alternativas": [
+        "Ligação iônica",
+        "Ligação covalente",
+        "Ligação metálica",
+        "Ligação de hidrogênio pura"
+      ],
+      "resposta": 1,
+      "explicacao": "Na água, o hidrogênio e o oxigênio compartilham pares de elétrons, formando ligações covalentes."
+    },
+    {
+      "pergunta": "O mercúrio ($Hg$) é um metal que possui uma característica física muito incomum à temperatura ambiente. Qual é?",
+      "alternativas": [
+        "É um gás inflamável",
+        "Encontra-se no estado líquido",
+        "É transparente como o vidro",
+        "Conduz eletricidade pior que a madeira"
+      ],
+      "resposta": 1,
+      "explicacao": "O mercúrio é o único metal que se apresenta no estado líquido sob condições ambientes normais."
+    },
+    {
+      "pergunta": "O que são compostos moleculares?",
+      "alternativas": [
+        "Substâncias formadas exclusivamente por ligações iônicas cristalinas",
+        "Substâncias cujos átomos estão unidos por ligações covalentes",
+        "Misturas de metais fundidos",
+        "Átomos isolados sem nenhuma ligação"
+      ],
+      "resposta": 1,
+      "explicacao": "Compostos moleculares são formados por moléculas cujos átomos constituintes estão ligados por meio de ligações covalentes."
+    },
+    {
+      "pergunta": "Qual elemento químico possui o símbolo 'C'?",
+      "alternativas": [
+        "Cálcio",
+        "Cobre",
+        "Carbono",
+        "Cloro"
+      ],
+      "resposta": 2,
+      "explicacao": "O símbolo 'C' representa o carbono, elemento fundamental para a química orgânica."
+    },
+    {
+      "pergunta": "Como Mendeleev conseguiu prever a existência de elementos ainda não descobertos em sua época?",
+      "alternativas": [
+        "Através de previsões astrológicas",
+        "Observando lacunas e padrões de repetição nas propriedades das colunas da tabela",
+        "Misturando ácidos fortes ao acaso",
+        "Calculando a rota da Terra"
+      ],
+      "resposta": 1,
+      "explicacao": "Mendeleev percebeu que havia propriedades que se repetiam periodicamente e deixou espaços vagos na tabela para elementos que encaixavam exatamente naqueles padrões."
+    }
+  ],
+  "9ano": [
+    {
+      "pergunta": "Em uma reação química, como são chamadas as substâncias iniciais?",
+      "alternativas": [
+        "Produtos",
+        "Reagentes",
+        "Catalisadores",
+        "Resíduos"
+      ],
+      "resposta": 1,
+      "explicacao": "Os reagentes são os materiais que entram na reação química (o ponto de partida), enquanto os produtos são as substâncias formadas no final."
+    },
+    {
+      "pergunta": "O que estabelece a Lei de Conservação da Massa (Lei de Lavoisier)?",
+      "alternativas": [
+        "A massa total dos reagentes é sempre maior que a massa dos produtos",
+        "Na natureza, nada se cria, nada se perde, tudo se transforma; a massa se conserva em um sistema fechado",
+        "Os gases gerados na reação sempre desaparecem no ambiente",
+        "A massa dos produtos depende exclusivamente da temperatura externa"
+      ],
+      "resposta": 1,
+      "explicacao": "Lavoisier provou que, em um sistema fechado, a massa total das substâncias reagentes é igual à massa total dos produtos formados."
+    },
+    {
+      "pergunta": "O que afirma a Lei das Proporções Definitivas (Lei de Proust)?",
+      "alternativas": [
+        "Qualquer substância pura possui uma composição química constante, independentemente de sua origem",
+        "As reações químicas podem mudar de proporção a cada tentativa",
+        "Os reagentes nunca se esgotam por completo",
+        "A proporção de massa depende da pressão atmosférica"
+      ],
+      "resposta": 0,
+      "explicacao": "A Lei de Proust indica que uma dada substância pura é sempre formada pelos mesmos elementos combinados na mesma proporção em massa."
+    },
+    {
+      "pergunta": "O que caracteriza uma reação endotérmica?",
+      "alternativas": [
+        "Libera calor para o ambiente",
+        "Absorve calor do ambiente durante o processo",
+        "Não altera a temperatura de forma alguma",
+        "Produz apenas luz sem nenhuma energia térmica"
+      ],
+      "resposta": 1,
+      "explicacao": "Reações endotérmicas necessitam absorver energia térmica do meio externo para que possam ocorrer."
+    },
+    {
+      "pergunta": "O que caracteriza uma reação exotérmica?",
+      "alternativas": [
+        "Absorve calor do ambiente",
+        "Libera calor ou energia térmica para o ambiente",
+        "Ocorre obrigatoriamente a temperaturas abaixo de zero",
+        "Consome mais energia do que produz"
+      ],
+      "resposta": 1,
+      "explicacao": "Reações exotérmicas liberam energia (muitas vezes na forma de calor ou luz), como na queima de combustíveis."
+    },
+    {
+      "pergunta": "Qual é a função de um catalisador em uma reação química?",
+      "alternativas": [
+        "Aumentar a quantidade de produtos formados no final",
+        "Acelerar a velocidade da reação sem ser consumido no processo",
+        "Paralisar a reação antes que ela termine",
+        "Transformar produtos em reagentes novamente"
+      ],
+      "resposta": 1,
+      "explicacao": "Catalisadores diminuem a energia de ativação necessária, acelerando a reação sem sofrer alteração permanente ou consumo."
+    },
+    {
+      "pergunta": "Segundo a teoria de Arrhenius, o que é um ácido?",
+      "alternativas": [
+        "Substância que, em solução aquosa, libera íons hidroxila ($OH^-$)",
+        "Substância que, em solução aquosa, libera exclusivamente cátions hidrogênio ($H^+$ ou $H_3O^+$)",
+        "Qualquer sal neutro dissolvido",
+        "Um óxido metálico insolúvel"
+      ],
+      "resposta": 1,
+      "explicacao": "Para Arrhenius, ácidos são compostos que ionizam em água liberando o cátion hidrogênio ($H^+$)."
+    },
+    {
+      "pergunta": "Segundo Arrhenius, o que caracteriza uma base?",
+      "alternativas": [
+        "Liberar íons hidroxila ($OH^-$) como único tipo de ânion em solução aquosa",
+        "Liberar íons de hidrogênio ($H^+$)",
+        "Formar gases tóxicos em contato com metais",
+        "Apresentar sabor estritamente azedo"
+      ],
+      "resposta": 0,
+      "explicacao": "Bases (ou hidróxidos) liberam íons hidroxila ($OH^-$) quando dissolvidas em água."
+    },
+    {
+      "pergunta": "Qual é o resultado clássico da reação entre um ácido e uma base?",
+      "alternativas": [
+        "Apenas um gás inflamável",
+        "Formação de sal e água (neutralização)",
+        "Apenas destruição total dos materiais",
+        "Criação de um metal puro"
+      ],
+      "resposta": 1,
+      "explicacao": "A reação de neutralização entre um ácido e uma base produz um sal e água, neutralizando as características iniciais de ambos."
+    },
+    {
+      "pergunta": "O que indica o pH de uma solução?",
+      "alternativas": [
+        "A quantidade de pressão exercida pelo gás dissolvido",
+        "O grau de acidez, neutralidade ou basicidade (alcalinidade) da solução",
+        "A velocidade exata da reação química",
+        "A densidade do líquido em gramas por mililitro"
+      ],
+      "resposta": 1,
+      "explicacao": "A escala de pH mede a concentração de íons de hidrogênio, determinando se uma solução é ácida (pH < 7), neutra (pH = 7) ou básica/alcalina (pH > 7)."
+    },
+    {
+      "pergunta": "Qual valor de pH indica uma solução estritamente neutra (como a água pura a 25°C)?",
+      "alternativas": [
+        "0",
+        "7",
+        "14",
+        "10"
+      ],
+      "resposta": 1,
+      "explicacao": "O valor 7 na escala de pH representa a neutralidade química."
+    },
+    {
+      "pergunta": "Se uma substância possui pH igual a 3, ela é classificada como:",
+      "alternativas": [
+        "Ácida",
+        "Básica ou alcalina",
+        "Neutra",
+        "Um sal insolúvel"
+      ],
+      "resposta": 0,
+      "explicacao": "Valores de pH abaixo de 7 indicam caráter ácido (quanto menor o pH, mais forte é a acidez)."
+    },
+    {
+      "pergunta": "O que são óxidos?",
+      "alternativas": [
+        "Compostos binários formados por dois elementos diferentes, onde o oxigênio é o mais eletronegativo deles",
+        "Ácidos fortes dissolvidos em óleo",
+        "Misturas homogêneas de sais minerais",
+        "Hidróxidos orgânicos complexos"
+      ],
+      "resposta": 0,
+      "explicacao": "Óxidos são compostos formados por oxigênio e mais outro elemento químico."
+    },
+    {
+      "pergunta": "Qual é a principal característica visual que diferencia uma reação química de um fenômeno físico?",
+      "alternativas": [
+        "A mudança de estado físico do gelo",
+        "A formação de novas substâncias com propriedades diferentes das iniciais (mudança de cor, liberação de gás, formação de precipitado, etc.)",
+        "O corte de um pedaço de papel ao meio",
+        "A dissolução de açúcar em água morna"
+      ],
+      "resposta": 1,
+      "explicacao": "Nas reações químicas ocorrem transformações na matéria, gerando novas substâncias, o que não acontece nos fenômenos físicos."
+    },
+    {
+      "pergunta": "O que é energia de ativação?",
+      "alternativas": [
+        "A energia total liberada no final de uma reação exotérmica",
+        "A quantidade mínima de energia necessária para que os reagentes iniciem uma reação química",
+        "A energia elétrica consumida por catalisadores artificiais",
+        "O calor gerado pelos produtos formados"
+      ],
+      "resposta": 1,
+      "explicacao": "A energia de ativação funciona como uma 'barreira energética' que os reagentes precisam superar para que a reação aconteça."
+    },
+    {
+      "pergunta": "Como a superfície de contato dos reagentes afeta a velocidade de uma reação química?",
+      "alternativas": [
+        "Quanto maior a superfície de contato (ex: sólidos triturados em pó), mais rápida é a reação",
+        "Quanto maior a superfície, mais lenta se torna a reação",
+        "A superfície de contato não interfere em nenhuma hipótese",
+        "Ela apenas diminui a temperatura do sistema"
+      ],
+      "resposta": 0,
+      "explicacao": "Aumentar a superfície de contato expõe mais partículas ao mesmo tempo, facilitando os choques efetivos e acelerando a reação."
+    },
+    {
+      "pergunta": "Qual é o efeito do aumento da temperatura na velocidade de uma reação química?",
+      "alternativas": [
+        "Aumenta a velocidade da reação por intensificar a agitação e os choques entre as partículas",
+        "Diminui drasticamente a velocidade da reação",
+        "Faz com que a reação pare imediatamente",
+        "Não causa nenhuma alteração no processo"
+      ],
+      "resposta": 0,
+      "explicacao": "Temperaturas mais altas dão mais energia cinética às partículas, aumentando a frequência e a eficácia das colisões."
+    },
+    {
+      "pergunta": "O vinagre contém ácido acético e apresenta sabor azedo e pH menor que 7. Ele é um exemplo clássico de:",
+      "alternativas": [
+        "Uma base forte",
+        "Um ácido",
+        "Um sal neutro",
+        "Um óxido básico"
+      ],
+      "resposta": 1,
+      "explicacao": "O vinagre é uma solução ácida devido à presença do ácido acético."
+    },
+    {
+      "pergunta": "O leite de magnésia é usado para aliviar azia estomacal por ser uma substância básica. Qual faixa de pH ele apresenta aproximadamente?",
+      "alternativas": [
+        "Entre 1 e 3",
+        "Igual a 7",
+        "Acima de 7 (básico/alcalino)",
+        "Exatamente zero"
+      ],
+      "resposta": 2,
+      "explicacao": "Substâncias básicas ou alcalinas, como o leite de magnésia, possuem pH superior a 7, neutralizando o excesso de ácido no estômago."
+    },
+    {
+      "pergunta": "O que é uma reação de síntese (ou adição)?",
+      "alternativas": [
+        "Quando duas ou mais substâncias reagentes se unem para formar um único produto mais complexo",
+        "Quando uma substância se divide em várias outras menores",
+        "Quando há troca de lugares entre elementos de duas substâncias",
+        "A queima completa de um combustível fóssil"
+      ],
+      "resposta": 0,
+      "explicacao": "Na síntese, o formato geral é A + B $\rightarrow$ C, ou seja, duas ou mais substâncias geram um único produto."
+    },
+    {
+      "pergunta": "O que ocorre em uma reação de análise (ou desonposição)?",
+      "alternativas": [
+        "Duas substâncias se unem para formar um sal",
+        "Uma única substância reagente decompõe-se em duas ou mais substâncias mais simples",
+        "Há troca de íons entre ácidos e bases",
+        "Ocorre liberação de luz sem divisão de matéria"
+      ],
+      "resposta": 1,
+      "explicacao": "Na decomposição, um reagente complexo divide-se em produtos mais simples (formato geral: A $\rightarrow$ B + C)."
+    },
+    {
+      "pergunta": "Qual é a fórmula química geral dos ácidos mais comuns segundo a liberação de hidrogênio em água?",
+      "alternativas": [
+        "Apresentam hidrogênio ($H$) na frente da fórmula (ex: $HCl$, $H_2SO_4$)",
+        "Terminam sempre em hidroxila ($OH$)",
+        "São formados apenas por metais puros",
+        "Possuem oxigênio isolado sem outro elemento"
+      ],
+      "resposta": 0,
+      "explicacao": "A fórmula dos ácidos inorgânicos tradicionais inicia-se com o elemento hidrogênio."
+    },
+    {
+      "pergunta": "Qual terminação caracteriza a nomenclatura dos hidróxidos (bases) na química inorgânica?",
+      "alternativas": [
+        "Terminam em 'hidreto'",
+        "Terminam em 'de hidroxila' ou levam o nome do metal seguido de hidróxido",
+        "Começam sempre com a letra Z",
+        "Terminam em 'ico'"
+      ],
+      "resposta": 1,
+      "explicacao": "As bases são nomeadas como hidróxido de [nome do metal], a exemplo do hidróxido de sódio ($NaOH$)."
+    },
+    {
+      "pergunta": "Como se classificam os sais quanto à sua origem em reações de neutralização?",
+      "alternativas": [
+        "São compostos iônicos formados por um cátion oriundo de uma base e um ânion oriundo de um ácido",
+        "São formados estritamente pela união de dois gases nobres",
+        "São líquidos voláteis de cheiro forte",
+        "São compostos formados apenas por ligações covalentes puras"
+      ],
+      "resposta": 0,
+      "explicacao": "O sal é o produto iônico resultante da reação entre um ácido e uma base, juntamente com a água."
+    },
+    {
+      "pergunta": "O que significa balancear uma equação química?",
+      "alternativas": [
+        "Garantir que o número de átomos de cada elemento seja exatamente igual tanto nos reagentes quanto nos produtos",
+        "Deixar a quantidade de massa dos produtos maior que a dos reagentes",
+        "Modificar as fórmulas químicas das substâncias para facilitar os cálculos",
+        "Adicionar água em excesso em todas as etapas"
+      ],
+      "resposta": 0,
+      "explicacao": "Balancear atende à Lei de Lavoisier, igualando a quantidade de cada tipo de átomo nos dois lados da seta da reação."
+    },
+    {
+      "pergunta": "Qual dos fatores abaixo NÃO altera a velocidade de uma reação química?",
+      "alternativas": [
+        "Temperatura do sistema",
+        "Concentração dos reagentes",
+        "Presença de catalisador",
+        "A cor da parede do laboratório onde a experiência é feita"
+      ],
+      "resposta": 3,
+      "explicacao": "Fatores externos como temperatura, concentração, superfície de contato e catalisadores alteram a cinética, mas o ambiente externo irrelevante não interfere."
+    },
+    {
+      "pergunta": "O que é um inibidor químico?",
+      "alternativas": [
+        "Uma substância que acelera reações perigosas",
+        "Uma substância que diminui ou desacelera a velocidade de uma reação química indesejada",
+        "Um ácido forte usado para dissolver metais",
+        "Um catalisador universal de alta potência"
+      ],
+      "resposta": 1,
+      "explicacao": "Inibidores retardam reações químicas, sendo muito usados, por exemplo, para evitar a oxidação de alimentos."
+    },
+    {
+      "pergunta": "O que indica um pH igual a 14 na escala padrão?",
+      "alternativas": [
+        "Uma acidez extremamente forte",
+        "Neutralidade absoluta",
+        "Uma basicidade ou alcalinidade extremamente forte",
+        "Ausência total de qualquer substância"
+      ],
+      "resposta": 2,
+      "explicacao": "Valores próximos de 14 representam soluções altamente básicas ou alcalinas."
+    },
+    {
+      "pergunta": "Qual é o nome dado ao gás carbônico ($CO_2$) na classificação dos óxidos?",
+      "alternativas": [
+        "Óxido ácido (ou anidrido)",
+        "Óxido básico",
+        "Óxido neutro",
+        "Peróxido metálico"
+      ],
+      "resposta": 0,
+      "explicacao": "O dióxido de carbono ($CO_2$) é um óxido ácido, pois reage com água formando um ácido (ácido carbônico)."
+    },
+    {
+      "pergunta": "Por que guardar alimentos na geladeira faz com que eles demorem mais para estragar?",
+      "alternativas": [
+        "Porque o frio aumenta a velocidade das bactérias",
+        "Porque a baixa temperatura diminui a velocidade das reações químicas de decomposição causadas por microrganismos",
+        "Porque o escuro da geladeira impede reações de luz",
+        "Porque o gelo destrói todas as moléculas de oxigênio"
+      ],
+      "resposta": 1,
+      "explicacao": "A diminuição da temperatura reduz a velocidade das reações químicas de deterioração, conservando o alimento por mais tempo."
+    }
+  ],
+  "1serie": [
+    {
+      "pergunta": "O que representa 1 mol de qualquer substância?",
+      "alternativas": [
+        "6,02 x 10²³ entidades (átomos, moléculas, etc.)",
+        "Exatamente 100 gramas",
+        "1 litro de solução a 25°C",
+        "O peso atômico multiplicado por 2"
+      ],
+      "resposta": 0,
+      "explicacao": "O mol é uma unidade de medida fundamental na química que representa uma quantidade fixa de partículas: 6,02 x 10²³ (Constante de Avogadro)."
+    },
+    {
+      "pergunta": "Qual é o valor numérico da Constante de Avogadro?",
+      "alternativas": [
+        "3,14 x 10¹⁰",
+        "6,02 x 10²³",
+        "9,81 x 10²",
+        "1,60 x 10⁻¹⁹"
+      ],
+      "resposta": 1,
+      "explicacao": "A constante de Avogadro é aproximadamente $6,02 \\times 10^{23}\\text{ mol}^{-1}$."
+    },
+    {
+      "pergunta": "O que significa massa molar de uma substância?",
+      "alternativas": [
+        "A massa em gramas de exatamente 1 mol dessa substância",
+        "O peso de um único átomo isolado no vácuo",
+        "A densidade do material dividida pelo volume",
+        "A pressão exercida por 1 mol de gás nas CNTP"
+      ],
+      "resposta": 0,
+      "explicacao": "A massa molar expressa a massa (em gramas) contida em 1 mol de entidades elementares, com unidade usual de g/mol."
+    },
+    {
+      "pergunta": "Qual é o volume ocupado por 1 mol de qualquer gás ideal nas Condições Normais de Temperatura e Pressão (CNTP)?",
+      "alternativas": [
+        "1,0 litro",
+        "11,2 litros",
+        "22,4 litros",
+        "273 litros"
+      ],
+      "resposta": 2,
+      "explicacao": "Nas CNTP (0°C e 1 atm), o volume molar de qualquer gás ideal é de aproximadamente 22,4 litros."
+    },
+    {
+      "pergunta": "O que expressa a fórmula empírica (ou mínima) de um composto químico?",
+      "alternativas": [
+        "A menor proporção em números inteiros entre os átomos dos elementos presentes no composto",
+        "O número real e exato de todos os átomos de uma molécula isolada",
+        "A massa total da substância em quilogramas",
+        "A quantidade de calor liberada na sua combustão"
+      ],
+      "resposta": 0,
+      "explicacao": "A fórmula empírica fornece a razão estequiométrica mais simples entre os elementos de uma substância."
+    },
+    {
+      "pergunta": "O que é a fórmula molecular de uma substância?",
+      "alternativas": [
+        "A proporção mínima de átomos",
+        "A indicação do número real de átomos de cada elemento que compõem uma molécula verdadeira",
+        "Apenas a massa molar do composto",
+        "A estrutura geométrica espacial detalhada"
+      ],
+      "resposta": 1,
+      "explicacao": "A fórmula molecular mostra a quantidade exata de cada tipo de átomo presente em uma molécula."
+    },
+    {
+      "pergunta": "O que estuda a Estequiometria?",
+      "alternativas": [
+        "A velocidade com que os gases se expandem",
+        "Os cálculos quantitativos das relações de massa, volume e mols entre reagentes e produtos em reações químicas",
+        "A separação física de misturas homogêneas complexas",
+        "A nomenclatura IUPAC dos compostos orgânicos"
+      ],
+      "resposta": 1,
+      "explicacao": "A estequiometria realiza o dimensionamento e cálculo das quantidades de matéria envolvidas em transformações químicas."
+    },
+    {
+      "pergunta": "O que é o reagente limitante em uma reação química?",
+      "alternativas": [
+        "O reagente que sobra em excesso após o término da reação",
+        "O reagente que se esgota primeiro, limitando e determinando o fim da formação de produtos",
+        "O catalisador que acelera o processo",
+        "A substância formada em menor quantidade"
+      ],
+      "resposta": 1,
+      "explicacao": "O reagente limitante é consumido integralmente no início ou durante o processo, determinando quando a reação cessa."
+    },
+    {
+      "pergunta": "O que significa rendimento percentual de uma reação química?",
+      "alternativas": [
+        "A proporção entre a quantidade real de produto obtida experimentalmente e a quantidade teórica esperada, multiplicada por 100",
+        "O lucro financeiro obtido na venda dos produtos",
+        "A velocidade de consumo do reagente em excesso",
+        "A porcentagem de catalisador perdido no processo"
+      ],
+      "resposta": 0,
+      "explicacao": "O rendimento percentual mede a eficiência prática de uma reação em relação ao máximo calculado teoricamente."
+    },
+    {
+      "pergunta": "Qual é a definição correta de solução química?",
+      "alternativas": [
+        "Uma mistura heterogênea de duas fases",
+        "Uma mistura homogênea composta por soluto e solvente",
+        "Uma substância pura simples decomposta",
+        "Um composto iônico cristalino fundido"
+      ],
+      "resposta": 1,
+      "explicacao": "Soluções são misturas homogêneas onde o soluto encontra-se uniformemente dissolvido no solvente."
+    },
+    {
+      "pergunta": "O que é concentração comum ($C$) de uma solução?",
+      "alternativas": [
+        "A razão entre a massa do soluto (em gramas) e o volume da solução (em litros)",
+        "O número de mols de soluto por litro de solução",
+        "A massa do solvente pura dividida pela temperatura",
+        "A porcentagem em massa dos reagentes limitantes"
+      ],
+      "resposta": 0,
+      "explicacao": "A concentração comum é expressa habitualmente em g/L através da fórmula $C = \\frac{m_1}{V}$."
+    },
+    {
+      "pergunta": "O que representa a molaridade (concentração em quantidade de matéria, $M$)?",
+      "alternativas": [
+        "A massa de soluto em gramas",
+        "O número de mols de soluto dissolvidos em cada 1 litro de solução",
+        "O volume de gás formado nas CNTP",
+        "A densidade absoluta da solução"
+      ],
+      "resposta": 1,
+      "explicacao": "A molaridade é dada em mol/L, relacionando a quantidade de mols do soluto com o volume total da solução."
+    },
+    {
+      "pergunta": "O que ocorre na diluição de uma solução?",
+      "alternativas": [
+        "Adiciona-se mais soluto para tornar a solução mais concentrada",
+        "Adiciona-se mais solvente (geralmente água), diminuindo a concentração do soluto sem alterar a quantidade em mols dele",
+        "Retira-se todo o solvente por evaporação forçada",
+        "Aumenta-se o número de mols de soluto proporcionalmente"
+      ],
+      "resposta": 1,
+      "explicacao": "Na diluição, adiciona-se solvente, elevando o volume e reduzindo a concentração molar ou comum, mantendo constante a quantidade de soluto ($n_1 = \\text{constante}$)."
+    },
+    {
+      "pergunta": "O que é a mistura de duas soluções de um mesmo soluto?",
+      "alternativas": [
+        "Um processo estequiométrico de neutralização total",
+        "A combinação de soluções que resulta em uma nova solução com volume e quantidade de soluto somados",
+        "A separação imediata dos componentes por filtração",
+        "A destruição de todas as moléculas envolvidas"
+      ],
+      "resposta": 1,
+      "explicacao": "Misturar soluções de mesmo soluto soma as quantidades de matéria e os volumes, resultando em uma concentração intermediária."
+    },
+    {
+      "pergunta": "O que estuda a Cinética Química?",
+      "alternativas": [
+        "A velocidade das reações químicas e os fatores que a influencian",
+        "As trocas de calor em processos físicos",
+        "A estrutura atômica interna do núcleo",
+        "A geometria molecular tridimensional dos compostos orgânicos"
+      ],
+      "resposta": 0,
+      "explicacao": "A cinética química investiga a rapidez com que os reagentes se transformam em produtos e os mecanismos dessas colisões."
+    },
+    {
+      "pergunta": "O que estabelece a Lei da Ação das Massas (Guldberg-Waage) para a velocidade de uma reação elementar?",
+      "alternativas": [
+        "A velocidade da reação é proporcional ao produto das concentrações dos reagentes, cada uma elevada ao seu respectivo coeficiente estequiométrico",
+        "A velocidade é sempre constante independente da concentração",
+        "A velocidade depende exclusivamente da massa molar do solvente",
+        "A velocidade decresce se houver catalisadores"
+      ],
+      "resposta": 0,
+      "explicacao": "A velocidade de uma reação elementar depende diretamente das concentrações dos reagentes multiplicadas e elevadas aos seus coeficientes."
+    },
+    {
+      "pergunta": "O que é o estado de equilíbrio químico?",
+      "alternativas": [
+        "O momento em que a reação para completamente e os reagentes acabam",
+        "O estado dinâmico em que a velocidade da reação direta se iguala à velocidade da reação inversa",
+        "A condição em que a massa dos produtos é zero",
+        "O instante em que o catalisador é destruído"
+      ],
+      "resposta": 1,
+      "explicacao": "No equilíbrio químico dinâmico, as reações direta e inversa continuam ocorrendo, mas com velocidades iguais, mantendo as concentrações constantes."
+    },
+    {
+      "pergunta": "O que enuncia o Princípio de Le Chatelier?",
+      "alternativas": [
+        "Se um sistema em equilíbrio sofre uma perturbação externa, o sistema desloca-se no sentido de minimizar essa perturbação",
+        "A massa total de um sistema fechado nunca se altera",
+        "A pressão de um gás é inversamente proporcional ao seu volume absoluto",
+        "O volume molar de um gás é sempre constante"
+      ],
+      "resposta": 0,
+      "explicacao": "Le Chatelier previu que sistemas em equilíbrio reagem contraimpondo-se à perturbação aplicada (seja em concentração, temperatura ou pressão)."
+    },
+    {
+      "pergunta": "Qual é o efeito do aumento da pressão sobre um sistema gasoso em equilíbrio que apresenta menor volume no lado dos produtos?",
+      "alternativas": [
+        "O equilíbrio desloca-se no sentido do menor volume (produtos)",
+        "O equilíbrio desloca-se no sentido do maior volume",
+        "Nada acontece com o equilíbrio",
+        "A reação cessa imediatamente"
+      ],
+      "resposta": 0,
+      "explicacao": "Aumentar a pressão desloca o equilíbrio para o lado com menor número de mols de gás, comprimindo o sistema."
+    },
+    {
+      "pergunta": "O que mede o pH de uma solução aquosa?",
+      "alternativas": [
+        "O cologaritmo da concentração de íons hidrônio ($[H^+]$)",
+        "A massa molar total dos sais dissolvidos",
+        "A condutividade elétrica máxima",
+        "A quantidade de calor absorvida por mol"
+      ],
+      "resposta": 0,
+      "explicacao": "Matematicamente, $\\text{pH} = -\\log[H^+]$, indicando a acidez da solução."
+    },
+    {
+      "pergunta": "Qual é a relação entre o pH e o pOH de uma solução aquosa a 25°C?",
+      "alternativas": [
+        "pH + pOH = 7",
+        "pH + pOH = 14",
+        "pH × pOH = 10⁻¹⁴",
+        "pH - pOH = 0"
+      ],
+      "resposta": 1,
+      "explicacao": "A 25°C, a soma do pH com o pOH de qualquer solução aquosa é sempre igual a 14."
+    },
+    {
+      "pergunta": "O que é uma solução saturada?",
+      "alternativas": [
+        "Uma solução que contém a quantidade máxima de soluto que o solvente pode dissolver a uma dada temperatura",
+        "Uma solução que possui pouquíssimo soluto dissolvido",
+        "Uma solução onde o soluto precipita instantaneamente sem dissolver nada",
+        "Uma mistura heterogênea de duas fases sólidas"
+      ],
+      "resposta": 0,
+      "explicacao": "A solução saturada atingiu o limite de solubilidade do soluto naquela temperatura específica."
+    },
+    {
+      "pergunta": "O que caracteriza uma solução supersaturada?",
+      "alternativas": [
+        "Uma solução instável que contém mais soluto dissolvido do que o coeficiente de solubilidade permitiria em condições normais",
+        "Uma solução diluída com excesso de água pura",
+        "Uma mistura homogênea comum de água e álcool",
+        "Uma solução congelada"
+      ],
+      "resposta": 0,
+      "explicacao": "A solução supersaturada é instável e, ao menor estímulo ou adição de corpo de fundo, precipita o excedente de soluto."
+    },
+    {
+      "pergunta": "Como se calcula a fração molar ($x$) de um componente em uma mistura?",
+      "alternativas": [
+        "Pela razão entre o número de mols desse componente e o número total de mols de todos os componentes da mistura",
+        "Pela massa do soluto dividida pelo volume da solução",
+        "Pela multiplicação da molaridade pela massa molar",
+        "Pela densidade dividida pelo volume molar"
+      ],
+      "resposta": 0,
+      "explicacao": "A fração molar relaciona a quantidade de mols da espécie de interesse com a quantidade total de mols do sistema ($x_A = \\frac{n_A}{n_{\\text{total}}}$)."
+    },
+    {
+      "pergunta": "O que é uma reação endotérmica em termos da variação de entalpia ($\\Delta H$)?",
+      "alternativas": [
+        "$\\Delta H$ é negativo",
+        "$\\Delta H$ é positivo (absorve energia)",
+        "$\\Delta H$ é obrigatoriamente igual a zero",
+        "A entalpia dos produtos é sempre menor que a dos reagentes"
+      ],
+      "resposta": 1,
+      "explicacao": "Reações endotérmicas absorvem calor, apresentando variação de entalpia positiva ($\\Delta H > 0$)."
+    },
+    {
+      "pergunta": "O que caracteriza uma reação exotérmica em termos de entalpia ($\\Delta H$)?",
+      "alternativas": [
+        "$\\Delta H$ é positivo",
+        "$\\Delta H$ é negativo (libera calor)",
+        "A energia de ativação é nula",
+        "Os reagentes têm menos energia que os produtos"
+      ],
+      "resposta": 1,
+      "explicacao": "Reações exotérmicas liberam calor para o ambiente, resultando em $\\Delta H < 0$."
+    },
+    {
+      "pergunta": "Qual é a unidade padrão de medida para a quantidade de matéria (número de mols) no Sistema Internacional?",
+      "alternativas": [
+        "Grama (g)",
+        "Mol (mol)",
+        "Litro (L)",
+        "Quilograma (kg)"
+      ],
+      "resposta": 1,
+      "explicacao": "O mol é a unidade de base do SI para a grandeza 'quantidade de matéria'."
+    },
+    {
+      "pergunta": "Se misturarmos 2 mols de hidrogênio e 1 mol de oxigênio para formar água, qual é o reagente limitante se formarmos exatamente 2 mols de água?",
+      "alternativas": [
+        "Apenas o hidrogênio",
+        "Apenas o oxigênio",
+        "Nenhum, pois estão na proporção estequiométrica exata sem excesso",
+        "Ambos se esgotam e viram resíduos sólidos"
+      ],
+      "resposta": 2,
+      "explicacao": "Como $2H_2 + O_2 \\rightarrow 2H_2O$, a proporção 2:1 consome ambos completamente, não havendo reagente em excesso nem limitante isolado em sobra."
+    },
+    {
+      "pergunta": "O que é um fator catalítico homogêneo?",
+      "alternativas": [
+        "Um catalisador que se encontra na mesma fase física dos reagentes",
+        "Um catalisador que está no estado sólido enquanto os reagentes são gases",
+        "Uma substância que bloqueia a reação",
+        "Um composto que muda a temperatura do ambiente"
+      ],
+      "resposta": 0,
+      "explicacao": "Na catálise homogênea, catalisador e reagentes constituem um sistema monofásico (ex: todos líquidos ou todos gasosos)."
+    },
+    {
+      "pergunta": "O que é um fator catalítico heterogêneo?",
+      "alternativas": [
+        "Catalisador e reagentes encontram-se em fases físicas diferentes (ex: catalisador sólido e reagentes gasosos)",
+        "Catalisador e reagentes estão estritamente na mesma fase líquida",
+        "O catalisador é consumido rapidamente",
+        "A reação ocorre sem contato físico"
+      ],
+      "resposta": 0,
+      "explicacao": "Na catálise heterogênea, o catalisador forma uma fase distinta (geralmente sólida) onde os reagentes líquidos ou gasosos se adsorvem."
+    }
+  ],
+  "2serie": [
+    {
+      "pergunta": "O que estuda a Termoquímica?",
+      "alternativas": [
+        "A velocidade das reações químicas",
+        "As trocas de calor (energia) nas reações químicas",
+        "A corrente elétrica gerada por pilhas",
+        "A separação de misturas homogêneas"
+      ],
+      "resposta": 1,
+      "explicacao": "A Termoquímica é a parte da físico-química que estuda as quantidades de calor liberadas ou absorvidas durante as reações químicas."
+    },
+    {
+      "pergunta": "O que representa a variação de entalpia ($\\Delta H$)?",
+      "alternativas": [
+        "A energia total gerada por atrito mecânico",
+        "A diferença entre a entalpia dos produtos e a entalpia dos reagentes ($\\Delta H = H_{\\text{produtos}} - H_{\\text{reagentes}}$)",
+        "A velocidade de propagação do calor em mols",
+        "A temperatura absoluta do sistema medido em Kelvin"
+      ],
+      "resposta": 1,
+      "explicacao": "A entalpia mede o conteúdo de calor, e sua variação ($\\Delta H$) é calculada subtraindo a entalpia inicial dos reagentes da entalpia final dos produtos."
+    },
+    {
+      "pergunta": "O que é a Lei de Hess na termoquímica?",
+      "alternativas": [
+        "A variação de entalpia de uma reação química depende apenas dos estados inicial e final, independentemente do caminho ou etapas percorridas",
+        "O calor de uma reação é sempre igual a zero no equilíbrio",
+        "A pressão de um gás é diretamente proporcional à sua entalpia padrão",
+        "Reações exotérmicas nunca obedecem à conservação da energia"
+      ],
+      "resposta": 0,
+      "explicacao": "A Lei de Hess estabelece que a entalpia é uma função de estado, permitindo somar equações termoquímicas intermediárias para achar o $\\Delta H$ global."
+    },
+    {
+      "pergunta": "O que estuda a Eletroquímica?",
+      "alternativas": [
+        "A conversão entre energia química e energia elétrica (pilhas e eletrólise)",
+        "O estudo exclusivo do calor gerado por combustíveis",
+        "A velocidade de decomposição de compostos orgânicos",
+        "A separação de misturas por centrifugação"
+      ],
+      "resposta": 0,
+      "explicacao": "A eletroquímica abrange as reações de oxirredução que geram eletricidade (pilhas) ou que são provocadas por ela (eletrólise)."
+    },
+    {
+      "pergunta": "O que ocorre com uma espécie química que sofre oxidação em uma reação de oxirredução?",
+      "alternativas": [
+        "Ela ganha elétrons e seu nox diminui",
+        "Ela perde elétrons e seu número de oxidação (nox) aumenta",
+        "Ela se transforma em um gás nobre",
+        "Ela não sofre nenhuma alteração de cargas"
+      ],
+      "resposta": 1,
+      "explicacao": "Oxidação é a perda de elétrons, o que resulta no aumento do número de oxidação (nox)."
+    },
+    {
+      "pergunta": "O que ocorre com uma espécie química que sofre redução?",
+      "alternativas": [
+        "Ela perde elétrons",
+        "Ela ganha elétrons e seu número de oxidação (nox) diminui",
+        "Ela se torna um cátion positivo",
+        "Sua massa molar dobra instantaneamente"
+      ],
+      "resposta": 1,
+      "explicacao": "Redução é o ganho de elétrons, acompanhado pela diminuição (redução) do nox."
+    },
+    {
+      "pergunta": "O que é um agente oxidante?",
+      "alternativas": [
+        "A espécie que sofre oxidação e doa elétrons",
+        "A espécie que sofre redução, provocando a oxidação de outra ao capturar seus elétrons",
+        "Um catalisador metálico inerte",
+        "Um ácido forte dissolvido em água"
+      ],
+      "resposta": 1,
+      "explicacao": "O agente oxidante é aquele que ganha elétrons (sofre redução), causando a oxidação da outra espécie."
+    },
+    {
+      "pergunta": "O que é um agente redutor?",
+      "alternativas": [
+        "A espécie que sofre oxidação (perde elétrons), provocando a redução de outra",
+        "A espécie que captura elétrons e diminui seu nox",
+        "Uma substância que neutraliza bases",
+        "Um solvente orgânico polar"
+      ],
+      "resposta": 0,
+      "explicacao": "O agente redutor doa elétrons, sofrendo oxidação no processo."
+    },
+    {
+      "pergunta": "Como funciona uma pilha (célula galvânica)?",
+      "alternativas": [
+        "Usa energia elétrica externa para forçar uma reação química não espontânea",
+        "Converte energia química em energia elétrica através de uma reação de oxirredução espontânea",
+        "Produz calor puro sem fluxo de elétrons",
+        "Separa misturas homogêneas por destilação"
+      ],
+      "resposta": 1,
+      "explicacao": "Pilhas geram corrente elétrica de forma espontânea por meio da transferência de elétrons entre os eletrodos."
+    },
+    {
+      "pergunta": "O que ocorre no ânodo de uma pilha?",
+      "alternativas": [
+        "Ocorre a redução e o ganho de elétrons",
+        "Ocorre a oxidação e a perda de elétrons (pólo negativo)",
+        "Ocorre a deposição de metal puro",
+        "Há consumo total de calor"
+      ],
+      "resposta": 1,
+      "explicacao": "Por convenção eletroquímica, o ânodo é o eletrodo onde se dá a oxidação (perda de elétrons)."
+    },
+    {
+      "pergunta": "O que ocorre no cátodo de uma pilha ou célula eletroquímica?",
+      "alternativas": [
+        "Ocorre a oxidação",
+        "Ocorre a redução e o ganho de elétrons (pólo positivo)",
+        "Há liberação de elétrons para o circuito externo",
+        "O eletrodo corrói-se inteiramente"
+      ],
+      "resposta": 1,
+      "explicacao": "O cátodo é o eletrodo onde ocorre a redução (ganho de elétrons)."
+    },
+    {
+      "pergunta": "O que é a eletrólise?",
+      "alternativas": [
+        "Um processo não espontâneo em que a passagem de corrente elétrica força a ocorrência de uma reação química",
+        "Uma reação de neutralização entre ácidos e bases",
+        "A geração espontânea de eletricidade em pilhas",
+        "A queima de combustíveis fósseis"
+      ],
+      "resposta": 0,
+      "explicacao": "A eletrólise utiliza geradores externos de eletricidade para promover reações químicas que não ocorreriam espontaneamente."
+    },
+    {
+      "pergunta": "O que estuda a Cinética Química nas reações reversíveis?",
+      "alternativas": [
+        "A velocidade das reações direta e inversa até atingirem o equilíbrio",
+        "A quantidade de calor liberada em combustões",
+        "A carga elétrica dos íons em eletrólise",
+        "A massa molar dos compostos orgânicos"
+      ],
+      "resposta": 0,
+      "explicacao": "A cinética analisa a rapidez das transformações até que as velocidades se igualem no equilíbrio."
+    },
+    {
+      "pergunta": "O que caracteriza propriedades coligativas das soluções?",
+      "alternativas": [
+        "Propriedades que dependem da natureza química do soluto",
+        "Propriedades físicas que dependem exclusivamente do número de partículas de soluto dissolvidas, e não da sua natureza",
+        "Apenas a cor e o cheiro da solução",
+        "A velocidade de decantação de sólidos insolúveis"
+      ],
+      "resposta": 1,
+      "explicacao": "As propriedades coligativas (tonoscopia, ebulioscopia, crioscopia e osmose) dependem apenas da quantidade (concentração em número de partículas), não do tipo de soluto."
+    },
+    {
+      "pergunta": "O que é a tonoscopia?",
+      "alternativas": [
+        "O abaixamento da pressão máxima de vapor de um líquido quando se adiciona um soluto não volátil",
+        "A elevação do ponto de ebulição da água",
+        "A diminuição do ponto de congelamento",
+        "A passagem de solvente por membrana semipermeável"
+      ],
+      "resposta": 0,
+      "explicacao": "A tonoscopia estuda a queda na pressão de vapor do solvente provocada pela presença de um soluto não volátil."
+    },
+    {
+      "pergunta": "O que é a ebulioscopia?",
+      "alternativas": [
+        "O abaixamento da temperatura de congelamento",
+        "O aumento da temperatura de ebulição de um líquido causado pela adição de soluto não volátil",
+        "A diminuição da pressão de vapor",
+        "A passagem de corrente elétrica em soluções iônicas"
+      ],
+      "resposta": 1,
+      "explicacao": "A ebulioscopia descreve o aumento do ponto de ebulição da solução em relação ao solvente puro."
+    },
+    {
+      "pergunta": "O que é a crioscopia?",
+      "alternativas": [
+        "O abaixamento da temperatura de congelamento (fusão) de um líquido provocado pela adição de soluto",
+        "O aumento do ponto de ebulição",
+        "A evaporação rápida de líquidos voláteis",
+        "A pressão osmótica reversa"
+      ],
+      "resposta": 0,
+      "explicacao": "A crioscopia estuda a diminuição do ponto de congelamento do solvente (ex: jogar sal na neve para derretê-la)."
+    },
+    {
+      "pergunta": "O que é a osmose?",
+      "alternativas": [
+        "A passagem de moléculas de solvente do meio menos concentrado para o mais concentrado através de uma membrana semipermeável",
+        "O fluxo de soluto de áreas concentradas para diluídas",
+        "A separação de misturas por imantação",
+        "A condução de eletricidade em metais"
+      ],
+      "resposta": 0,
+      "explicacao": "A osmose é o fluxo espontâneo de solvente através de membranas semipermeáveis em direção à região de maior concentração osmótica."
+    },
+    {
+      "pergunta": "O que é pressão osmótica?",
+      "alternativas": [
+        "A pressão necessária para impedir o fenômeno da osmose",
+        "A pressão exercida pelos gases nas CNTP",
+        "A pressão de vapor de um líquido puro",
+        "A força mecânica da agitação térmica"
+      ],
+      "resposta": 0,
+      "explicacao": "A pressão osmótica é a pressão hidrostática exercida para estancar o fluxo osmótico através da membrana."
+    },
+    {
+      "pergunta": "O que expressa a entalpia padrão de formação ($\\Delta H_f^0$)?",
+      "alternativas": [
+        "A variação de entalpia na formação de 1 mol de uma substância a partir de seus elementos constituintes no estado padrão",
+        "O calor liberado na queima completa de um combustível",
+        "A energia de ativação de reações iônicas",
+        "A entalpia de vaporização de um líquido puro"
+      ],
+      "resposta": 0,
+      "explicacao": "A entalpia de formação refere-se à síntese de 1 mol de um composto a partir de suas substâncias simples no estado padrão."
+    },
+    {
+      "pergunta": "Qual é a entalpia padrão de qualquer substância simples em sua forma alotrópica mais estável no estado padrão?",
+      "alternativas": [
+        "Sempre igual a 100 kJ/mol",
+        "Sempre estipulada como igual a zero",
+        "Igual à massa molar do elemento",
+        "Variável conforme a pressão externa"
+      ],
+      "resposta": 1,
+      "explicacao": "Por convenção internacional, a entalpia padrão de substâncias simples na forma alotrópica mais estável (ex: $O_2$ gás, grafita) é igual a zero."
+    },
+    {
+      "pergunta": "O que estuda a Físico-Química?",
+      "alternativas": [
+        "A intersecção entre conceitos da física e da química, como termodinâmica, cinética e eletroquímica",
+        "Apenas a nomenclatura de compostos do carbono",
+        "A biologia celular das bactérias",
+        "A separação manual de misturas heterogêneas"
+      ],
+      "resposta": 0,
+      "explicacao": "A físico-química aplica leis físicas para explicar e quantificar fenômenos e comportamentos químicos."
+    },
+    {
+      "pergunta": "O que é o Fator de Van't Hoff ($i$) nas propriedades coligativas de soluções iônicas?",
+      "alternativas": [
+        "O número de íons reais dissociados ou ionizados multiplicados pelo grau de ionização",
+        "A massa molar dividida pelo volume molar",
+        "A constante de velocidade da reação direta",
+        "O rendimento percentual da pilha"
+      ],
+      "resposta": 0,
+      "explicacao": "O fator $i$ considera que eletrólitos se dissociam em múltiplos íons em solução, potencializando os efeitos coligativos."
+    },
+    {
+      "pergunta": "Como se calcula o fator de Van't Hoff ($i$) para um eletrólito forte como o $NaCl$ com grau de ionização igual a 100%?",
+      "alternativas": [
+        "$i = 1$",
+        "$i = 2$ (pois forma 1 $Na^+$ e 1 $Cl^-$)",
+        "$i = 3$",
+        "$i = 0$"
+      ],
+      "resposta": 1,
+      "explicacao": "Como $NaCl \\rightarrow Na^+ + Cl^-$, cada mol gera 2 mols de partículas ionizadas, logo $i = 2$."
+    },
+    {
+      "pergunta": "O que é uma pilha recarregável (bateria acumuladora)?",
+      "alternativas": [
+        "Um dispositivo onde a reação química reversível pode funcionar como pilha (gerando energia) ou como eletrólise (sendo recarregada)",
+        "Uma pilha comum que se destrói ao acabar",
+        "Um gerador mecânico de turbina a vapor",
+        "Uma célula solar fotovoltaica"
+      ],
+      "resposta": 0,
+      "explicacao": "Baterias recarregáveis invertem o processo químico ao receberem corrente elétrica externa, revertendo os produtos em reagentes originais."
+    },
+    {
+      "pergunta": "O que significa dizer que uma reação termoquímica tem $\\Delta H = -484\\text{ kJ/mol}$?",
+      "alternativas": [
+        "A reação absorve 484 kJ de calor",
+        "A reação libera 484 kJ de calor por mol de processo (exotérmica)",
+        "A temperatura do sistema cai para zero",
+        "A energia de ativação é de 484 kJ"
+      ],
+      "resposta": 1,
+      "explicacao": "O sinal negativo indica liberação de calor para o ambiente, caracterizando um processo exotérmico."
+    },
+    {
+      "pergunta": "Qual é a principal função da ponte salina em uma pilha eletroquímica de Daniell?",
+      "alternativas": [
+        "Conduzir elétrons pelo fio metálico externo",
+        "Fechar o circuito elétrico e manter a neutralidade elétrica das soluções através do fluxo de íons",
+        "Acelerar a dissolução dos eletrodos",
+        "Impedir totalmente qualquer fluxo iônico"
+      ],
+      "resposta": 1,
+      "explicacao": "A ponte salina permite a migração de íons para equilibrar as cargas acumuladas nos semicélulas, fechando o circuito interno."
+    },
+    {
+      "pergunta": "O que é corrosão metálica sob a ótica da eletroquímica?",
+      "alternativas": [
+        "Um processo espontâneo de oxidação do metal em contato com o oxigênio e a umidade do ar",
+        "A fusão do metal por aquecimento solar",
+        "Uma reação endotérmica de purificação",
+        "A transformação de metal em gás nobre"
+      ],
+      "resposta": 0,
+      "explicacao": "A corrosão (como a ferrugem do ferro) é um processo espontâneo de oxidação onde o metal perde elétrons para agentes oxidantes ambientais."
+    },
+    {
+      "pergunta": "O que expressa a entalpia de combustão?",
+      "alternativas": [
+        "A variação de entalpia envolvida na queima completa de 1 mol de uma substância com oxigênio",
+        "O calor gerado na fusão do gelo",
+        "A energia necessária para evaporar água",
+        "A quantidade de calor absorvida por ácidos"
+      ],
+      "resposta": 0,
+      "explicacao": "A entalpia de combustão é sempre um processo exotérmico ($\\Delta H < 0$) associado à queima de 1 mol de combustível."
+    },
+    {
+      "pergunta": "Por que adicionamos sal de cozinha na água ao cozinhar batatas ou massas?",
+      "alternativas": [
+        "Para deixar a água mais pesada",
+        "Para elevar o ponto de ebulição da água (efeito ebulioscópico), permitindo que cozinhe a uma temperatura ligeiramente maior",
+        "Para abaixar a temperatura de fervura",
+        "Apenas para mudar a cor da água"
+      ],
+      "resposta": 1,
+      "explicacao": "A adição de soluto não volátil (sal) eleva o ponto de ebulição da água, o que pode acelerar o cozimento devido à temperatura superior."
+    }
+  ],
+  "3serie": [
+    {
+      "pergunta": "Qual elemento químico é a base de toda a Química Orgânica?",
+      "alternativas": [
+        "Oxigênio",
+        "Nitrogênio",
+        "Carbono",
+        "Hidrogênio"
+      ],
+      "resposta": 2,
+      "explicacao": "O carbono é o elemento principal da química orgânica porque possui a capacidade única de se ligar a outros átomos de carbono e a diversos elementos, formando cadeias complexas."
+    },
+    {
+      "pergunta": "Quantas ligações covalentes principais um átomo de carbono tetravalente costuma fazer?",
+      "alternativas": [
+        "2 ligações",
+        "3 ligações",
+        "4 ligações",
+        "1 ligação"
+      ],
+      "resposta": 2,
+      "explicacao": "O carbono possui 4 elétrons na camada de valência, necessitando fazer 4 ligações covalentes para completar seu octeto (Tetravalência de Kekulé)."
+    },
+    {
+      "pergunta": "O que são hidrocarbonetos?",
+      "alternativas": [
+        "Compostos orgânicos formados exclusivamente por átomos de carbono e hidrogênio",
+        "Compostos que contêm oxigênio e nitrogênio nas pontas",
+        "Ácidos orgânicos fortes dissolvidos em água",
+        "Sais minerais encontrados em rochas"
+      ],
+      "resposta": 0,
+      "explicacao": "Hidrocarbonetos são as moléculas orgânicas mais simples, compostas unicamente por carbono e hidrogênio (ex: metano, etano, benzeno)."
+    },
+    {
+      "pergunta": "O que caracteriza um hidrocarboneto saturado (alcano)?",
+      "alternativas": [
+        "Apresenta apenas ligações simples entre os átomos de carbono",
+        "Possui pelo menos uma ligação dupla entre carbonos",
+        "Possui uma ligação tripla",
+        "Forma um anel aromático fechado"
+      ],
+      "resposta": 0,
+      "explicacao": "Os alcanos são hidrocarbonetos alifáticos saturados, contendo apenas ligações simples ($C-C$). insaturados possuem duplas ou triplas."
+    },
+    {
+      "pergunta": "Qual é a terminação (sufixo) oficial da nomenclatura IUPAC para os alcanos?",
+      "alternativas": [
+        "-eno",
+        "-ino",
+        "-ano",
+        "-ol"
+      ],
+      "resposta": 2,
+      "explicacao": "O sufixo '-ano' indica hidrocarbonetos com ligações simples (ex: metano, propano)."
+    },
+    {
+      "pergunta": "Qual sufixo indica a presença de uma ligação dupla entre carbonos em um hidrocarboneto insaturado (alqueno)?",
+      "alternativas": [
+        "-ano",
+        "-eno",
+        "-ino",
+        "-ona"
+      ],
+      "resposta": 1,
+      "explicacao": "O sufixo '-eno' é usado para alquenos (olefinas) que possuem uma ligação dupla na cadeia carbônica."
+    },
+    {
+      "pergunta": "Qual sufixo indica a presença de uma ligação tripla entre carbonos (alquino)?",
+      "alternativas": [
+        "-ano",
+        "-eno",
+        "-ino",
+        "-ol"
+      ],
+      "resposta": 2,
+      "explicacao": "O sufixo '-ino' caracteriza os alcinos, que possuem ao menos uma ligação tripla entre carbonos."
+    },
+    {
+      "pergunta": "O que é uma função orgânica chamada 'álcool'?",
+      "alternativas": [
+        "Composto que possui o grupo funcional hidroxila ($-OH$) ligado diretamente a um carbono saturado",
+        "Composto que possui uma dupla ligação com oxigênio na ponta",
+        "Um hidrocarboneto gasoso de cadeia longa",
+        "Um sal orgânico derivado de ácido carboxílico"
+      ],
+      "resposta": 0,
+      "explicacao": "Os álcoois caracterizam-se pela presença do grupo funcional hidroxila ($-OH$) ligado a carbonos saturados."
+    },
+    {
+      "pergunta": "Qual é o grupo funcional característico dos ácidos carboxílicos?",
+      "alternativas": [
+        "$-OH$ (hidroxila alcoólica)",
+        "$-COOH$ (carboxila)",
+        "$-CHO$ (aldeído)",
+        "$-O-$ (éter)"
+      ],
+      "resposta": 1,
+      "explicacao": "Os ácidos carboxílicos possuem o grupo carboxila ($-COOH$), conferindo caráter ácido fraco aos compostos orgânicos correspondentes."
+    },
+    {
+      "pergunta": "O que são isômeros na química orgânica?",
+      "alternativas": [
+        "Compostos diferentes que possuem a mesma fórmula molecular, mas estruturas ou disposições espaciais diferentes",
+        "Átomos com o mesmo número de nêutrons",
+        "Moléculas idênticas com nomes comerciais variados",
+        "Polímeros formados por milhares de ligações iônicas"
+      ],
+      "resposta": 0,
+      "explicacao": "A isomería ocorre quando substâncias distintas compartilham a mesma fórmula molecular, diferindo na forma como os átomos se conectam ou se dispõem."
+    },
+    {
+      "pergunta": "O que é uma cetona?",
+      "alternativas": [
+        "Composto orgânico que apresenta o grupo carbonila ($C=O$) entre dois carbonos na cadeia",
+        "Composto com hidroxila na ponta",
+        "Ácido orgânico forte",
+        "Um hidrocarboneto aromático policíclico"
+      ],
+      "resposta": 0,
+      "explicacao": "Nas cetonas, a carbonila ($C=O$) localiza-se estritamente em um carbono secundário (entre dois carbonos)."
+    },
+    {
+      "pergunta": "O que caracteriza um aldeído?",
+      "alternativas": [
+        "O grupo carbonila ($C=O$) posicionado na extremidade (carbono primário) da cadeia",
+        "A presença de hidroxila ligada a anel aromático",
+        "Uma ligação tripla entre carbonos",
+        "Um éster de cadeia curta"
+      ],
+      "resposta": 0,
+      "explicacao": "Nos aldeídos, o grupo carbonila ($C=O$) fica na ponta da cadeia carbônica (carbono 1)."
+    },
+    {
+      "pergunta": "Qual é a principal característica estrutural de um composto aromático?",
+      "alternativas": [
+        "Presença de pelo menos um anel benzênico (anel aromático com ressonância de ligações)",
+        "Ser um gás inflamável de cadeia curta",
+        "Apresentar apenas ligações iônicas",
+        "Possuir sabor estritamente azedo"
+      ],
+      "resposta": 0,
+      "explicacao": "Compostos aromáticos contêm anéis benzênicos caracterizados por ligações duplas alternadas em ressonância."
+    },
+    {
+      "pergunta": "O que são polímeros orgânicos?",
+      "alternativas": [
+        "Moléculas gigantes (macromoléculas) formadas pela repetição de unidades menores chamadas monômeros",
+        "Átomos isolados de metais pesados",
+        "Pequenos sais minerais dissolvidos em solventes polares",
+        "Ácidos inorgânicos voláteis"
+      ],
+      "resposta": 0,
+      "explicacao": "Polímeros são macromoléculas formadas pela união covalente consecutiva de centenas ou milhares de pequenas moléculas (monômeros)."
+    },
+    {
+      "pergunta": "Qual é o nome oficial do álcool comercial comum usado como combustível e antisséptico com 2 carbonos?",
+      "alternativas": [
+        "Metanol",
+        "Etanol (ou álcool etílico)",
+        "Propanol",
+        "Butanol"
+      ],
+      "resposta": 1,
+      "explicacao": "O etanol possui 2 átomos de carbono e a hidroxila alcoólica, sendo amplamente utilizado na indústria e cotidiano."
+    },
+    {
+      "pergunta": "O ácido acético (encontrado no vinagre) pertence a qual função orgânica?",
+      "alternativas": [
+        "Álcoois",
+        "Ácidos carboxílicos",
+        "Cetonas",
+        "Aminas"
+      ],
+      "resposta": 1,
+      "explicacao": "O ácido acético possui o grupo funcional carboxila ($-COOH$), classificando-o como ácido carboxílico."
+    },
+    {
+      "pergunta": "O que caracteriza as aminas?",
+      "alternativas": [
+        "Derivados orgânicos da amônia ($NH_3$) onde hidrogênios são substituídos por grupos alquila ou arila",
+        "Compostos contendo apenas carbono e hidrogênio",
+        "Ácidos orgânicos complexos",
+        "Ésteres de sabor frutado"
+      ],
+      "resposta": 0,
+      "explicacao": "As aminas derivam da amônia pela substituição de átomos de hidrogênio por radicais orgânicos."
+    },
+    {
+      "pergunta": "O que caracteriza as amidas?",
+      "alternativas": [
+        "Compostos orgânicos que possuem o grupo nitrogênio ligado diretamente a uma carbonila ($-C(=O)-N-$)",
+        "Hidrocarbonetos insaturados de cadeia cíclica",
+        "Álcoois terciários",
+        "Éteres de cadeia aberta"
+      ],
+      "resposta": 0,
+      "explicacao": "As amidas possuem o nitrogênio ligado a um carbono que faz parte de uma carbonila."
+    },
+    {
+      "pergunta": "O que são os ésteres?",
+      "alternativas": [
+        "Compostos orgânicos derivados de ácidos carboxílicos onde o hidrogênio da carboxila foi substituído por um grupo alquila (responsáveis por aromas frutados)",
+        "Ácidos fortes sem oxigênio",
+        "Hidrocarbonetos gasosos inertes",
+        "Cetonas cíclicas"
+      ],
+      "resposta": 0,
+      "explicacao": "Os ésteres possuem o grupo funcional $-COO-$ e são amplamente conhecidos por conferirem aromas e odores agradáveis de frutas a diversas substâncias."
+    },
+    {
+      "pergunta": "O que são éteres?",
+      "alternativas": [
+        "Compostos onde um átomo de oxigênio está entre dois radicais orgânicos ($-O-$)",
+        "Compostos com hidroxila alcoólica na ponta",
+        "Ácidos orgânicos halogenados",
+        "Aminas cíclicas"
+      ],
+      "resposta": 0,
+      "explicacao": "Os éteres caracterizam-se pela presença de um oxigênio ligado a dois carbonos de cadeias diferentes ($R-O-R'$)."
+    },
+    {
+      "pergunta": "O que estuda a Isomeria Plana (Constitucional)?",
+      "alternativas": [
+        "Isômeros que diferem na conectividade ou planos de ligação de seus átomos, podendo ser distinguidos por fórmulas estruturais planas",
+        "Apenas a rotação tridimensional de ligações simples",
+        "A variação de entalpia de combustão de polímeros",
+        "O arranjo espacial geométrico em geometria molecular pura"
+      ],
+      "resposta": 0,
+      "explicacao": "Na isomería plana, a diferença estrutural entre as moléculas de mesma fórmula molecular pode ser representada em fórmulas planas (como isomeria de cadeia, posição, função, etc.)."
+    },
+    {
+      "pergunta": "O que caracteriza a Isometria Espacial Geométrica (cis-trans ou E-Z)?",
+      "alternativas": [
+        "Ocorre geralmente em compostos com ligações duplas ou ciclos, onde há restrição de rotação, posicionando ligantes de lados iguais ou opostos",
+        "Ocorre apenas em alcanos de cadeia muito longa",
+        "Diferencia compostos por suas fórmulas mínimas",
+        "Muda completamente a quantidade de carbonos na cadeia principal"
+      ],
+      "resposta": 0,
+      "explicacao": "A isomería geométrica surge devido à rigidez de ligações duplas ou anéis, gerando isômeros *cis* (ligantes do mesmo lado) e *trans* (lados opostos)."
+    },
+    {
+      "pergunta": "O que é um carbono assimétrico (ou quiral) em química orgânica?",
+      "alternativas": [
+        "Um carbono que faz quatro ligações simples com quatro átomos ou grupos químicos diferentes entre si",
+        "Um carbono ligado a duas hidroxilas iguais",
+        "Um carbono que faz apenas uma ligação dupla",
+        "Um carbono que não possui nenhum hidrogênio ligado"
+      ],
+      "resposta": 0,
+      "explicacao": "O carbono quiral (ou assimétrico, indicado por $C^*$) possui quatro ligantes diferentes, gerando atividade óptica e isomeria espacial óptica."
+    },
+    {
+      "pergunta": "O que são reações de adição em química orgânica?",
+      "alternativas": [
+        "Reações onde reagentes adicionam-se a moléculas insaturadas (com duplas ou triplas ligações), quebrando-as em ligações simples",
+        "Reações de substituição de hidrogênios por halogênios",
+        "Eliminação de água de álcoois",
+        "Queima completa de combustíveis fósseis"
+      ],
+      "resposta": 0,
+      "explicacao": "As reações de adição ocorrem tipicamente em alquenos, alquinos ou compostos cíclicos instáveis, somando átomos à estrutura."
+    },
+    {
+      "pergunta": "O que são reações de substituição orgânica?",
+      "alternativas": [
+        "Reações onde um átomo ou grupo de átomos de uma molécula orgânica é substituído por outro átomo ou grupo",
+        "A quebra total da cadeia gerando carbono puro",
+        "A união de dois monômeros para formar polímeros",
+        "A adição de hidrogênio a ligações duplas"
+      ],
+      "resposta": 0,
+      "explicacao": "Na substituição, uma parte da molécula troca de lugar com outra espécie reagente (muito comum em alcanos e aromáticos)."
+    },
+    {
+      "pergunta": "O que caracteriza uma reação de eliminação orgânica?",
+      "alternativas": [
+        "A saída ou remoção de átomos ou grupos de átomos de uma molécula saturada, gerando uma insaturação (dupla ou tripla ligação) ou anel",
+        "A adição de cloro a um alcano",
+        "A neutralização de um ácido carboxílico com base",
+        "A polimerização de etileno"
+      ],
+      "resposta": 0,
+      "explicacao": "A eliminação é o inverso da adição: retiram-se átomos da estrutura, formando ligações duplas ou triplas."
+    },
+    {
+      "pergunta": "O que é o petróleo bruto sob a perspectiva da química orgânica?",
+      "alternativas": [
+        "Uma mistura complexa de milhares de hidrocarbonetos diferentes, além de compostos sulfurados e nitrogenados",
+        "Uma substância pura simples formada por metano puro",
+        "Um polímero artificial sintético",
+        "Um sal inorgânico líquido"
+      ],
+      "resposta": 0,
+      "explicacao": "O petróleo é uma mistura natural riquíssima em hidrocarbonetos, separada industrialmente por destilação fracionada."
+    },
+    {
+      "pergunta": "Qual processo industrial é usado para separar as frações do petróleo com base em suas diferentes faixas de ponto de ebulição?",
+      "alternativas": [
+        "Destilação fracionada",
+        "Filtração simples a vácuo",
+        "Eletrólise ígnea",
+        "Decantação centrífuga"
+      ],
+      "resposta": 0,
+      "explicacao": "A destilação fracionada aproveita os diferentes pontos de ebulição dos hidrocarbonetos do petróleo para separá-los em colunas."
+    },
+    {
+      "pergunta": "O que são sabões quimicamente?",
+      "alternativas": [
+        "Sais de ácidos graxos de cadeia longa (geralmente sais de sódio ou potássio)",
+        "Ácidos carboxílicos puros sem neutralização",
+        "Hidrocarbonetos aromáticos pesados",
+        "Ésteres sintéticos voláteis"
+      ],
+      "resposta": 0,
+      "explicacao": "Sabões são obtidos pela reação de saponificação (hidrólise básica de lipídios/gorduras), gerando sais orgânicos de ácidos graxos."
+    },
+    {
+      "pergunta": "Por que as moléculas de sabão conseguem limpar a gordura misturando-a com a água?",
+      "alternativas": [
+        "Porque possuem uma extremidade polar (hidrofílica) que interage com a água e uma cauda apolar (hidrofóbica) que dissolve a gordura",
+        "Porque destroem quimicamente todas as moléculas de sujeira convertendo-as em gás",
+        "Porque aumentam a temperatura da água instantaneamente",
+        "Porque criam ligações iônicas duras com a poeira"
+      ],
+      "resposta": 0,
+      "explicacao": "O caráter anfifílico (dupla polaridade) do sabão permite emulsionar a gordura (apolar) na água (polar), formando micelas fáceis de enxaguar."
+    }
+  ]
+}

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perguntas de Química - Professor Wendel</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    /* Cabeçalho ajustado para alinhar logo, texto e menu na mesma linha */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: 15px 30px;
+    }
+
+    header .logo a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    header .logo img {
+        height: 40px; /* Tamanho proporcional para o ícone/logo */
+        width: 40px;
+        object-fit: contain;
+    }
+
+    header .logo span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    header nav {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+
+    /* Estilos específicos para os botões e áreas do Modo Professor */
+    .acoes-professor {
+        display: none;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    body.modo-professor .acoes-professor {
+        display: flex;
+    }
+
+    .btn-acao-prof {
+        padding: 4px 8px;
+        font-size: 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .btn-editar {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .btn-excluir {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .painel-adicionar {
+        display: none;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    body.modo-professor .painel-adicionar {
+        display: block;
+    }
+
+    .btn-adicionar-card {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .btn-adicionar-card:hover {
+        background-color: #218838;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+
+<nav>
+<a href="../index.html">Início</a>
+<a href="experimentos.html">Experimentos</a>
+<a href="videos.html">Vídeos</a>
+<a href="perguntas.html">Perguntas</a>
+<a href="professor.html">Professor</a>
+<a href="#" id="btn-modo-professor" onclick="toggleModoProfessor()" style="color: #ffeb3b;">🔓 Painel do Professor (Inativo)</a>
+</nav>
+</header>
+
+<section class="banner">
+<h1>
+❓ Perguntas e Respostas de Química
+</h1>
+<p>
+Revise os conteúdos e teste seus conhecimentos com níveis variados.
+</p>
+</section>
+
+<section>
+<h2>
+🟢 Nível Fácil
+</h2>
+<div class="painel-adicionar">
+    <button class="btn-adicionar-card" onclick="adicionarCard(this)">➕ Adicionar Pergunta (Fácil)</button>
+</div>
+<div class="container">
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é Química?</h3>
+<p>Química é a ciência que estuda a matéria, suas propriedades e transformações.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é matéria?</h3>
+<p>É tudo aquilo que possui massa e ocupa lugar no espaço.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é um átomo?</h3>
+<p>É a menor partícula que constitui a matéria e mantém suas propriedades químicas.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>Quais são as partículas fundamentais do átomo?</h3>
+<p>Prótons, nêutrons e elétrons.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>Onde ficam os elétrons?</h3>
+<p>Na eletrosfera, ao redor do núcleo do átomo.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é uma mistura homogênea?</h3>
+<p>É aquela que apresenta apenas uma fase visual (aspecto uniforme).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é uma mistura heterogênea?</h3>
+<p>É aquela que apresenta duas ou mais fases visíveis.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é ponto de fusão?</h3>
+<p>É a temperatura em que uma substância passa do estado sólido para o líquido.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é ponto de ebulição?</h3>
+<p>É a temperatura em que uma substância passa do estado líquido para o gasoso.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é fusão?</h3>
+<p>Mudança de estado físico do sólido para o líquido.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é vaporização?</h3>
+<p>Mudança de estado físico do líquido para o gasoso.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é condensação?</h3>
+<p>Mudança do estado gasoso para o líquido.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é solidificação?</h3>
+<p>Mudança do estado líquido para o sólido.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é sublimação?</h3>
+<p>Passagem direta do estado sólido para o gasoso (e vice-versa).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que indica a escala pH?</h3>
+<p>Indica o grau de acidez, neutralidade ou basicidade de uma solução.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é uma substância pura?</h3>
+<p>Aquela formada por um único tipo de molécula ou elemento, com propriedades definidas.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é água potável?</h3>
+<p>Água própria para consumo, livre de microrganismos patogênicos e excesso de minerais nocivos.</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>
+🟡 Nível Médio
+</h2>
+<div class="painel-adicionar">
+    <button class="btn-adicionar-card" onclick="adicionarCard(this)">➕ Adicionar Pergunta (Médio)</button>
+</div>
+<div class="container">
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é a Tabela Periódica?</h3>
+<p>Organização dos elementos químicos em função de seus números atômicos e propriedades.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são ligações químicas?</h3>
+<p>Interações entre átomos para atingirem a estabilidade eletrônica (regra do octeto).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que caracteriza uma ligação iônica?</h3>
+<p>Ocorre pela transferência de elétrons entre metais e ametais, gerando íons.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que caracteriza uma ligação covalente?</h3>
+<p>Ocorre pelo compartilhamento de pares de elétrons entre átomos (geralmente ametais).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é uma reação química?</h3>
+<p>Processo em que reagentes se transformam em novas substâncias (produtos).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>Qual a diferença entre reagentes e produtos?</h3>
+<p>Reagentes são as substâncias iniciais; produtos são as substâncias formadas após a reação.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que diz a Lei de Lavoisier (Conservação das Massas)?</h3>
+<p>Numa reação química fechada, a massa total dos reagentes é igual à massa total dos produtos.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que diz a Lei de Proust (Proporções Definidas)?</h3>
+<p>Uma determinada substância pura sempre possui a mesma composição fixa em massa, independentemente da origem.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é número atômico (Z)?</h3>
+<p>É o número de prótons presentes no núcleo de um átomo.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é número de massa (A)?</h3>
+<p>É a soma do número de prótons e nêutrons do núcleo de um átomo ($A = Z + n$).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são isótopos?</h3>
+<p>Átomos de um mesmo elemento químico que possuem o mesmo número atômico, mas diferentes números de massa.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são cátions e ânions?</h3>
+<p>Cátions são íons positivos (perda de elétrons) e ânions são íons negativos (ganho de elétrons).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é uma solução?</h3>
+<p>Mistura homogênea composta por um soluto (dissolvido) e um solvente (dissolvente).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é coeficiente de solubilidade?</h3>
+<p>Quantidade máxima de soluto que pode se dissolver em uma quantidade padrão de solvente a uma dada temperatura.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é um óxido?</h3>
+<p>Composto binário formado por oxigênio e outro elemento, onde o oxigênio é o mais eletronegativo.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são ácidos segundo Arrhenius?</h3>
+<p>Substâncias que em solução aquosa liberam exclusivamente o cátion hidrogênio ($H^+$).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são bases segundo Arrhenius?</h3>
+<p>Substâncias que em solução aquosa liberam exclusivamente o ânion hidroxila ($OH^-$).</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>
+🔴 Nível Difícil
+</h2>
+<div class="painel-adicionar">
+    <button class="btn-adicionar-card" onclick="adicionarCard(this)">➕ Adicionar Pergunta (Difícil)</button>
+</div>
+<div class="container">
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é um mol?</h3>
+<p>Unidade de quantidade de matéria que contém $6{,}022 \times 10^{23}$ entidades elementares.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que estuda a estequiometria?</h3>
+<p>O cálculo quantitativo das proporções entre reagentes e produtos envolvidos em reações químicas.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é eletroquímica?</h3>
+<p>Área que estuda a conversão entre energia química e energia elétrica (pilhas e eletrólise).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>Qual a diferença entre pilha (célula galvânica) e eletrólise?</h3>
+<p>A pilha gera eletricidade a partir de uma reação espontânea; a eletrólise consome eletricidade para forçar uma reação não espontânea.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é entalpia ($\Delta H$)?</h3>
+<p>Função de estado que mede a quantidade de energia absorvida ou liberada por um sistema sob pressão constante.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que caracteriza uma reação endotérmica?</h3>
+<p>Reação que absorve calor do ambiente, apresentando variação de entalpia positiva ($\Delta H > 0$).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que caracteriza uma reação exotérmica?</h3>
+<p>Reação que libera calor para o ambiente, apresentando variação de entalpia negativa ($\Delta H < 0$).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que estuda a cinética química?</h3>
+<p>A velocidade das reações químicas e os fatores que a influenciam (temperatura, catalisador, superfície de contato, concentração).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é um catalisador?</h3>
+<p>Substância que acelera uma reação química ao diminuir sua energia de ativação, sem ser consumida no processo.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é o equilíbrio químico?</h3>
+<p>Estado em que as velocidades das reações direta e inversa em um sistema fechado se igualam.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que diz o Princípio de Le Chatelier?</h3>
+<p>Um sistema em equilíbrio, ao sofrer perturbação externa, desloca-se no sentido de minimizar essa perturbação.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é hibridização de orbitais?</h3>
+<p>A mistura de orbitais atômicos puros para formar novos orbitais híbridos equivalentes (como $sp^3$, $sp^2$, $sp$).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são isômeros?</h3>
+<p>Compostos que possuem a mesma fórmula molecular, mas diferentes fórmulas estruturais e propriedades.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é a pressão osmótica?</h3>
+<p>Pressão necessária para impedir o fluxo osmótico de solvente através de uma membrana semipermeável.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que são reações de oxirredução (redox)?</h3>
+<p>Reações que envolvem a transferência de elétrons entre espécies químicas, alterando seus números de oxidação (NOX).</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é constante de ionização ($K_a$ ou $K_b$)?</h3>
+<p>Parâmetro que mede a força de ácidos e bases fracos em solução aquosa em equilíbrio.</p>
+</div>
+
+<div class="card">
+    <div class="acoes-professor">
+        <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+        <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+    </div>
+<h3>O que é o produto iônico da água ($K_w$)?</h3>
+<p>Constante de equilíbrio para a auto-ionização da água, cujo valor é $1{,}0 \times 10^{-14}$ a $25^\circ C$.</p>
+</div>
+
+</div>
+</section>
+
+<footer>
+<p>
+© 2026 - Química com Professor Wendel
+</p>
+</footer>
+
+<script>
+    const SENHA_PROFESSOR = "@WENDELquimica26";
+
+    function toggleModoProfessor() {
+        const body = document.body;
+        const btn = document.getElementById('btn-modo-professor');
+        
+        if (!body.classList.contains('modo-professor')) {
+            const senhaDigitada = prompt("Digite a senha do professor:");
+            if (senhaDigitada === null) return;
+            if (senhaDigitada !== SENHA_PROFESSOR) {
+                alert("Senha incorreta!");
+                return;
+            }
+        }
+
+        body.classList.toggle('modo-professor');
+        
+        if (body.classList.contains('modo-professor')) {
+            btn.innerText = "🔒 Painel do Professor (Ativo)";
+            btn.style.color = "#4CAF50";
+        } else {
+            btn.innerText = "🔓 Painel do Professor (Inativo)";
+            btn.style.color = "#ffeb3b";
+        }
+    }
+
+    function excluirCard(botao) {
+        if (confirm("Tem certeza que deseja excluir esta pergunta?")) {
+            const card = botao.closest('.card');
+            card.remove();
+        }
+    }
+
+    function editarCard(botao) {
+        const card = botao.closest('.card');
+        const h3 = card.querySelector('h3');
+        const p = card.querySelector('p');
+
+        const novoTitulo = prompt("Edite a pergunta:", h3.innerText);
+        if (novoTitulo !== null && novoTitulo.trim() !== "") {
+            h3.innerText = novoTitulo;
+        }
+
+        const novaResposta = prompt("Edite a resposta:", p.innerText);
+        if (novaResposta !== null && novaResposta.trim() !== "") {
+            p.innerText = novaResposta;
+        }
+    }
+
+    function adicionarCard(botao) {
+        const section = botao.closest('section');
+        const container = section.querySelector('.container');
+
+        const novaPergunta = prompt("Digite a nova pergunta:");
+        if (!novaPergunta || novaPergunta.trim() === "") return;
+
+        const novaResposta = prompt("Digite a resposta:");
+        if (!novaResposta || novaResposta.trim() === "") return;
+
+        const novoCard = document.createElement('div');
+        novoCard.classList.add('card');
+        novoCard.innerHTML = `
+            <div class="acoes-professor">
+                <button class="btn-acao-prof btn-editar" onclick="editarCard(this)">✏️ Editar</button>
+                <button class="btn-acao-prof btn-excluir" onclick="excluirCard(this)">🗑️ Excluir</button>
+            </div>
+            <h3>${novaPergunta}</h3>
+            <p>${novaResposta}</p>
+        `;
+
+        container.appendChild(novoCard);
+    }
+</script>
+
+</body>
+</html>

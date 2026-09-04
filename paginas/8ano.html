@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8º Ano - Química</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+    #barra-admin { background: #1b3b2b; padding: 12px; text-align: center; border-bottom: 2px solid #a3e4d7; font-family: Arial, sans-serif; position: sticky; top: 0; z-index: 1000; }
+    #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; }
+    #barra-admin button { padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
+    .modal-admin { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+    .modal-content-admin { background: #1e2621; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; color: white; border: 1px solid #a3e4d7; text-align: left; font-family: Arial, sans-serif; max-height: 90vh; overflow-y: auto; }
+    .modal-content-admin input, .modal-content-admin textarea, .modal-content-admin select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #555; background: #2a352f; color: white; box-sizing: border-box; }
+    .acoes-card { display: none !important; }
+    .card.modo-admin { position: relative; border: 2px dashed #00b4d8; padding-bottom: 20px; }
+    .card.modo-admin .acoes-card { display: flex !important; margin-top: 15px; gap: 8px; justify-content: center; }
+</style>
+</head>
+
+<body>
+
+<div id="barra-admin">
+    <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
+    <div id="bloco-login" style="display: inline-block;">
+        <input type="password" id="senha-prof" placeholder="Senha do Professor">
+        <button onclick="entrarAdmin()" style="background: #00b4d8; color: white;">Entrar</button>
+    </div>
+    <div id="botoes-admin" style="display: none;">
+        <button onclick="abrirModalCard()" style="background: #28a745; color: white;">➕ Adicionar Card</button>
+        <button onclick="sairAdmin()" style="background: #dc3545; color: white; margin-left: 5px;">Sair</button>
+    </div>
+</div>
+
+<div id="modal-card" class="modal-admin">
+    <div class="modal-content-admin">
+        <h3 id="modal-titulo-modal" style="color: #a3e4d7; margin-top: 0;">Novo Conteúdo</h3>
+        <input type="hidden" id="card-id">
+        <label>Título do Card:</label>
+        <input type="text" id="card-titulo" placeholder="Ex: 📄 Apostila Aula 1">
+        <label>Descrição:</label>
+        <textarea id="card-texto" rows="3" placeholder="Explicação resumida..."></textarea>
+        <label>Tipo de Destino do Botão:</label>
+        <select id="card-link-select" onchange="tratarMudancaTipoLink()">
+            <option value="../conteudos/8ano/tabela-periodica.html">Trilha: Tabela Periódica</option>
+            <option value="../conteudos/8ano/ions.html">Trilha: Íons</option>
+            <option value="../conteudos/8ano/ligacoes-quimicas.html">Trilha: Ligações Químicas</option>
+            <option value="../quiz/quiz.html">Página de Quiz / Desafio</option>
+            <option value="tipo_pdf">📄 Link do PDF (Google Drive / Nuvem)</option>
+            <option value="tipo_externo">🌐 Site Externo (Link da Web)</option>
+        </select>
+        <div id="bloco-pdf" style="display: none;">
+            <label>Cole o link do PDF na nuvem:</label>
+            <input type="text" id="card-input-pdf" placeholder="https://drive.google.com/...">
+            <small style="color: #a3e4d7; display: block; margin-top: -10px; margin-bottom: 15px;">Dica: Suba o PDF no Google Drive ou OneDrive e cole o link público aqui.</small>
+        </div>
+        <div id="bloco-externo" style="display: none;">
+            <label>Endereço do Site:</label>
+            <input type="text" id="card-input-externo" placeholder="https://youtube.com">
+        </div>
+        <label>Texto do Botão:</label>
+        <input type="text" id="card-btn-texto" placeholder="Estudar">
+        <div style="text-align: right; margin-top: 10px;">
+            <button onclick="salvarCard()" style="background: #28a745; color: white;">Salvar</button>
+            <button onclick="fecharModalCard()" style="background: #6c757d; color: white; margin-left: 5px;">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+
+
+<nav>
+
+<a href="../index.html">Início</a>
+<a href="experimentos.html">Experimentos</a>
+<a href="videos.html">Vídeos</a>
+<a href="perguntas.html">Perguntas</a>
+<a href="professor.html">Professor</a>
+
+</nav>
+
+</header>
+
+
+
+<section class="banner">
+
+<div>
+
+<h1>
+Química - 8º Ano
+</h1>
+
+
+<p>
+Aprenda sobre tabela periódica, ligações químicas e elementos.
+</p>
+
+
+</div>
+
+</section>
+
+
+
+
+<section>
+
+
+<h2>
+Conteúdos do 8º Ano
+</h2>
+
+
+<div class="container" id="container-cards">
+
+
+
+<div class="card" data-id="1">
+
+<h3>
+🧬 Tabela Periódica
+</h3>
+
+<p>
+Conheça os elementos químicos e suas características.
+</p>
+
+<a href="../conteudos/8ano/tabela-periodica.html">
+Estudar
+</a>
+
+</div>
+
+
+
+<div class="card" data-id="2">
+
+<h3>
+⚛️ Íons
+</h3>
+
+<p>
+Aprenda sobre cargas elétricas dos átomos.
+</p>
+
+<a href="../conteudos/8ano/ions.html">
+Estudar
+</a>
+
+</div>
+
+
+
+
+<div class="card" data-id="3">
+
+<h3>
+🔗 Ligações Químicas
+</h3>
+
+<p>
+Entenda como os átomos se unem.
+</p>
+
+<a href="../conteudos/8ano/ligacoes-quimicas.html">
+Estudar
+</a>
+
+</div>
+
+
+
+
+<div class="card" data-id="4">
+
+<h3>
+❓ Quiz 8º Ano
+</h3>
+
+<p>
+Teste seus conhecimentos.
+</p>
+
+<a href="../quiz/quiz.html">
+Fazer Quiz
+</a>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+<p>
+Química com Professor Wendel
+</p>
+
+</footer>
+
+<script>
+    const SENHA_ADMIN = "@WENDELquimica26";
+    const CHAVE_STORAGE = "conteudos_8ano";
+    let modoAdminAtivo = sessionStorage.getItem('admin_logado') === 'true';
+
+    document.addEventListener("DOMContentLoaded", () => {
+        removerItensExcluidos();
+        if (modoAdminAtivo) ativarInterfaceAdmin();
+        carregarCardsSalvos();
+    });
+
+    function entrarAdmin() {
+        const senha = document.getElementById('senha-prof').value;
+        if (senha === SENHA_ADMIN) {
+            modoAdminAtivo = true;
+            sessionStorage.setItem('admin_logado', 'true');
+            ativarInterfaceAdmin();
+        } else {
+            alert("Senha incorreta!");
+        }
+    }
+
+    function ativarInterfaceAdmin() {
+        document.getElementById('status-admin').innerText = "🔓 Modo Professor Ativo";
+        document.getElementById('bloco-login').style.display = 'none';
+        document.getElementById('botoes-admin').style.display = 'inline-block';
+        aplicarModoAdmin();
+    }
+
+    function sairAdmin() {
+        modoAdminAtivo = false;
+        sessionStorage.removeItem('admin_logado');
+        window.location.reload();
+    }
+
+    function tratarMudancaTipoLink() {
+        const select = document.getElementById('card-link-select').value;
+        const blocoPdf = document.getElementById('bloco-pdf');
+        const blocoExterno = document.getElementById('bloco-externo');
+        const btnTextoInput = document.getElementById('card-btn-texto');
+
+        blocoPdf.style.display = 'none';
+        blocoExterno.style.display = 'none';
+
+        if (select === 'tipo_pdf') {
+            blocoPdf.style.display = 'block';
+            btnTextoInput.value = "Baixar PDF";
+        } else if (select === 'tipo_externo') {
+            blocoExterno.style.display = 'block';
+            btnTextoInput.value = "Acessar Site";
+        } else {
+            if (select.includes("quiz")) btnTextoInput.value = "Fazer Quiz";
+            else btnTextoInput.value = "Estudar";
+        }
+    }
+
+    function abrirModalCard(id = "", titulo = "", texto = "", linkAtual = "", btnTextoAtual = "") {
+        if (!modoAdminAtivo) return;
+        document.getElementById('card-id').value = id;
+        document.getElementById('card-titulo').value = titulo;
+        document.getElementById('card-texto').value = texto;
+        document.getElementById('card-btn-texto').value = btnTextoAtual || "Estudar";
+        
+        const select = document.getElementById('card-link-select');
+        const inputPdf = document.getElementById('card-input-pdf');
+        const inputExterno = document.getElementById('card-input-externo');
+        
+        document.getElementById('bloco-pdf').style.display = 'none';
+        document.getElementById('bloco-externo').style.display = 'none';
+
+        let encontrou = false;
+        for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === linkAtual) {
+                select.selectedIndex = i;
+                encontrou = true;
+                break;
+            }
+        }
+        
+        if (!encontrou && linkAtual) {
+            if (linkAtual.includes('drive.google.com') || linkAtual.includes('onedrive') || linkAtual.includes('dropbox') || linkAtual.toLowerCase().includes('.pdf')) {
+                select.value = 'tipo_pdf';
+                inputPdf.value = linkAtual;
+                document.getElementById('bloco-pdf').style.display = 'block';
+            } else {
+                select.value = 'tipo_externo';
+                inputExterno.value = linkAtual;
+                document.getElementById('bloco-externo').style.display = 'block';
+            }
+        }
+        
+        document.getElementById('modal-titulo-modal').innerText = id ? "Editar Conteúdo" : "Adicionar Novo Conteúdo";
+        document.getElementById('modal-card').style.display = "flex";
+    }
+
+    function fecharModalCard() {
+        document.getElementById('modal-card').style.display = "none";
+    }
+
+    function salvarCard() {
+        if (!modoAdminAtivo) return;
+        const id = document.getElementById('card-id').value || 'custom_' + Date.now();
+        const titulo = document.getElementById('card-titulo').value;
+        const texto = document.getElementById('card-texto').value;
+        let btnTexto = document.getElementById('card-btn-texto').value || "Estudar";
+        
+        const selectVal = document.getElementById('card-link-select').value;
+        let btnLink = "";
+
+        if (selectVal === 'tipo_pdf') {
+            btnLink = document.getElementById('card-input-pdf').value.trim();
+            if (!btnLink) {
+                alert("Cole o link do PDF!");
+                return;
+            }
+        } else if (selectVal === 'tipo_externo') {
+            btnLink = document.getElementById('card-input-externo').value.trim();
+            if (!btnLink) {
+                alert("Digite o endereço do site externo!");
+                return;
+            }
+        } else {
+            btnLink = selectVal;
+        }
+
+        if (!titulo || !texto) {
+            alert("Preencha o título e a descrição do card!");
+            return;
+        }
+
+        let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+        customizados = customizados.filter(item => item.id != id);
+        customizados.unshift({ id, titulo, texto, btnTexto, btnLink });
+        localStorage.setItem(CHAVE_STORAGE, JSON.stringify(customizados));
+        
+        fecharModalCard();
+        window.location.reload();
+    }
+
+    function removerItensExcluidos() {
+        let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
+        excluidas.forEach(id => {
+            let el = document.querySelector(`[data-id="${id}"]`);
+            if (el) el.remove();
+        });
+    }
+
+    function carregarCardsSalvos() {
+        let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+        let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
+        const container = document.getElementById('container-cards');
+
+        customizados.slice().reverse().forEach(item => {
+            if (excluidas.includes(String(item.id))) return;
+            let existente = document.querySelector(`[data-id="${item.id}"]`);
+
+            let deveAbrirNovaAba = item.btnLink.startsWith('http') || item.btnLink.toLowerCase().includes('.pdf');
+            let targetAttr = deveAbrirNovaAba ? 'target="_blank"' : '';
+
+            if (existente) {
+                existente.querySelector('h3').innerText = item.titulo;
+                existente.querySelector('p').innerText = item.texto;
+                let btn = existente.querySelector('a');
+                if(btn) {
+                    btn.innerText = item.btnTexto;
+                    btn.href = item.btnLink;
+                    if(deveAbrirNovaAba) btn.setAttribute('target', '_blank');
+                }
+            } else {
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.setAttribute('data-id', item.id);
+                div.innerHTML = `
+                    <h3>${item.titulo}</h3>
+                    <p>${item.texto}</p>
+                    <a href="${item.btnLink}" ${targetAttr}>${item.btnTexto}</a>
+                    <div class="acoes-card">
+                        <button onclick="editarItem('${item.id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                        <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
+                    </div>
+                `;
+                if (modoAdminAtivo) div.classList.add('modo-admin');
+                container.insertBefore(div, container.firstChild);
+            }
+        });
+    }
+
+    function aplicarModoAdmin() {
+        document.querySelectorAll('.card').forEach(card => {
+            card.classList.add('modo-admin');
+            const id = card.getAttribute('data-id');
+            if (!card.querySelector('.acoes-card')) {
+                const divAcoes = document.createElement('div');
+                divAcoes.className = 'acoes-card';
+                divAcoes.innerHTML = `
+                    <button onclick="editarItem('${id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                    <button onclick="excluirItem('${id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
+                `;
+                card.appendChild(divAcoes);
+            }
+        });
+    }
+
+    function editarItem(id) {
+        if (!modoAdminAtivo) return;
+        const card = document.querySelector(`[data-id="${id}"]`);
+        if (!card) return;
+        const titulo = card.querySelector('h3').innerText;
+        const texto = card.querySelector('p').innerText;
+        const btn = card.querySelector('a');
+        const linkAtual = btn ? btn.getAttribute('href') : "#";
+        const btnTextoAtual = btn ? btn.innerText : "Estudar";
+        
+        abrirModalCard(id, titulo, texto, linkAtual, btnTextoAtual);
+    }
+
+    function excluirItem(id) {
+        if (!modoAdminAtivo) return;
+        if (confirm("Deseja realmente excluir este card?")) {
+            let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+            customizados = customizados.filter(item => item.id != id);
+            localStorage.setItem(CHAVE_STORAGE, JSON.stringify(customizados));
+
+            let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
+            if (!excluidas.includes(String(id))) {
+                excluidas.push(String(id));
+                localStorage.setItem(CHAVE_STORAGE + '_excluidos', JSON.stringify(excluidas));
+            }
+            window.location.reload();
+        }
+    }
+</script>
+
+</body>
+
+</html>

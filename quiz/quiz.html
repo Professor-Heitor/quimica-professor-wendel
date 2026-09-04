@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Química - Professor Wendel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="quiz.css">
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            position: relative;
+        }
+        .molecula-lateral {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            width: 550px;
+            height: 600px;
+            z-index: 5;
+            background: transparent;
+            pointer-events: auto;
+        }
+
+        /* Ajuste limpo e proporcional do card */
+        .quiz-container {
+            max-width: 750px !important;
+            width: 95% !important;
+            margin: 40px auto !important;
+        }
+
+        .quiz-card {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 35px !important;
+            box-sizing: border-box;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Organização natural dos botões */
+        .series-botoes {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            justify-content: center !important;
+            margin-top: 20px !important;
+        }
+
+        .btn-serie {
+            cursor: pointer !important;
+        }
+
+        /* Painel do Professor Global */
+        .painel-professor-global {
+            display: none !important;
+            background: #ffffff;
+            border: 2px dashed #0f4c2c;
+            padding: 35px;
+            margin: 40px auto;
+            width: 95% !important;
+            max-width: 1250px !important;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            box-sizing: border-box;
+        }
+        body.modo-professor-ativo .painel-professor-global {
+            display: block !important;
+        }
+        .bloco-serie-prof {
+            background: #f4f9f5;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 6px solid #0f4c2c;
+        }
+        .bloco-conteudo-serie {
+            margin-top: 15px;
+        }
+        .bloco-conteudo-serie.fechado {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+        <nav>
+            <a href="../index.html">Início</a>
+            <a href="../paginas/videos.html">Vídeos</a>
+            <a href="../paginas/experimentos.html">Experimentos</a>
+            <a href="../paginas/perguntas.html">Perguntas</a>
+            <a href="../paginas/professor.html">Professor</a>
+            <a href="#" id="btn-painel-global" onclick="toggleModoProfessorGlobal()" style="color: #ffeb3b; font-weight: bold;">🔑 Painel do Professor</a>
+        </nav>
+    </header>
+
+<div class="molecula-lateral">
+    <model-viewer 
+        id="modelo-molecula"
+        src="molecule.glb" 
+        alt="Molécula 3D" 
+        camera-controls 
+        disable-zoom
+        field-of-view="22deg" 
+        camera-orbit="50deg 90deg 90%"
+        orientation="15deg 25deg 10deg"
+        style="width: 100%; height: 100%; background: transparent;">
+    </model-viewer>
+</div>
+
+    <main class="quiz-container">
+        <!-- TELA 1: ESCOLHER A SÉRIE -->
+        <div id="tela-inicio" class="quiz-card">
+            <h2>🧠 Desafio de Química</h2>
+            <p>Escolha a sua série para começar o quiz:</p>
+            <div class="series-botoes">
+                <button class="btn-serie" data-serie="6ano">6º Ano</button>
+                <button class="btn-serie" data-serie="7ano">7º Ano</button>
+                <button class="btn-serie" data-serie="8ano">8º Ano</button>
+                <button class="btn-serie" data-serie="9ano">9º Ano</button>
+                <button class="btn-serie" data-serie="1serie">1ª Série</button>
+                <button class="btn-serie" data-serie="2serie">2ª Série</button>
+                <button class="btn-serie" data-serie="3serie">3ª Série</button>
+            </div>
+        </div>
+
+        <!-- TELA 2: PERGUNTAS DO QUIZ -->
+        <div id="tela-quiz" class="quiz-card oculto">
+            <div class="quiz-info">
+                <span id="contador-pergunta">Pergunta 1 de X</span>
+            </div>
+            <h3 id="pergunta-texto">Texto da pergunta aqui</h3>
+            
+            <div id="alternativas-container" class="alternativas-grid"></div>
+
+            <div id="explicacao-container" class="explicacao-box oculto">
+                <p id="explicacao-texto"></p>
+            </div>
+
+            <button id="btn-proximo" class="botao oculto">Próxima Pergunta</button>
+        </div>
+
+        <!-- TELA 3: RESULTADO FINAL -->
+        <div id="tela-resultado" class="quiz-card oculto">
+            <h2>🏆 Fim do Quiz!</h2>
+            <p id="resultado-texto">Você acertou X de Y perguntas.</p>
+            <button id="btn-reiniciar" class="botao">Tentar Novamente</button>
+            <br><br>
+            <a href="../index.html" class="btn-secundario" style="text-decoration: none; padding: 10px 20px;">Voltar ao Início</a>
+        </div>
+    </main>
+
+    <!-- PAINEL DE GERENCIAMENTO GLOBAL DO PROFESSOR -->
+    <div id="painel-gerenciamento" class="painel-professor-global">
+        <h2 style="color: #0f4c2c; margin-bottom: 10px; font-size: 28px;">🛠️ Painel Geral de Perguntas (Modo Professor)</h2>
+        <p style="margin-bottom: 25px; color: #555; font-size: 16px;">Gerencie perguntas, respostas e explicações de todas as séries do site de forma ampla.</p>
+        
+        <div class="bloco-serie-prof" data-serie-id="6ano">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">6º Ano</h3>
+                <button onclick="alternarBlocoSerie('6ano')" id="btn-toggle-6ano" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('6ano')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (6º Ano)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="7ano">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">7º Ano</h3>
+                <button onclick="alternarBlocoSerie('7ano')" id="btn-toggle-7ano" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('7ano')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (7º Ano)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="8ano">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">8º Ano</h3>
+                <button onclick="alternarBlocoSerie('8ano')" id="btn-toggle-8ano" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('8ano')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (8º Ano)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="9ano">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">9º Ano</h3>
+                <button onclick="alternarBlocoSerie('9ano')" id="btn-toggle-9ano" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('9ano')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (9º Ano)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="1serie">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">1ª Série</h3>
+                <button onclick="alternarBlocoSerie('1serie')" id="btn-toggle-1serie" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('1serie')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (1ª Série)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="2serie">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">2ª Série</h3>
+                <button onclick="alternarBlocoSerie('2serie')" id="btn-toggle-2serie" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('2serie')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (2ª Série)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="bloco-serie-prof" data-serie-id="3serie">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #0f4c2c; margin: 0; font-size: 20px;">3ª Série</h3>
+                <button onclick="alternarBlocoSerie('3serie')" id="btn-toggle-3serie" style="background: #6c757d; color: #fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">📂 Fechar</button>
+            </div>
+            <div class="bloco-conteudo-serie">
+                <button onclick="professorAdicionarPergunta('3serie')" style="background: #28a745; color: #fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin-top:8px;">➕ Adicionar Pergunta (3ª Série)</button>
+                <div class="lista-perguntas-serie" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE COMENTÁRIOS DO QUIZ -->
+    <section class="comentarios-section" style="max-width: 650px; margin: 0 auto 60px auto; padding: 35px; background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(11,61,145,0.12); border: 1px solid #e2edff;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+            <span style="font-size: 26px;">💬</span>
+            <h3 style="color: #0b3d91; margin: 0; font-size: 22px;">Mural de Opiniões e Acertos</h3>
+        </div>
+        <p style="color: #555; font-size: 15px; margin-bottom: 25px; line-height: 1.5;">O que você achou do desafio? Conte quantos acertos fez e deixe sua marca no mural!</p>
+        
+        <form id="form-comentario" style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <input type="text" id="nome-usuario" placeholder="Seu nome completo" required style="flex: 1; min-width: 200px; padding: 14px; border: 2px solid #d0e1fd; border-radius: 10px; font-size: 15px; outline: none;">
+                <input type="text" id="serie-usuario" placeholder="Sua série (ex: 8º Ano)" required style="width: 150px; padding: 14px; border: 2px solid #d0e1fd; border-radius: 10px; font-size: 15px; outline: none;">
+            </div>
+            <textarea id="texto-comentario" placeholder="Escreva sua opinião e seus acertos..." rows="3" required style="padding: 14px; border: 2px solid #d0e1fd; border-radius: 10px; font-size: 15px; resize: vertical; outline: none;"></textarea>
+            <button type="submit" style="background: linear-gradient(135deg, #0b3d91, #00b4d8); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,180,216,0.3); transition: 0.3s;">Publicar no Mural</button>
+        </form>
+
+        <div id="lista-comentarios" style="margin-top: 35px; display: flex; flex-direction: column; gap: 15px; text-align: left;"></div>
+    </section>
+
+    <footer>
+        <p>© 2026 - Química com Professor Wendel</p>
+    </footer>
+
+    <!-- Script principal do Quiz -->
+    <script src="quiz.js"></script>
+    
+    <!-- Script do Painel do Professor, Comentários e Rotação 3D -->
+    <script>
+        const SENHA_PROFESSOR_GLOBAL = "@WENDELquimica26";
+
+        async function toggleModoProfessorGlobal() {
+            const body = document.body;
+            const btn = document.getElementById('btn-painel-global');
+            
+            if (!body.classList.contains('modo-professor-ativo')) {
+                const senhaDigitada = prompt("Digite a senha do professor:");
+                if (senhaDigitada === null) return;
+                if (senhaDigitada !== SENHA_PROFESSOR_GLOBAL) {
+                    alert("Senha incorreta!");
+                    return;
+                }
+            }
+
+            body.classList.toggle('modo-professor-ativo');
+            
+            if (body.classList.contains('modo-professor-ativo')) {
+                btn.innerText = "🔑 Painel do Professor (Ativo)";
+                btn.style.color = "#4CAF50";
+                await carregarDadosPainelProfessor();
+            } else {
+                btn.innerText = "🔑 Painel do Professor";
+                btn.style.color = "#ffeb3b";
+            }
+        }
+
+        function alternarBlocoSerie(serie) {
+            const blocoSerie = document.querySelector(`[data-serie-id="${serie}"] .bloco-conteudo-serie`);
+            const btnToggle = document.getElementById(`btn-toggle-${serie}`);
+            
+            if (blocoSerie.classList.contains('fechado')) {
+                blocoSerie.classList.remove('fechado');
+                btnToggle.innerText = "📂 Fechar";
+                btnToggle.style.background = "#6c757d";
+            } else {
+                blocoSerie.classList.add('fechado');
+                btnToggle.innerText = "📁 Abrir";
+                btnToggle.style.background = "#0f4c2c";
+            }
+        }
+
+        async function carregarDadosPainelProfessor() {
+            if (!window.dadosAdminMemoria) {
+                let salvo = localStorage.getItem('quiz_admin_dados');
+                if (salvo) {
+                    window.dadosAdminMemoria = JSON.parse(salvo);
+                } else {
+                    try {
+                        const res = await fetch("dados/perguntas.json");
+                        window.dadosAdminMemoria = await res.json();
+                    } catch(e) {
+                        window.dadosAdminMemoria = {};
+                    }
+                }
+            }
+            renderizarPainelVisualmente();
+        }
+
+        function renderizarPainelVisualmente() {
+            const series = ["6ano", "7ano", "8ano", "9ano", "1serie", "2serie", "3serie"];
+            
+            series.forEach(serie => {
+                const bloco = document.querySelector(`[data-serie-id="${serie}"] .lista-perguntas-serie`);
+                if (!bloco) return;
+                bloco.innerHTML = "";
+
+                const perguntasDaSerie = window.dadosAdminMemoria[serie] || [];
+                
+                perguntasDaSerie.forEach((item, index) => {
+                    const alternativaCorretaTexto = item.alternativas[item.resposta] || item.alternativas[0];
+                    
+                    const divItem = document.createElement('div');
+                    divItem.style.cssText = "background: #fff; padding: 15px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 15px;";
+                    divItem.innerHTML = `
+                        <strong>Q${index+1}:</strong> ${item.pergunta}<br>
+                        <small style="color: #28a745; font-size: 14px;"><strong>Correta:</strong> ${alternativaCorretaTexto}</small><br>
+                        <small style="color: #555; font-size: 14px;"><strong>Explicação:</strong> ${item.explicacao || 'Sem explicação'}</small><br><br>
+                        <button onclick="professorEditarItem('${serie}', ${index})" style="background:#ffc107; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">✏️ Editar</button>
+                        <button onclick="professorExcluirItem('${serie}', ${index})" style="background:#dc3545; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px; margin-left:8px;">🗑️ Excluir</button>
+                    `;
+                    bloco.appendChild(divItem);
+                });
+            });
+        }
+
+        function professorAdicionarPergunta(serie) {
+            if (!window.dadosAdminMemoria) window.dadosAdminMemoria = {};
+            if (!window.dadosAdminMemoria[serie]) window.dadosAdminMemoria[serie] = [];
+
+            const p = prompt("Digite a nova pergunta:");
+            if (!p || p.trim() === "") return;
+
+            const alt1 = prompt("Digite a 1ª alternativa (Opção Correta):");
+            const alt2 = prompt("Digite a 2ª alternativa (Incorreta):");
+            const alt3 = prompt("Digite a 3ª alternativa (Incorreta):");
+            const alt4 = prompt("Digite a 4ª alternativa (Incorreta):");
+
+            if (!alt1 || !alt2 || !alt3 || !alt4) {
+                alert("Você precisa preencher todas as 4 alternativas!");
+                return;
+            }
+
+            const alternativas = [alt1, alt2, alt3, alt4];
+            const explicacao = prompt("Digite a explicação pedagógica:") || "Sem explicação cadastrada.";
+
+            window.dadosAdminMemoria[serie].push({
+                pergunta: p,
+                alternativas: alternativas,
+                resposta: 0,
+                explicacao: explicacao
+            });
+
+            salvarEAtualizarPainel();
+            alert("Pergunta adicionada com sucesso!");
+        }
+
+        function professorEditarItem(serie, index) {
+            let item = window.dadosAdminMemoria[serie][index];
+
+            const novaP = prompt("Editar pergunta:", item.pergunta);
+            if (novaP !== null && novaP.trim() !== "") item.pergunta = novaP;
+
+            const altCorretaAtual = item.alternativas[item.resposta];
+            const novaAltCorreta = prompt("Editar a alternativa CORRETA:", altCorretaAtual);
+            if (novaAltCorreta !== null && novaAltCorreta.trim() !== "") {
+                item.alternativas[item.resposta] = novaAltCorreta;
+            }
+
+            const novaExp = prompt("Editar explicação:", item.explicacao);
+            if (novaExp !== null) item.explicacao = novaExp;
+
+            salvarEAtualizarPainel();
+            alert("Pergunta atualizada com sucesso!");
+        }
+
+        function professorExcluirItem(serie, index) {
+            if (confirm("Deseja realmente excluir esta pergunta?")) {
+                window.dadosAdminMemoria[serie].splice(index, 1);
+                salvarEAtualizarPainel();
+                alert("Pergunta excluída!");
+            }
+        }
+
+        function salvarEAtualizarPainel() {
+            localStorage.setItem('quiz_admin_dados', JSON.stringify(window.dadosAdminMemoria));
+            renderizarPainelVisualmente();
+            if (typeof perguntasData !== 'undefined') {
+                perguntasData = window.dadosAdminMemoria;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            carregarComentariosSalvos();
+
+            const modelViewer = document.querySelector('#modelo-molecula');
+            let estaInteragindo = false;
+            let angulo = 50;
+
+            if (modelViewer) {
+                modelViewer.addEventListener('pointerdown', () => { estaInteragindo = true; });
+                modelViewer.addEventListener('pointerup', () => { estaInteragindo = false; });
+                modelViewer.addEventListener('touchend', () => { estaInteragindo = false; });
+
+                function girar() {
+                    if (!estaInteragindo) {
+                        angulo -= 0.5;
+                        modelViewer.cameraOrbit = `${angulo}deg 90deg 90%`; 
+                    }
+                    requestAnimationFrame(girar);
+                }
+                girar();
+            }
+        });
+
+        document.getElementById('form-comentario').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome-usuario').value;
+            const serie = document.getElementById('serie-usuario').value;
+            const texto = document.getElementById('texto-comentario').value;
+            
+            const novoComentario = { id: Date.now(), nome, serie, texto };
+            salvarNoLocalStorage(novoComentario);
+            renderizarComentario(novoComentario);
+            document.getElementById('form-comentario').reset();
+        });
+
+        function carregarComentariosSalvos() {
+            let comentarios = JSON.parse(localStorage.getItem('quiz_comentarios')) || [];
+            comentarios.forEach(c => renderizarComentario(c));
+        }
+
+        function renderizarComentario(c) {
+            const lista = document.getElementById('lista-comentarios');
+            const cartaoComentario = document.createElement('div');
+            cartaoComentario.setAttribute('data-id', c.id);
+            cartaoComentario.style.cssText = "background: #f8fbff; padding: 20px; border-radius: 12px; border: 1px solid #d8e8ff; box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: 0.3s;";
+            
+            cartaoComentario.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                    <div>
+                        <strong style="color: #0b3d91; font-size: 16px;" class="coment-nome">${c.nome}</strong>
+                        <span style="background: #e2edff; color: #0b3d91; font-size: 12px; padding: 2px 8px; border-radius: 6px; margin-left: 8px; font-weight: bold;" class="coment-serie">${c.serie}</span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="editarComentario(${c.id})" style="background: #e2edff; border: none; color: #0b3d91; padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer;">Editar</button>
+                        <button onclick="excluirComentario(${c.id})" style="background: #ffebee; border: none; color: #c62828; padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer;">Excluir</button>
+                    </div>
+                </div>
+                <p style="margin: 0; color: #444; font-size: 14px; line-height: 1.4;" class="coment-texto">${c.texto}</p>
+            `;
+            lista.appendChild(cartaoComentario);
+        }
+
+        function salvarNoLocalStorage(c) {
+            let comentarios = JSON.parse(localStorage.getItem('quiz_comentarios')) || [];
+            comentarios.unshift(c);
+            localStorage.setItem('quiz_comentarios', JSON.stringify(comentarios));
+        }
+
+        function excluirComentario(id) {
+            let comentarios = JSON.parse(localStorage.getItem('quiz_comentarios')) || [];
+            comentarios = comentarios.filter(c => c.id !== id);
+            localStorage.setItem('quiz_comentarios', JSON.stringify(comentarios));
+            const card = document.querySelector(`[data-id='${id}']`);
+            if (card) card.remove();
+        }
+
+        function editarComentario(id) {
+            let comentarios = JSON.parse(localStorage.getItem('quiz_comentarios')) || [];
+            let c = comentarios.find(item => item.id === id);
+            if (!c) return;
+            
+            const novoNome = prompt("Edite seu nome:", c.nome);
+            const novaSerie = prompt("Edite sua série:", c.serie);
+            const novoTexto = prompt("Edite seu comentário e acertos:", c.texto);
+            
+            if (novoNome !== null && novoNome.trim() !== "") c.nome = novoNome;
+            if (novaSerie !== null && novaSerie.trim() !== "") c.serie = novaSerie;
+            if (novoTexto !== null && novoTexto.trim() !== "") c.texto = novoTexto;
+            
+            localStorage.setItem('quiz_comentarios', JSON.stringify(comentarios));
+            
+            const card = document.querySelector(`[data-id='${id}']`);
+            if (card) {
+                card.querySelector('.coment-nome').innerText = c.nome;
+                card.querySelector('.coment-serie').innerText = c.serie;
+                card.querySelector('.coment-texto').innerText = c.texto;
+            }
+        }
+    </script>
+</body>
+</html>
