@@ -6,6 +6,7 @@
 <title>Sugestões - Química com Professor Wendel</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabaseclient.js"></script>
 <style>
     .container-sugestoes { max-width: 600px; margin: 40px auto; padding: 20px; background: #1e2621; border-radius: 12px; color: white; border: 1px solid #a3e4d7; font-family: Arial, sans-serif; }
     .container-sugestoes input, .container-sugestoes textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #555; background: #2a352f; color: white; box-sizing: border-box; }
@@ -56,11 +57,8 @@
 </footer>
 
 <script>
-    // Inicialização direta e segura do Supabase nesta página
-    const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
-
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  
+  const supabase = window.supabaseClient;
 
     document.addEventListener("DOMContentLoaded", async () => {
         const { data: { session } } = await supabase.auth.getSession();
