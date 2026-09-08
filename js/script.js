@@ -41,10 +41,6 @@ window.addEventListener("load", () => {
 });
 
 
-
-
-// Botão escolher série
-
 const botaoSerie = document.querySelector(".botao");
 
 
