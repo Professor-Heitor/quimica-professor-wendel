@@ -41,27 +41,74 @@
     const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
 
-    const supabaseClientLogin = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Criamos o cliente usando um nome único para evitar conflitos
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    async function fazerLogin() {
-        const email = document.getElementById('email-login').value.trim();
-        const password = document.getElementById('senha-login').value.trim();
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { data: { session } } = await db.auth.getSession();
+        if (session) {
+            document.getElementById('painel-professor').style.display = 'block';
+            carregarSugestoesAdmin();
+        }
+    });
 
-        if (!email || !password) {
-            alert("Por favor, preencha o e-mail e a senha.");
+    async function enviarSugestao() {
+        const nome = document.getElementById('nome-aluno').value.trim() || "Anônimo";
+        const mensagem = document.getElementById('texto-sugestao').value.trim();
+
+        if (!mensagem) {
+            alert("Escreva uma mensagem antes de enviar!");
             return;
         }
 
-        const { data, error } = await supabaseClientLogin.auth.signInWithPassword({
-            email: email,
-            password: password,
-        });
+        const { error } = await db
+            .from('sugestoes')
+            .insert([{ nome, mensagem }]);
 
         if (error) {
-            alert("Erro ao entrar: " + error.message);
+            alert("Erro ao enviar: " + error.message);
         } else {
-            alert("Login realizado com sucesso! Bem-vindo, Professor.");
-            window.location.href = "sugestoes.html";
+            alert("Sugestão enviada com sucesso! Obrigado.");
+            document.getElementById('texto-sugestao').value = "";
+            document.getElementById('nome-aluno').value = "";
+        }
+    }
+
+    async function carregarSugestoesAdmin() {
+        const { data, error } = await db
+            .from('sugestoes')
+            .select('*')
+            .order('criado_em', { ascending: false });
+
+        const container = document.getElementById('lista-sugestoes-admin');
+        if (error) {
+            container.innerHTML = "Erro ao carregar sugestões.";
+            return;
+        }
+
+        if (data.length === 0) {
+            container.innerHTML = "<p>Nenhuma sugestão recebida ainda.</p>";
+            return;
+        }
+
+        container.innerHTML = data.map(s => `
+            <div class="item-sugestao">
+                <strong>De: ${s.nome}</strong>
+                <p style="margin: 5px 0 10px 0;">${s.mensagem}</p>
+                <small style="color: #aaa;">Enviado em: ${new Date(s.criado_em).toLocaleDateString()}</small>
+                <br>
+                <button onclick="excluirSugestao('${s.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-top: 8px;">Excluir</button>
+            </div>
+        `).join('');
+    }
+
+    async function excluirSugestao(id) {
+        if (!confirm("Deseja apagar esta sugestão?")) return;
+        const { error } = await db.from('sugestoes').delete().eq('id', id);
+        if (error) {
+            alert("Erro ao excluir: " + error.message);
+        } else {
+            carregarSugestoesAdmin();
         }
     }
 </script>
