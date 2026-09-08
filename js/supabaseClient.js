@@ -1,23 +1,4 @@
-async function entrarComoProfessor() {
-    const email = prompt("E-mail do professor:");
-    if (!email) return;
-    const senha = prompt("Senha:");
-    if (!senha) return;
+const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: senha
-    });
-
-    if (error) {
-        alert("Login inválido: " + error.message);
-        return;
-    }
-
-    ativarModoProfessor();
-}
-
-async function sairDoModoProfessor() {
-    await supabase.auth.signOut();
-    window.location.reload();
-}
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
