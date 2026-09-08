@@ -203,15 +203,23 @@
             const session =
                 resultado.data.session;
 
-            if (session) {
+const EMAIL_PROFESSOR = "EMAIL_DO_PROFESSOR_AQUI";
 
-                document
-                    .getElementById("painel-professor")
-                    .style.display = "block";
+if (session && session.user.email === EMAIL_PROFESSOR) {
 
-                carregarSugestoesAdmin();
+    document
+        .getElementById("painel-professor")
+        .style.display = "block";
 
-            }
+    carregarSugestoesAdmin();
+
+} else {
+
+    document
+        .getElementById("painel-professor")
+        .style.display = "none";
+
+}
 
         } catch (erro) {
 
