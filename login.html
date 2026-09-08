@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sugestões - Química com Professor Wendel</title>
 <link rel="stylesheet" href="../css/style.css">
-<!-- Apenas 1 importação oficial da biblioteca -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     .container-sugestoes { max-width: 600px; margin: 40px auto; padding: 20px; background: #1e2621; border-radius: 12px; color: white; border: 1px solid #a3e4d7; font-family: Arial, sans-serif; }
@@ -57,81 +56,79 @@
 </footer>
 
 <script>
-    // Usamos uma função isolada (IIFE) para que nenhuma variável vaze ou colida no escopo global
-    (function() {
-        const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
+    const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
 
-        const meuAppDb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Usando objeto direto do CDN sem redeclarar a palavra reservada global com 'const'
+    window.meuClienteSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            const { data: { session } } = await meuAppDb.auth.getSession();
-            if (session) {
-                document.getElementById('painel-professor').style.display = 'block';
-                carregarSugestoesAdmin();
-            }
-        });
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { data: { session } } = await window.meuClienteSupabase.auth.getSession();
+        if (session) {
+            document.getElementById('painel-professor').style.display = 'block';
+            carregarSugestoesAdmin();
+        }
+    });
 
-        window.enviarSugestao = async function() {
-            const nome = document.getElementById('nome-aluno').value.trim() || "Anônimo";
-            const mensagem = document.getElementById('texto-sugestao').value.trim();
+    async function enviarSugestao() {
+        const nome = document.getElementById('nome-aluno').value.trim() || "Anônimo";
+        const mensagem = document.getElementById('texto-sugestao').value.trim();
 
-            if (!mensagem) {
-                alert("Escreva uma mensagem antes de enviar!");
-                return;
-            }
+        if (!mensagem) {
+            alert("Escreva uma mensagem antes de enviar!");
+            return;
+        }
 
-            const { error } = await meuAppDb
-                .from('sugestoes')
-                .insert([{ nome, mensagem }]);
+        const { error } = await window.meuClienteSupabase
+            .from('sugestoes')
+            .insert([{ nome, mensagem }]);
 
-            if (error) {
-                alert("Erro ao enviar: " + error.message);
-            } else {
-                alert("Sugestão enviada com sucesso! Obrigado.");
-                document.getElementById('texto-sugestao').value = "";
-                document.getElementById('nome-aluno').value = "";
-            }
-        };
+        if (error) {
+            alert("Erro ao enviar: " + error.message);
+        } else {
+            alert("Sugestão enviada com sucesso! Obrigado.");
+            document.getElementById('texto-sugestao').value = "";
+            document.getElementById('nome-aluno').value = "";
+        }
+    }
 
-        window.carregarSugestoesAdmin = async function() {
-            const { data, error } = await meuAppDb
-                .from('sugestoes')
-                .select('*')
-                .order('criado_em', { ascending: false });
+    async function carregarSugestoesAdmin() {
+        const { data, error } = await window.meuClienteSupabase
+            .from('sugestoes')
+            .select('*')
+            .order('criado_em', { ascending: false });
 
-            const container = document.getElementById('lista-sugestoes-admin');
-            if (error) {
-                container.innerHTML = "Erro ao carregar sugestões.";
-                return;
-            }
+        const container = document.getElementById('lista-sugestoes-admin');
+        if (error) {
+            container.innerHTML = "Erro ao carregar sugestões.";
+            return;
+        }
 
-            if (data.length === 0) {
-                container.innerHTML = "<p>Nenhuma sugestão recebida ainda.</p>";
-                return;
-            }
+        if (data.length === 0) {
+            container.innerHTML = "<p>Nenhuma sugestão recebida ainda.</p>";
+            return;
+        }
 
-            container.innerHTML = data.map(s => `
-                <div class="item-sugestao">
-                    <strong>De: ${s.nome}</strong>
-                    <p style="margin: 5px 0 10px 0;">${s.mensagem}</p>
-                    <small style="color: #aaa;">Enviado em: ${new Date(s.criado_em).toLocaleDateString()}</small>
-                    <br>
-                    <button onclick="excluirSugestao('${s.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-top: 8px;">Excluir</button>
-                </div>
-            `).join('');
-        };
+        container.innerHTML = data.map(s => `
+            <div class="item-sugestao">
+                <strong>De: ${s.nome}</strong>
+                <p style="margin: 5px 0 10px 0;">${s.mensagem}</p>
+                <small style="color: #aaa;">Enviado em: ${new Date(s.criado_em).toLocaleDateString()}</small>
+                <br>
+                <button onclick="excluirSugestao('${s.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-top: 8px;">Excluir</button>
+            </div>
+        `).join('');
+    }
 
-        window.excluirSugestao = async function(id) {
-            if (!confirm("Deseja apagar esta sugestão?")) return;
-            const { error } = await meuAppDb.from('sugestoes').delete().eq('id', id);
-            if (error) {
-                alert("Erro ao excluir: " + error.message);
-            } else {
-                carregarSugestoesAdmin();
-            }
-        };
-    })();
+    async function excluirSugestao(id) {
+        if (!confirm("Deseja apagar esta sugestão?")) return;
+        const { error } = await window.meuClienteSupabase.from('sugestoes').delete().eq('id', id);
+        if (error) {
+            alert("Erro ao excluir: " + error.message);
+        } else {
+            carregarSugestoesAdmin();
+        }
+    }
 </script>
 
 </body>
