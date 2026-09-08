@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugestões - Química com Professor Wendel</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabaseClient.js"></script>
+<style>
+    .container-sugestoes { max-width: 600px; margin: 40px auto; padding: 20px; background: #1e2621; border-radius: 12px; color: white; border: 1px solid #a3e4d7; font-family: Arial, sans-serif; }
+    .container-sugestoes input, .container-sugestoes textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #555; background: #2a352f; color: white; box-sizing: border-box; }
+    .lista-sugestoes { margin-top: 30px; }
+    .item-sugestao { background: #2a352f; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #00b4d8; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">
+    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
+        <img src="../assets/imagens/logo/logo.png" alt="Logo">
+        <span>Química com Professor Wendel</span>
+    </a>
+</div>
+<nav>
+<a href="../index.html">Início</a>
+<a href="1serie.html">1ª Série</a>
+<a href="experimentos.html">Experimentos</a>
+<a href="perguntas.html">Perguntas</a>
+<a href="sugestoes.html">Sugestões</a>
+</nav>
+</header>
+
+<div class="container-sugestoes">
+    <h2>💬 Envie sua Sugestão ou Dúvida</h2>
+    <p>O Professor Wendel quer saber o que você gostaria de ver no site!</p>
+    
+    <label>Seu Nome (Opcional):</label>
+    <input type="text" id="nome-aluno" placeholder="Ex: João Silva">
+    
+    <label>Sua Sugestão:</label>
+    <textarea id="texto-sugestao" rows="4" placeholder="Escreva sua sugestão de conteúdo..."></textarea>
+    
+    <button onclick="enviarSugestao()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Enviar Sugestão</button>
+
+    <div id="painel-professor" style="display: none; margin-top: 40px; border-top: 1px solid #555; padding-top: 20px;">
+        <h3 style="color: #a3e4d7;">🔐 Painel do Professor: Sugestões Recebidas</h3>
+        <div id="lista-sugestoes-admin" class="lista-sugestoes">Carregando...</div>
+    </div>
+</div>
+
+<footer>
+<p>Química com Professor Wendel</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            document.getElementById('painel-professor').style.display = 'block';
+            carregarSugestoesAdmin();
+        }
+    });
+
+    async function enviarSugestao() {
+        const nome = document.getElementById('nome-aluno').value.trim() || "Anônimo";
+        const mensagem = document.getElementById('texto-sugestao').value.trim();
+
+        if (!mensagem) {
+            alert("Escreva uma mensagem antes de enviar!");
+            return;
+        }
+
+        const { error } = await supabase
+            .from('sugestoes')
+            .insert([{ nome, mensagem }]);
+
+        if (error) {
+            alert("Erro ao enviar: " + error.message);
+        } else {
+            alert("Sugestão enviada com sucesso! Obrigado.");
+            document.getElementById('texto-sugestao').value = "";
+            document.getElementById('nome-aluno').value = "";
+        }
+    }
+
+    async function carregarSugestoesAdmin() {
+        const { data, error } = await supabase
+            .from('sugestoes')
+            .select('*')
+            .order('criado_em', { ascending: false });
+
+        const container = document.getElementById('lista-sugestoes-admin');
+        if (error) {
+            container.innerHTML = "Erro ao carregar sugestões.";
+            return;
+        }
+
+        if (data.length === 0) {
+            container.innerHTML = "<p>Nenhuma sugestão recebida ainda.</p>";
+            return;
+        }
+
+        container.innerHTML = data.map(s => `
+            <div class="item-sugestao">
+                <strong>De: ${s.nome}</strong>
+                <p style="margin: 5px 0 10px 0;">${s.mensagem}</p>
+                <small style="color: #aaa;">Enviado em: ${new Date(s.criado_em).toLocaleDateString()}</small>
+                <br>
+                <button onclick="excluirSugestao('${s.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-top: 8px;">Excluir</button>
+            </div>
+        `).join('');
+    }
+
+    async function excluirSugestao(id) {
+        if (!confirm("Deseja apagar esta sugestão?")) return;
+        const { error } = await supabase.from('sugestoes').delete().eq('id', id);
+        if (error) {
+            alert("Erro ao excluir: " + error.message);
+        } else {
+            carregarSugestoesAdmin();
+        }
+    }
+</script>
+
+</body>
+</html>
