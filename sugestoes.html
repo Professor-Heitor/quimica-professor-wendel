@@ -56,76 +56,165 @@
 </footer>
 
 <script>
-  
-window.supabaseClient;
 
-    document.addEventListener("DOMContentLoaded", async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-            document.getElementById('painel-professor').style.display = 'block';
-            carregarSugestoesAdmin();
-        }
-    });
+const sugestoesSupabase = window.supabase.createClient(
+    "https://ahstdxgglfgjfeuurkqg.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsIkV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY"
+);
 
-    async function enviarSugestao() {
-        const nome = document.getElementById('nome-aluno').value.trim() || "Anônimo";
-        const mensagem = document.getElementById('texto-sugestao').value.trim();
+document.addEventListener("DOMContentLoaded", async () => {
 
-        if (!mensagem) {
-            alert("Escreva uma mensagem antes de enviar!");
-            return;
-        }
+    const { data, error } =
+        await sugestoesSupabase.auth.getSession();
 
-        const { error } = await supabase
-            .from('sugestoes')
-            .insert([{ nome, mensagem }]);
-
-        if (error) {
-            alert("Erro ao enviar: " + error.message);
-        } else {
-            alert("Sugestão enviada com sucesso! Obrigado.");
-            document.getElementById('texto-sugestao').value = "";
-            document.getElementById('nome-aluno').value = "";
-        }
+    if (error) {
+        console.error("Erro ao verificar login:", error);
+        return;
     }
 
-    async function carregarSugestoesAdmin() {
-        const { data, error } = await supabase
-            .from('sugestoes')
-            .select('*')
-            .order('criado_em', { ascending: false });
-
-        const container = document.getElementById('lista-sugestoes-admin');
-        if (error) {
-            container.innerHTML = "Erro ao carregar sugestões.";
-            return;
-        }
-
-        if (data.length === 0) {
-            container.innerHTML = "<p>Nenhuma sugestão recebida ainda.</p>";
-            return;
-        }
-
-        container.innerHTML = data.map(s => `
-            <div class="item-sugestao">
-                <strong>De: ${s.nome}</strong>
-                <p style="margin: 5px 0 10px 0;">${s.mensagem}</p>
-                <small style="color: #aaa;">Enviado em: ${new Date(s.criado_em).toLocaleDateString()}</small>
-                <br>
-                <button onclick="excluirSugestao('${s.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-top: 8px;">Excluir</button>
-            </div>
-        `).join('');
+    if (data.session) {
+        document.getElementById("painel-professor").style.display = "block";
+        carregarSugestoesAdmin();
     }
 
-    async function excluirSugestao(id) {
-        if (!confirm("Deseja apagar esta sugestão?")) return;
-        const { error } = await supabase.from('sugestoes').delete().eq('id', id);
-        if (error) {
-            alert("Erro ao excluir: " + error.message);
-        } else {
-            carregarSugestoesAdmin();
-        }
+});
+
+
+async function enviarSugestao() {
+
+    const nome =
+        document.getElementById("nome-aluno").value.trim() || "Anônimo";
+
+    const mensagem =
+        document.getElementById("texto-sugestao").value.trim();
+
+    if (!mensagem) {
+        alert("Escreva uma mensagem antes de enviar!");
+        return;
     }
+
+    const { error } =
+        await sugestoesSupabase
+            .from("sugestoes")
+            .insert([
+                {
+                    nome: nome,
+                    mensagem: mensagem
+                }
+            ]);
+
+    if (error) {
+
+        console.error(error);
+        alert("Erro ao enviar: " + error.message);
+
+    } else {
+
+        alert("Sugestão enviada com sucesso! Obrigado.");
+
+        document.getElementById("texto-sugestao").value = "";
+        document.getElementById("nome-aluno").value = "";
+    }
+
+}
+
+
+async function carregarSugestoesAdmin() {
+
+    const { data, error } =
+        await sugestoesSupabase
+            .from("sugestoes")
+            .select("*")
+            .order("criado_em", {
+                ascending: false
+            });
+
+    const container =
+        document.getElementById("lista-sugestoes-admin");
+
+    if (error) {
+
+        console.error(error);
+
+        container.innerHTML =
+            "Erro ao carregar sugestões: " + error.message;
+
+        return;
+    }
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML =
+            "<p>Nenhuma sugestão recebida ainda.</p>";
+
+        return;
+    }
+
+    container.innerHTML = data.map(s => `
+
+        <div class="item-sugestao">
+
+            <strong>De: ${s.nome}</strong>
+
+            <p style="margin: 5px 0 10px 0;">
+                ${s.mensagem}
+            </p>
+
+            <small style="color: #aaa;">
+                Enviado em:
+                ${new Date(s.criado_em).toLocaleDateString()}
+            </small>
+
+            <br>
+
+            <button
+                onclick="excluirSugestao('${s.id}')"
+                style="
+                    background: #dc3545;
+                    color: white;
+                    border: none;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    margin-top: 8px;
+                "
+            >
+                Excluir
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+async function excluirSugestao(id) {
+
+    if (!confirm("Deseja apagar esta sugestão?")) {
+        return;
+    }
+
+    const { error } =
+        await sugestoesSupabase
+            .from("sugestoes")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Erro ao excluir: " + error.message);
+
+    } else {
+
+        carregarSugestoesAdmin();
+
+    }
+
+}
+
 </script>
 
 </body>
