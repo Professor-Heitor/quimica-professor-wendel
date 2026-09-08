@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login do Professor - Química com Professor Wendel</title>
 <link rel="stylesheet" href="../css/style.css">
-<!-- Carrega a biblioteca oficial do Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     .container-login { max-width: 400px; margin: 80px auto; padding: 30px; background: #1e2621; border-radius: 12px; color: white; border: 1px solid #a3e4d7; font-family: Arial, sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
@@ -39,11 +38,10 @@
 </div>
 
 <script>
-    // Inicialização direta do Supabase para evitar erros de caminho de arquivo
     const SUPABASE_URL = "https://ahstdxgglfgjfeuurkqg.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFoc3RkeGdnbGZnamZldXVya3FnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1NTY1ODIsImV4cCI6MjEwNDEzMjU4Mn0.4i7i3_w0n6VvrAXHduUMRKQPCQ6cR2SzAy7XCYtnUJY";
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClientLogin = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function fazerLogin() {
         const email = document.getElementById('email-login').value.trim();
@@ -54,7 +52,7 @@
             return;
         }
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabaseClientLogin.auth.signInWithPassword({
             email: email,
             password: password,
         });
