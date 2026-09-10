@@ -1,4 +1,3 @@
-// Funções para curtir e comentar nos experimentos
 function curtir(idLikes, idBtn) {
     let span = document.getElementById(idLikes);
     let btn = document.getElementById(idBtn);

@@ -9,8 +9,7 @@
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabaseclient.js"></script>
-
+<script src="js/supabaseClient.js"></script>
     <style>
         #barra-admin { background: #1b3b2b; padding: 12px; text-align: center; border-bottom: 2px solid #a3e4d7; font-family: Arial, sans-serif; position: sticky; top: 0; z-index: 1000; }
         #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; }
@@ -262,7 +261,6 @@
     document.addEventListener("DOMContentLoaded", async () => {
         removerCuriosidadesExcluidas();
         
-        // Verificar sessão ativa do Supabase utilizando o cliente global correto (window.meuClienteSupabase)
         if (window.meuClienteSupabase) {
             const { data: { session } } = await window.meuClienteSupabase.auth.getSession();
             if (session) {
