@@ -6,6 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Professor Wendel - Química</title>
 <link rel="stylesheet" href="../css/style.css">
+
+<!-- Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
     .painel-admin {
         background: rgba(0, 0, 0, 0.3);
@@ -100,12 +104,12 @@
 </div>
 
 <nav>
-        <a href="index.html">Início</a>
-        <a href="paginas/experimentos.html">Experimentos</a>
-        <a href="paginas/videos.html">Vídeos</a>
-        <a href="paginas/perguntas.html">Perguntas</a>
-        <a href="paginas/professor.html">Professor</a>
-        <a href="sugestoes.html">Sugestões</a>
+        <a href="../index.html">Início</a>
+        <a href="experimentos.html">Experimentos</a>
+        <a href="videos.html">Vídeos</a>
+        <a href="perguntas.html">Perguntas</a>
+        <a href="professor.html">Professor</a>
+        <a href="../sugestoes.html">Sugestões</a>
 </nav>
 </header>
 
@@ -134,7 +138,7 @@
 
 <section>
 <div class="container" id="containerCards">
-    <!-- Os cards serão carregados dinamicamente aqui via JavaScript -->
+    <!-- Os cards serão carregados dinamicamente aqui via Supabase -->
 </div>
 </section>
 
@@ -143,172 +147,211 @@
 </footer>
 
 <script>
-// SENHA DE ACESSO DO PROFESSOR
-const SENHA_ADMIN = "@WENDELquimica26";
-let logado = false;
+    // CONFIGURAÇÃO DO SUPABASE
+    const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Cards padrão iniciais
-const cardsIniciais = [
-    {
-        id: 1,
-        tipo: 'sobre',
-        titulo: 'Sobre o Professor',
-        conteudo: 'Olá, eu sou o Professor Wendel, professor de Química e criador deste espaço de aprendizagem.<br><br>Este site foi desenvolvido para ajudar alunos a aprenderem Química de uma maneira mais simples, interativa e prática.<br><br>Aqui você encontrará conteúdos, vídeos, experimentos, perguntas e quizzes para melhorar seus conhecimentos.',
-        imagem: '../assets/imagens/professor/wendel.png'
-    },
-    {
-        id: 2,
-        tipo: 'normal',
-        titulo: '🎯 Objetivo do Site',
-        conteudo: 'O objetivo deste projeto é tornar o estudo da Química mais interessante e acessível para todos os alunos.<br><br>Através de explicações, exemplos do cotidiano, experimentos e atividades interativas, o aprendizado fica mais fácil e divertido.'
-    },
-    {
-        id: 3,
-        tipo: 'normal',
-        titulo: '📚 O que você encontra aqui?',
-        conteudo: '🧪 Experimentos de Química<br><br>🎥 Vídeos educativos<br><br>📖 Conteúdos separados por séries<br><br>❓ Perguntas e respostas<br><br>🧠 Quiz interativo'
-    },
-    {
-        id: 4,
-        tipo: 'normal',
-        titulo: '💬 Mensagem aos alunos',
-        conteudo: '"A Química está presente em tudo ao nosso redor. Meu objetivo é mostrar que aprender Química pode ser simples, interessante e divertido."<br><br>Estudem, pratiquem e nunca tenham medo de fazer perguntas. A curiosidade é o primeiro passo para aprender ciência.'
-    }
-];
-
-function carregarCards() {
-    let cardsSalvos = localStorage.getItem('cardsProfessorWendel');
-    if (!cardsSalvos) {
-        cardsSalvos = JSON.stringify(cardsIniciais);
-        localStorage.setItem('cardsProfessorWendel', cardsSalvos);
-    }
-    return JSON.parse(cardsSalvos);
-}
-
-function renderizarCards() {
-    const container = document.getElementById('containerCards');
-    const cards = carregarCards();
-    container.innerHTML = '';
-
-    cards.forEach(card => {
-        const divCard = document.createElement('div');
-        divCard.className = 'card';
-        divCard.style.textAlign = 'center';
-        divCard.style.display = 'block';
-
-        let htmlConteudo = '';
-
-        if (card.tipo === 'sobre' && card.imagem) {
-            htmlConteudo += `
-                <div style="display: flex; justify-content: center; width: 100%;">
-                    <img src="${card.imagem}" alt="Professor Wendel" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; display: block;">
-                </div>
-            `;
+    // Cards padrão iniciais
+    const cardsIniciais = [
+        {
+            id: 'card-1',
+            tipo: 'sobre',
+            titulo: 'Sobre o Professor',
+            conteudo: 'Olá, eu sou o Professor Wendel, professor de Química e criador deste espaço de aprendizagem.<br><br>Este site foi desenvolvido para ajudar alunos a aprenderem Química de uma maneira mais simples, interativa e prática.<br><br>Aqui você encontrará conteúdos, vídeos, experimentos, perguntas e quizzes para melhorar seus conhecimentos.',
+            imagem: '../assets/imagens/professor/wendel.png'
+        },
+        {
+            id: 'card-2',
+            tipo: 'normal',
+            titulo: '🎯 Objetivo do Site',
+            conteudo: 'O objetivo deste projeto é tornar o estudo da Química mais interessante e acessível para todos os alunos.<br><br>Através de explicações, exemplos do cotidiano, experimentos e atividades interativas, o aprendizado fica mais fácil e divertido.'
+        },
+        {
+            id: 'card-3',
+            tipo: 'normal',
+            titulo: '📚 O que você encontra aqui?',
+            conteudo: '🧪 Experimentos de Química<br><br>🎥 Vídeos educativos<br><br>📖 Conteúdos separados por séries<br><br>❓ Perguntas e respostas<br><br>🧠 Quiz interativo'
+        },
+        {
+            id: 'card-4',
+            tipo: 'normal',
+            titulo: '💬 Mensagem aos alunos',
+            conteudo: '"A Química está presente em tudo ao nosso redor. Meu objetivo é mostrar que aprender Química pode ser simples, interessante e divertido."<br><br>Estudem, pratiquem e nunca tenham medo de fazer perguntas. A curiosidade é o primeiro passo para aprender ciência.'
         }
+    ];
 
-        htmlConteudo += `<h2>${card.titulo}</h2>`;
-        htmlConteudo += `<p style="margin-bottom: 15px; text-align: left; padding: 0 10px;">${card.conteudo}</p>`;
-
-        // Botões de ação só aparecem se 'logado' for true
-        let estiloAcoes = logado ? 'display: block;' : 'display: none;';
-        htmlConteudo += `
-            <div class="card-actions" style="${estiloAcoes}">
-                <button class="btn-card-action" onclick="editarCard(${card.id})">✏️ Editar</button>
-                <button class="btn-card-action btn-excluir" onclick="excluirCard(${card.id})">🗑️ Excluir</button>
-            </div>
-        `;
-
-        divCard.innerHTML = htmlConteudo;
-        container.appendChild(divCard);
+    document.addEventListener("DOMContentLoaded", async function() {
+        await inicializarBancoCards();
+        verificarEstadoProfessorInicial();
+        renderizarCards();
     });
-}
 
-// Entrar ou Sair do Painel com senha
-function alternarAuth() {
-    if (!logado) {
-        let senhaDigitada = prompt("Digite a senha do professor:");
-        if (senhaDigitada === SENHA_ADMIN) {
-            logado = true;
+    async function inicializarBancoCards() {
+        let { data, error } = await supabaseClient.from('professor_cards').select('*');
+        if (!data || data.length === 0) {
+            for (let c of cardsIniciais) {
+                await supabaseClient.from('professor_cards').insert([c]);
+            }
+        }
+    }
+
+    function verificarSeProfessor() {
+        return sessionStorage.getItem('professor_autenticado') === 'true';
+    }
+
+    function verificarEstadoProfessorInicial() {
+        if (verificarSeProfessor()) {
+            document.getElementById('painelAdmin').style.display = 'block';
+            document.getElementById('btnAuth').innerText = '🔓 Sair do Painel do Professor';
+            document.getElementById('btnAuth').style.background = '#dc3545';
+        }
+    }
+
+    async function alternarAuth() {
+        if (!verificarSeProfessor()) {
+            let email = prompt("E-mail de acesso do professor:");
+            if (!email) return;
+            let senha = prompt("Senha de acesso:");
+            if (!senha) return;
+
+            let { data, error } = await supabaseClient.auth.signInWithPassword({ email, senha });
+            if (error) {
+                alert("Erro ao entrar: " + error.message);
+                return;
+            }
+
+            sessionStorage.setItem('professor_autenticado', 'true');
             document.getElementById('painelAdmin').style.display = 'block';
             document.getElementById('btnAuth').innerText = '🔓 Sair do Painel do Professor';
             document.getElementById('btnAuth').style.background = '#dc3545';
             renderizarCards();
             alert("Painel desbloqueado com sucesso!");
-        } else if (senhaDigitada !== null) {
-            alert("Senha incorreta!");
+        } else {
+            await supabaseClient.auth.signOut();
+            sessionStorage.removeItem('professor_autenticado');
+            document.getElementById('painelAdmin').style.display = 'none';
+            document.getElementById('btnAuth').innerText = '🔐 Entrar no Painel do Professor';
+            document.getElementById('btnAuth').style.background = '#28a745';
+            renderizarCards();
+            alert("Você saiu do painel administrativo.");
         }
-    } else {
-        logado = false;
-        document.getElementById('painelAdmin').style.display = 'none';
-        document.getElementById('btnAuth').innerText = '🔐 Entrar no Painel do Professor';
-        document.getElementById('btnAuth').style.background = '#28a745';
-        renderizarCards();
-        alert("Você saiu do painel administrativo.");
     }
-}
 
-function adicionarCard(event) {
-    event.preventDefault();
-    if (!logado) return;
-
-    const titulo = document.getElementById('novoTitulo').value;
-    let texto = document.getElementById('novoTexto').value;
-    texto = texto.replace(/\n/g, '<br>');
-
-    const cards = carregarCards();
-    const novoCard = {
-        id: Date.now(),
-        tipo: 'normal',
-        titulo: titulo,
-        conteudo: texto
-    };
-
-    cards.push(novoCard);
-    localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
-
-    document.getElementById('formAdicionarCard').reset();
-    renderizarCards();
-    alert("Card adicionado com sucesso!");
-}
-
-function excluirCard(id) {
-    if (!logado) return;
-
-    if (confirm('Tem certeza que deseja excluir este card completamente?')) {
-        let cards = carregarCards();
-        cards = cards.filter(card => card.id !== id);
-        localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
-        renderizarCards();
-        alert("Card excluído com sucesso!");
+    async function obterCards() {
+        let { data, error } = await supabaseClient.from('professor_cards').select('*');
+        return data || [];
     }
-}
 
-function editarCard(id) {
-    if (!logado) return;
+    async function renderizarCards() {
+        const container = document.getElementById('containerCards');
+        const cards = await obterCards();
+        container.innerHTML = '';
+        let logado = verificarSeProfessor();
 
-    let cards = carregarCards();
-    let card = cards.find(c => c.id === id);
-    if (!card) return;
+        cards.forEach(card => {
+            const divCard = document.createElement('div');
+            divCard.className = 'card';
+            divCard.style.textAlign = 'center';
+            divCard.style.display = 'block';
 
-    let conteudoLimpo = card.conteudo.replace(/<br\s*[\/]?>/gi, '\n');
+            let htmlConteudo = '';
 
-    let novoTitulo = prompt("Edite o Título do Card:", card.titulo);
-    if (novoTitulo === null) return;
+            if (card.tipo === 'sobre' && card.imagem) {
+                htmlConteudo += `
+                    <div style="display: flex; justify-content: center; width: 100%;">
+                        <img src="${card.imagem}" alt="Professor Wendel" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; display: block;">
+                    </div>
+                `;
+            }
 
-    let novoConteudo = prompt("Edite o Texto do Card:", conteudoLimpo);
-    if (novoConteudo === null) return;
+            htmlConteudo += `<h2>${card.titulo}</h2>`;
+            htmlConteudo += `<p style="margin-bottom: 15px; text-align: left; padding: 0 10px;">${card.conteudo}</p>`;
 
-    novoConteudo = novoConteudo.replace(/\n/g, '<br>');
+            let estiloAcoes = logado ? 'display: block;' : 'display: none;';
+            htmlConteudo += `
+                <div class="card-actions" style="${estiloAcoes}">
+                    <button class="btn-card-action" onclick="editarCard('${card.id}')">✏️ Editar</button>
+                    <button class="btn-card-action btn-excluir" onclick="excluirCard('${card.id}')">🗑️ Excluir</button>
+                </div>
+            `;
 
-    card.titulo = novoTitulo;
-    card.conteudo = novoConteudo;
+            divCard.innerHTML = htmlConteudo;
+            container.appendChild(divCard);
+        });
+    }
 
-    localStorage.setItem('cardsProfessorWendel', JSON.stringify(cards));
-    renderizarCards();
-    alert("Card alterado com sucesso!");
-}
+    async function adicionarCard(event) {
+        event.preventDefault();
+        if (!verificarSeProfessor()) return;
 
-window.onload = renderizarCards;
+        const titulo = document.getElementById('novoTitulo').value;
+        let texto = document.getElementById('novoTexto').value;
+        texto = texto.replace(/\n/g, '<br>');
+
+        const novoId = 'card-' + new Date().getTime();
+        const novoCard = {
+            id: novoId,
+            tipo: 'normal',
+            titulo: titulo,
+            conteudo: texto
+        };
+
+        let { error } = await supabaseClient.from('professor_cards').insert([novoCard]);
+        if (error) {
+            alert("Erro ao adicionar card: " + error.message);
+            return;
+        }
+
+        document.getElementById('formAdicionarCard').reset();
+        renderizarCards();
+        alert("Card adicionado com sucesso!");
+    }
+
+    async function excluirCard(id) {
+        if (!verificarSeProfessor()) return;
+
+        if (confirm('Tem certeza que deseja excluir este card completamente?')) {
+            let { error } = await supabaseClient.from('professor_cards').delete().eq('id', id);
+            if (error) {
+                alert("Erro ao excluir: " + error.message);
+                return;
+            }
+            renderizarCards();
+            alert("Card excluído com sucesso!");
+        }
+    }
+
+    async function editarCard(id) {
+        if (!verificarSeProfessor()) return;
+
+        let { data } = await supabaseClient.from('professor_cards').select('*').eq('id', id);
+        let card = data ? data[0] : null;
+        if (!card) return;
+
+        let conteudoLimpo = card.conteudo.replace(/<br\s*[\/]?>/gi, '\n');
+
+        let novoTitulo = prompt("Edite o Título do Card:", card.titulo);
+        if (novoTitulo === null) return;
+
+        let novoConteudo = prompt("Edite o Texto do Card:", conteudoLimpo);
+        if (novoConteudo === null) return;
+
+        novoConteudo = novoConteudo.replace(/\n/g, '<br>');
+
+        let { error } = await supabaseClient.from('professor_cards').update({
+            titulo: novoTitulo,
+            conteudo: novoConteudo
+        }).eq('id', id);
+
+        if (error) {
+            alert("Erro ao atualizar: " + error.message);
+            return;
+        }
+
+        renderizarCards();
+        alert("Card alterado com sucesso!");
+    }
 </script>
 
 </body>

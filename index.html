@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabaseclient.js"></script>
 
     <style>
         #barra-admin { background: #1b3b2b; padding: 12px; text-align: center; border-bottom: 2px solid #a3e4d7; font-family: Arial, sans-serif; position: sticky; top: 0; z-index: 1000; }
@@ -29,8 +31,7 @@
 <div id="barra-admin">
     <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
     <div id="bloco-login" style="display: inline-block;">
-        <input type="password" id="senha-prof" placeholder="Senha do Professor">
-        <button onclick="entrarAdmin()" style="background: #00b4d8; color: white;">Entrar</button>
+        <a href="paginas/login.html" style="background: #00b4d8; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Entrar (Login)</a>
     </div>
     <div id="botoes-admin" style="display: none;">
         <button onclick="abrirModalCuriosidade()" style="background: #28a745; color: white;">➕ Adicionar Curiosidade</button>
@@ -256,26 +257,22 @@
 
 <script src="js/script.js"></script>
 <script>
-    let modoAdminAtivo = sessionStorage.getItem('admin_logado') === 'true';
+    let modoAdminAtivo = false;
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
         removerCuriosidadesExcluidas();
-        if (modoAdminAtivo) {
-            ativarInterfaceAdmin();
+        
+        // Verificar sessão ativa do Supabase utilizando o cliente global correto (window.meuClienteSupabase)
+        if (window.meuClienteSupabase) {
+            const { data: { session } } = await window.meuClienteSupabase.auth.getSession();
+            if (session) {
+                modoAdminAtivo = true;
+                ativarInterfaceAdmin();
+            }
         }
+
         carregarCuriosidadesSalvas();
     });
-
-    function entrarAdmin() {
-        const senha = document.getElementById('senha-prof').value;
-        if (senha === "@WENDELquimica26") {
-            modoAdminAtivo = true;
-            sessionStorage.setItem('admin_logado', 'true');
-            ativarInterfaceAdmin();
-        } else {
-            alert("Senha incorreta!");
-        }
-    }
 
     function ativarInterfaceAdmin() {
         document.getElementById('status-admin').innerText = "🔓 Modo Professor Ativo";
@@ -284,9 +281,11 @@
         aplicarModoAdmin();
     }
 
-    function sairAdmin() {
+    async function sairAdmin() {
+        if (window.meuClienteSupabase) {
+            await window.meuClienteSupabase.auth.signOut();
+        }
         modoAdminAtivo = false;
-        sessionStorage.removeItem('admin_logado');
         document.getElementById('status-admin').innerText = "🔒 Modo Visitante";
         document.getElementById('bloco-login').style.display = 'inline-block';
         document.getElementById('botoes-admin').style.display = 'none';

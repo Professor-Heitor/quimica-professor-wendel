@@ -6,9 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1ª Série - Química</title>
 <link rel="stylesheet" href="../css/style.css">
+<!-- Biblioteca do Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
     #barra-admin { background: #1b3b2b; padding: 12px; text-align: center; border-bottom: 2px solid #a3e4d7; font-family: Arial, sans-serif; position: sticky; top: 0; z-index: 1000; }
-    #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; }
+    #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; background: #2a352f; color: white; }
     #barra-admin button { padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
     .modal-admin { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
     .modal-content-admin { background: #1e2621; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; color: white; border: 1px solid #a3e4d7; text-align: left; font-family: Arial, sans-serif; max-height: 90vh; overflow-y: auto; }
@@ -24,7 +26,8 @@
 <div id="barra-admin">
     <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
     <div id="bloco-login" style="display: inline-block;">
-        <input type="password" id="senha-prof" placeholder="Senha do Professor">
+        <input type="email" id="email-prof" placeholder="E-mail do Professor">
+        <input type="password" id="senha-prof" placeholder="Senha">
         <button onclick="entrarAdmin()" style="background: #00b4d8; color: white;">Entrar</button>
     </div>
     <div id="botoes-admin" style="display: none;">
@@ -75,167 +78,91 @@
         <span>Química com Professor Wendel</span>
     </a>
 </div>
-
-
 <nav>
-
-        <a href="index.html">Início</a>
-        <a href="paginas/experimentos.html">Experimentos</a>
-        <a href="paginas/videos.html">Vídeos</a>
-        <a href="paginas/perguntas.html">Perguntas</a>
-        <a href="paginas/professor.html">Professor</a>
-        <a href="sugestoes.html">Sugestões</a>
+    <a href="index.html">Início</a>
+    <a href="paginas/experimentos.html">Experimentos</a>
+    <a href="paginas/videos.html">Vídeos</a>
+    <a href="paginas/perguntas.html">Perguntas</a>
+    <a href="paginas/professor.html">Professor</a>
+    <a href="sugestoes.html">Sugestões</a>
 </nav>
-
 </header>
 
-
-
-
 <section class="banner">
-
 <div>
-
-<h1>
-Química - 1ª Série do Ensino Médio
-</h1>
-
-
-<p>
-Aprenda química atômica, ligações e cálculos químicos.
-</p>
-
-
+<h1>Química - 1ª Série do Ensino Médio</h1>
+<p>Aprenda química atômica, ligações e cálculos químicos.</p>
 </div>
-
 </section>
-
-
-
 
 <section>
-
-
-<h2>
-Conteúdos da 1ª Série
-</h2>
-
-
-
+<h2>Conteúdos da 1ª Série</h2>
 <div class="container" id="container-cards">
-
-
-
 <div class="card" data-id="1">
-
-<h3>
-⚛️ Modelos Atômicos
-</h3>
-
-<p>
-Conheça a evolução dos modelos que explicam o átomo.
-</p>
-
-<a href="../conteudos/1serie/modelos-atomicos.html">
-Estudar
-</a>
-
+<h3>⚛️ Modelos Atômicos</h3>
+<p>Conheça a evolução dos modelos que explicam o átomo.</p>
+<a href="../conteudos/1serie/modelos-atomicos.html">Estudar</a>
 </div>
-
-
-
-
 <div class="card" data-id="2">
-
-<h3>
-🔬 Estrutura Atômica
-</h3>
-
-<p>
-Aprenda sobre prótons, nêutrons e elétrons.
-</p>
-
-<a href="../conteudos/1serie/estrutura-atomica.html">
-Estudar
-</a>
-
+<h3>🔬 Estrutura Atômica</h3>
+<p>Aprenda sobre prótons, nêutrons e elétrons.</p>
+<a href="../conteudos/1serie/estrutura-atomica.html">Estudar</a>
 </div>
-
-
-
-
 <div class="card" data-id="3">
-
-<h3>
-🔗 Ligações Químicas
-</h3>
-
-<p>
-Entenda como os elementos formam substâncias.
-</p>
-
-<a href="../conteudos/1serie/ligacoes-quimicas.html">
-Estudar
-</a>
-
+<h3>🔗 Ligações Químicas</h3>
+<p>Entenda como os elementos formam substâncias.</p>
+<a href="../conteudos/1serie/ligacoes-quimicas.html">Estudar</a>
 </div>
-
-
-
-
 <div class="card" data-id="4">
-
-<h3>
-❓ Quiz 1ª Série
-</h3>
-
-<p>
-Teste seus conhecimentos do Ensino Médio.
-</p>
-
-<a href="../quiz/quiz.html">
-Fazer Quiz
-</a>
-
+<h3>❓ Quiz 1ª Série</h3>
+<p>Teste seus conhecimentos do Ensino Médio.</p>
+<a href="../quiz/quiz.html">Fazer Quiz</a>
 </div>
-
-
-
 </div>
-
 </section>
 
-
-
-
 <footer>
-
-<p>
-Química com Professor Wendel
-</p>
-
+<p>Química com Professor Wendel</p>
 </footer>
 
 <script>
-    const SENHA_ADMIN = "@WENDELquimica26";
-    const CHAVE_STORAGE = "conteudos_1serie";
-    let modoAdminAtivo = sessionStorage.getItem('admin_logado') === 'true';
+    const URL_SUPABASE = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
+    const CHAVE_SUPABASE = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi...'; // Insira sua chave completa aqui
+    const clienteSupabase = supabase.createClient(URL_SUPABASE, CHAVE_SUPABASE);
+    const NOME_TABELA = "conteudos_1serie"; // Tabela específica para a 1ª série no Supabase
+    let modoAdminAtivo = false;
 
-    document.addEventListener("DOMContentLoaded", () => {
-        removerItensExcluidos();
-        if (modoAdminAtivo) ativarInterfaceAdmin();
-        carregarCardsSalvos();
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { data: { session } } = await clienteSupabase.auth.getSession();
+        if (session) {
+            modoAdminAtivo = true;
+            ativarInterfaceAdmin();
+        }
+        await carregarCardsDoSupabase();
     });
 
-    function entrarAdmin() {
+    async function entrarAdmin() {
+        const email = document.getElementById('email-prof').value;
         const senha = document.getElementById('senha-prof').value;
-        if (senha === SENHA_ADMIN) {
-            modoAdminAtivo = true;
-            sessionStorage.setItem('admin_logado', 'true');
-            ativarInterfaceAdmin();
+        
+        const { data, error } = await clienteSupabase.auth.signInWithPassword({
+            email: email,
+            password: senha,
+        });
+
+        if (error) {
+            alert("Erro ao entrar: " + error.message);
         } else {
-            alert("Senha incorreta!");
+            modoAdminAtivo = true;
+            ativarInterfaceAdmin();
+            window.location.reload();
         }
+    }
+
+    async function sairAdmin() {
+        await clienteSupabase.auth.signOut();
+        modoAdminAtivo = false;
+        window.location.reload();
     }
 
     function ativarInterfaceAdmin() {
@@ -243,12 +170,6 @@ Química com Professor Wendel
         document.getElementById('bloco-login').style.display = 'none';
         document.getElementById('botoes-admin').style.display = 'inline-block';
         aplicarModoAdmin();
-    }
-
-    function sairAdmin() {
-        modoAdminAtivo = false;
-        sessionStorage.removeItem('admin_logado');
-        window.location.reload();
     }
 
     function tratarMudancaTipoLink() {
@@ -296,7 +217,7 @@ Química com Professor Wendel
         }
         
         if (!encontrou && linkAtual) {
-            if (linkAtual.includes('drive.google.com') || linkAtual.includes('onedrive') || linkAtual.includes('dropbox') || linkAtual.toLowerCase().includes('.pdf')) {
+            if (linkAtual.includes('drive.google.com') || linkAtual.includes('onedrive') || linkAtual.toLowerCase().includes('.pdf')) {
                 select.value = 'tipo_pdf';
                 inputPdf.value = linkAtual;
                 document.getElementById('bloco-pdf').style.display = 'block';
@@ -315,9 +236,9 @@ Química com Professor Wendel
         document.getElementById('modal-card').style.display = "none";
     }
 
-    function salvarCard() {
+    async function salvarCard() {
         if (!modoAdminAtivo) return;
-        const id = document.getElementById('card-id').value || 'custom_' + Date.now();
+        const id = document.getElementById('card-id').value;
         const titulo = document.getElementById('card-titulo').value;
         const texto = document.getElementById('card-texto').value;
         let btnTexto = document.getElementById('card-btn-texto').value || "Estudar";
@@ -327,95 +248,61 @@ Química com Professor Wendel
 
         if (selectVal === 'tipo_pdf') {
             btnLink = document.getElementById('card-input-pdf').value.trim();
-            if (!btnLink) {
-                alert("Cole o link do PDF!");
-                return;
-            }
         } else if (selectVal === 'tipo_externo') {
             btnLink = document.getElementById('card-input-externo').value.trim();
-            if (!btnLink) {
-                alert("Digite o endereço do site externo!");
-                return;
-            }
         } else {
             btnLink = selectVal;
         }
 
-        if (!titulo || !texto) {
-            alert("Preencha o título e a descrição do card!");
+        if (!titulo || !texto || !btnLink) {
+            alert("Preencha todos os campos corretamente!");
             return;
         }
 
-        let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
-        customizados = customizados.filter(item => item.id != id);
-        customizados.unshift({ id, titulo, texto, btnTexto, btnLink });
-        localStorage.setItem(CHAVE_STORAGE, JSON.stringify(customizados));
+        const dadosCard = { titulo, texto, btn_texto: btnTexto, btn_link: btnLink };
+
+        if (id) {
+            await clienteSupabase.from(NOME_TABELA).update(dadosCard).eq('id', id);
+        } else {
+            await clienteSupabase.from(NOME_TABELA).insert([dadosCard]);
+        }
         
         fecharModalCard();
         window.location.reload();
     }
 
-    function removerItensExcluidos() {
-        let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
-        excluidas.forEach(id => {
-            let el = document.querySelector(`[data-id="${id}"]`);
-            if (el) el.remove();
-        });
-    }
+    async function carregarCardsDoSupabase() {
+        const { data, error } = await clienteSupabase.from(NOME_TABELA).select('*');
+        if (error) {
+            console.error("Erro ao carregar do Supabase:", error);
+            return;
+        }
 
-    function carregarCardsSalvos() {
-        let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
-        let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
         const container = document.getElementById('container-cards');
-
-        customizados.slice().reverse().forEach(item => {
-            if (excluidas.includes(String(item.id))) return;
-            let existente = document.querySelector(`[data-id="${item.id}"]`);
-
-            let deveAbrirNovaAba = item.btnLink.startsWith('http') || item.btnLink.toLowerCase().includes('.pdf');
+        data.forEach(item => {
+            let deveAbrirNovaAba = item.btn_link.startsWith('http') || item.btn_link.toLowerCase().includes('.pdf');
             let targetAttr = deveAbrirNovaAba ? 'target="_blank"' : '';
 
-            if (existente) {
-                existente.querySelector('h3').innerText = item.titulo;
-                existente.querySelector('p').innerText = item.texto;
-                let btn = existente.querySelector('a');
-                if(btn) {
-                    btn.innerText = item.btnTexto;
-                    btn.href = item.btnLink;
-                    if(deveAbrirNovaAba) btn.setAttribute('target', '_blank');
-                }
-            } else {
-                const div = document.createElement('div');
-                div.className = 'card';
-                div.setAttribute('data-id', item.id);
-                div.innerHTML = `
-                    <h3>${item.titulo}</h3>
-                    <p>${item.texto}</p>
-                    <a href="${item.btnLink}" ${targetAttr}>${item.btnTexto}</a>
-                    <div class="acoes-card">
-                        <button onclick="editarItem('${item.id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
-                        <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
-                    </div>
-                `;
-                if (modoAdminAtivo) div.classList.add('modo-admin');
-                container.insertBefore(div, container.firstChild);
-            }
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.setAttribute('data-id', item.id);
+            div.innerHTML = `
+                <h3>${item.titulo}</h3>
+                <p>${item.texto}</p>
+                <a href="${item.btn_link}" ${targetAttr}>${item.btn_texto}</a>
+                <div class="acoes-card">
+                    <button onclick="editarItem('${item.id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                    <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
+                </div>
+            `;
+            if (modoAdminAtivo) div.classList.add('modo-admin');
+            container.appendChild(div);
         });
     }
 
     function aplicarModoAdmin() {
         document.querySelectorAll('.card').forEach(card => {
             card.classList.add('modo-admin');
-            const id = card.getAttribute('data-id');
-            if (!card.querySelector('.acoes-card')) {
-                const divAcoes = document.createElement('div');
-                divAcoes.className = 'acoes-card';
-                divAcoes.innerHTML = `
-                    <button onclick="editarItem('${id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
-                    <button onclick="excluirItem('${id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
-                `;
-                card.appendChild(divAcoes);
-            }
         });
     }
 
@@ -432,23 +319,14 @@ Química com Professor Wendel
         abrirModalCard(id, titulo, texto, linkAtual, btnTextoAtual);
     }
 
-    function excluirItem(id) {
+    async function excluirItem(id) {
         if (!modoAdminAtivo) return;
         if (confirm("Deseja realmente excluir este card?")) {
-            let customizados = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
-            customizados = customizados.filter(item => item.id != id);
-            localStorage.setItem(CHAVE_STORAGE, JSON.stringify(customizados));
-
-            let excluidas = JSON.parse(localStorage.getItem(CHAVE_STORAGE + '_excluidos')) || [];
-            if (!excluidas.includes(String(id))) {
-                excluidas.push(String(id));
-                localStorage.setItem(CHAVE_STORAGE + '_excluidos', JSON.stringify(excluidas));
-            }
+            await clienteSupabase.from(NOME_TABELA).delete().eq('id', id);
             window.location.reload();
         }
     }
 </script>
 
 </body>
-
 </html>
