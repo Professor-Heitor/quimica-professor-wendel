@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <!-- Supabase JS Client -->
+<!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../../js/supabaseClient.js"></script>
+<script src="../js/supabaseClient.js"></script>
 
 <style>
     /* Organiza o container em grade moderna (Grid) para evitar quebra de layout */
@@ -111,7 +112,6 @@ Aprenda Química observando experiências práticas.
 </div>
 
 <div class="container" id="container-experimentos">
-    <!-- Carregado via Supabase -->
 </div>
 </section>
 
@@ -136,11 +136,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
 </footer>
 
 <script>
-    // CONFIGURAÇÃO DO SUPABASE
-    const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     const experimentosPadrao = [
         {
             titulo: '🌋 Vulcão de Bicarbonato e Vinagre',

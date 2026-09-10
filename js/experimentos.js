@@ -10,7 +10,7 @@ function curtir(idLikes, idBtn) {
     } else {
         span.innerText = atual + 1;
         btn.dataset.curtido = "true";
-        btn.style.background = "#dc2626"; // Fica vermelho ao curtir
+        btn.style.background = "#dc2626";
     }
 }
 
@@ -29,6 +29,6 @@ function comentar(idInput, idLista) {
         novoComentario.innerText = "💬 " + texto;
         
         lista.appendChild(novoComentario);
-        input.value = ""; // Limpa o campo de texto
+        input.value = "";
     }
 }
