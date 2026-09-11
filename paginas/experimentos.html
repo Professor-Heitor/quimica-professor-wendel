@@ -1,599 +1,2028 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experimentos de Química - Professor Wendel</title>
-<link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/supabaseClient.js"></script>
+  <title>Experimentos | Química com Professor Wendel</title>
 
-<style>
-    /* Organiza o container em grade moderna (Grid) para evitar quebra de layout */
-    .container {
-        display: grid !important;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-        gap: 20px !important;
-        align-items: stretch !important;
-    }
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsivo.css">
 
-    /* Cada card vira uma caixa estrita com alinhamento garantido */
-    .card {
-        background: #1e1e1e !important;
-        border: 1px solid #333 !important;
-        padding: 20px !important;
-        border-radius: 8px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        height: auto !important;
-        min-height: 100% !important;
-        box-sizing: border-box !important;
-        float: none !important;
-    }
-
-    .card > div:first-child {
-        flex-grow: 1;
-    }
-
-    .secao-comentarios-card {
-        margin-top: 20px !important;
-        border-top: 1px solid #444;
-        padding-top: 10px;
-    }
-
-    .form-inputs-comentario {
-        display: flex;
-        gap: 2%;
-        margin-bottom: 5px;
-    }
-</style>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabaseClient.js"></script>
 </head>
 
 <body>
 
-<header>
-<div class="logo">
-    <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
-        <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
-        <span>Química com Professor Wendel</span>
-    </a>
-</div>
+<header class="cabecalho">
+  <div class="logo-area">
+    <img src="../assets/imagens/logo/logo.png" alt="Logo Química">
+    <div>
+      <h1>Química com Professor Wendel</h1>
+      <p>Aprender química pode ser divertido!</p>
+    </div>
+  </div>
 
-<nav>
+  <nav class="menu">
     <a href="../index.html">Início</a>
-    <a href="experimentos.html">Experimentos</a>
+    <a href="1serie.html">Conteúdos</a>
+    <a href="experimentos.html" class="ativo">Experimentos</a>
     <a href="videos.html">Vídeos</a>
     <a href="perguntas.html">Perguntas</a>
     <a href="professor.html">Professor</a>
-    <a href="../sugestoes.html">Sugestões</a>
-    <a href="#" id="btn-modo-professor" onclick="toggleModoProfessor()" style="color: #ffeb3b;">🔓 Painel do Professor (Inativo)</a>
-</nav>
+  </nav>
 </header>
 
+
 <section class="banner">
-<div>
-<h1>
-🧪 Experimentos de Química
-</h1>
-<p>
-Aprenda Química observando experiências práticas.
-</p>
-</div>
+  <div>
+    <h2>🧪 Experimentos de Química</h2>
+    <p>
+      Descubra a química através de experiências,
+      observações e curiosidades.
+    </p>
+  </div>
 </section>
 
-<section>
-<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-    <h2 style="margin: 0;">Experimentos para estudar Química</h2>
-</div>
 
-<div class="painel-adicionar" id="painel-adicionar-container" style="display: none; text-align: center; margin-bottom: 20px;">
-    <button class="btn-adicionar-card" onclick="abrirPainelAdicionar()" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer; font-size: 15px;">➕ Adicionar Novo Experimento</button>
-</div>
+<main class="container">
 
-<div id="painel-admin" style="display: none; background: #18181b; border: 1px solid #7c3aed; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-    <h3 style="color: #c084fc; margin-top: 0;" id="titulo-painel-admin">➕ Adicionar Novo Experimento</h3>
-    <input type="hidden" id="edit-id-experimento">
-    <div style="display: grid; gap: 10px;">
-        <input type="text" id="novo-titulo" placeholder="Título do Experimento (ex: 🌋 Vulcão...)" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-        <input type="text" id="novo-video" placeholder="Link normal do YouTube (ex: https://www.youtube.com/watch?v=...)" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-        <textarea id="novo-acontece" placeholder="O que acontece?" rows="2" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; resize: vertical;"></textarea>
-        <textarea id="novo-materiais" placeholder="Materiais necessários (use quebras de linha se preferir)" rows="2" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; resize: vertical;"></textarea>
-        <input type="text" id="novo-conteudo" placeholder="Conteúdo relacionado" style="padding: 8px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-        <div style="display: flex; gap: 10px;">
-            <button onclick="salvarExperimento()" style="background: #16a34a; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; flex: 1;">Salvar e Publicar Experimento</button>
-            <button onclick="fecharPainelAdmin()" style="background: #374151; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">Cancelar</button>
-        </div>
+  <div id="painelAdmin" class="painel-admin" style="display:none;">
+
+    <h2>👨‍🏫 Área do Professor</h2>
+
+    <p>
+      Você está conectado como professor.
+      Aqui você pode administrar os experimentos.
+    </p>
+
+    <button id="btnSairProfessor" class="btn">
+      Sair da conta
+    </button>
+
+  </div>
+
+
+  <section class="secao">
+
+    <div class="titulo-secao">
+      <h2>🔬 Experimentos</h2>
+
+      <p>
+        Confira experiências de química para aprender
+        de maneira prática e divertida.
+      </p>
     </div>
+
+
+    <div id="listaExperimentos" class="grid-experimentos">
+
+      <p>Carregando experimentos...</p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- MODAL DE EDIÇÃO -->
+<div id="modalEditar" class="modal" style="display:none;">
+
+  <div class="modal-conteudo">
+
+    <button
+      id="fecharModal"
+      class="modal-fechar"
+      type="button">
+      ✕
+    </button>
+
+    <h2>✏️ Editar experimento</h2>
+
+    <input
+      type="hidden"
+      id="editarId">
+
+    <label for="editarTitulo">
+      Título
+    </label>
+
+    <input
+      type="text"
+      id="editarTitulo"
+      placeholder="Título do experimento">
+
+
+    <label for="editarDescricao">
+      Descrição
+    </label>
+
+    <textarea
+      id="editarDescricao"
+      rows="4"
+      placeholder="Descrição do experimento"></textarea>
+
+
+    <label for="editarMateriais">
+      Materiais
+    </label>
+
+    <textarea
+      id="editarMateriais"
+      rows="7"
+      placeholder="Materiais necessários"></textarea>
+
+
+    <label for="editarPassos">
+      Passo a passo
+    </label>
+
+    <textarea
+      id="editarPassos"
+      rows="10"
+      placeholder="Passo a passo"></textarea>
+
+
+    <label for="editarImagem">
+      URL da imagem
+    </label>
+
+    <input
+      type="text"
+      id="editarImagem"
+      placeholder="https://...">
+
+
+    <div class="modal-botoes">
+
+      <button
+        id="btnSalvarEdicao"
+        class="btn"
+        type="button">
+        💾 Salvar alterações
+      </button>
+
+      <button
+        id="btnCancelarEdicao"
+        class="btn"
+        type="button">
+        Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="container" id="container-experimentos">
-</div>
-</section>
-
-<section style="text-align: center;">
-<h2 style="text-align: center;">
-⚠️ Segurança nos Experimentos
-</h2>
-<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center; float: none;">
-<p>
-Mesmo sendo experiências educativas, sempre realize os experimentos com supervisão de um professor ou responsável.
-</p>
-<p>
-Utilize equipamentos de proteção quando necessário e nunca misture produtos desconhecidos.
-</p>
-</div>
-</section>
-
-<footer>
-<p>
-© 2026 - Química com Professor Wendel
-</p>
-</footer>
 
 <script>
-    const experimentosPadrao = [
-        {
-            titulo: '🌋 Vulcão de Bicarbonato e Vinagre',
-            video: 'https://www.youtube.com/watch?v=TbBWnCT18wM',
-            acontece: 'O bicarbonato de sódio reage com o vinagre, formando gás carbônico e causando a espuma.',
-            materiais: '- Bicarbonato de sódio<br>- Vinagre<br>- Corante (opcional)<br>- Recipiente',
-            conteudo: 'Reações químicas e produção de gases.',
-            likes: 0
-        },
-        {
-            titulo: '🥬 Indicador de pH com Repolho Roxo',
-            video: 'https://www.youtube.com/watch?v=BwHfw9R575c',
-            acontece: 'O repolho roxo possui uma substância chamada antocianina que muda de cor em contato com ácidos e bases.',
-            materiais: '- Folhas de repolho roxo<br>- Água quente<br>- Copos<br>- Substâncias para testar',
-            conteudo: 'Ácidos, bases e escala de pH.',
-            likes: 0
-        },
-        {
-            titulo: '💧 Separação de Água e Óleo',
-            video: 'https://www.youtube.com/watch?v=Gq-ZwoAv1xQ',
-            acontece: 'A água e o óleo não se misturam por possuírem diferentes propriedades químicas.',
-            materiais: '- Água<br>- Óleo<br>- Recipiente transparente',
-            conteudo: 'Misturas e métodos de separação.',
-            likes: 0
-        },
-        {
-            titulo: '🎨 Cromatografia com Papel',
-            video: 'https://www.youtube.com/watch?v=7vrL-BNcTpw',
-            acontece: 'A tinta das canetas possui vários pigmentos que são separados pelo papel.',
-            materiais: '- Papel filtro ou papel toalha<br>- Canetinhas<br>- Água',
-            conteudo: 'Separação de misturas.',
-            likes: 0
-        },
-        {
-            titulo: '🧂 Cristalização do Sal',
-            video: 'https://www.youtube.com/watch?v=UvwfKpHtJeU',
-            acontece: 'A água evapora e deixa os cristais de sal formados novamente.',
-            materiais: '- Água salgada<br>- Recipiente<br>- Local para evaporação',
-            conteudo: 'Separação de misturas e cristalização.',
-            likes: 0
-        }
-    ];
 
-    document.addEventListener("DOMContentLoaded", async function() {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (session) {
-            await inicializarBancoExperimentos();
-        }
-        await carregarExperimentos();
-        verificarSessaoInicial();
+document.addEventListener("DOMContentLoaded", iniciar);
+
+
+const db =
+  window.meuClienteSupabase ||
+  window.supabaseClient;
+
+
+/* =====================================================
+   EXPERIMENTOS PADRÃO
+===================================================== */
+
+const experimentosPadrao = [
+
+  {
+    titulo: "🌋 Vulcão de Bicarbonato",
+    descricao:
+      "Uma experiência simples para observar uma reação entre bicarbonato de sódio e vinagre.",
+    materiais:
+      "Bicarbonato de sódio<br>Vinagre<br>Corante alimentício<br>Recipiente",
+    passos:
+      "1. Coloque o bicarbonato no recipiente.<br>2. Adicione algumas gotas de corante.<br>3. Despeje o vinagre.<br>4. Observe a reação e a formação da espuma.",
+    imagem:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1000&q=80"
+  },
+
+  {
+    titulo: "🌈 Leite Colorido",
+    descricao:
+      "Observe o movimento das cores ao adicionar detergente ao leite.",
+    materiais:
+      "Leite<br>Prato<br>Corantes alimentícios<br>Detergente<br>Cotonete",
+    passos:
+      "1. Coloque leite no prato.<br>2. Pingue diferentes cores de corante.<br>3. Molhe o cotonete com detergente.<br>4. Encoste o cotonete no leite e observe.",
+    imagem:
+      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80"
+  },
+
+  {
+    titulo: "🧊 Gelo e Sal",
+    descricao:
+      "Descubra como o sal interfere no congelamento e no derretimento do gelo.",
+    materiais:
+      "Cubos de gelo<br>Sal<br>Dois recipientes<br>Água",
+    passos:
+      "1. Coloque gelo nos dois recipientes.<br>2. Adicione sal em apenas um deles.<br>3. Observe os dois recipientes durante alguns minutos.<br>4. Compare os resultados.",
+    imagem:
+      "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=1000&q=80"
+  },
+
+  {
+    titulo: "🫧 Balão com Vinagre e Bicarbonato",
+    descricao:
+      "Veja como uma reação química pode produzir um gás capaz de encher um balão.",
+    materiais:
+      "Garrafa PET<br>Vinagre<br>Bicarbonato de sódio<br>Balão",
+    passos:
+      "1. Coloque vinagre dentro da garrafa.<br>2. Coloque bicarbonato dentro do balão.<br>3. Prenda o balão na boca da garrafa sem deixar o bicarbonato cair.<br>4. Levante o balão para liberar o bicarbonato.<br>5. Observe o balão enchendo.",
+    imagem:
+      "https://images.unsplash.com/photo-1532634993-15f421e42ec0?auto=format&fit=crop&w=1000&q=80"
+  },
+
+  {
+    titulo: "🪙 Limpeza de Moedas",
+    descricao:
+      "Observe como uma solução ácida pode ajudar a remover sujeiras e oxidações da superfície de moedas.",
+    materiais:
+      "Moedas<br>Vinagre<br>Sal<br>Recipiente<br>Papel-toalha",
+    passos:
+      "1. Coloque as moedas no recipiente.<br>2. Adicione vinagre suficiente para cobri-las.<br>3. Acrescente uma pequena quantidade de sal.<br>4. Aguarde alguns minutos.<br>5. Retire e observe as moedas.",
+    imagem:
+      "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1000&q=80"
+  }
+
+];
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+async function iniciar() {
+
+  if (!db) {
+
+    console.error(
+      "Supabase não foi inicializado."
+    );
+
+    mostrarErro(
+      "Não foi possível conectar ao banco de dados."
+    );
+
+    return;
+  }
+
+  configurarEventos();
+
+  const professor = await ehProfessor();
+
+  if (professor) {
+    document
+      .getElementById("painelAdmin")
+      .style.display = "block";
+  }
+
+  await carregarExperimentos(professor);
+}
+
+
+/* =====================================================
+   CONFIGURAÇÃO DOS BOTÕES
+===================================================== */
+
+function configurarEventos() {
+
+  document
+    .getElementById("btnSairProfessor")
+    .addEventListener("click", async () => {
+
+      await db.auth.signOut();
+
+      window.location.href =
+        "../index.html";
+
     });
 
-    async function inicializarBancoExperimentos() {
-        let { data, error } = await supabaseClient.from('experimentos').select('*');
-        if (!data || data.length === 0) {
-            for (let exp of experimentosPadrao) {
-                await supabaseClient.from('experimentos').insert([exp]);
-            }
-        }
+
+  document
+    .getElementById("fecharModal")
+    .addEventListener("click", fecharModal);
+
+
+  document
+    .getElementById("btnCancelarEdicao")
+    .addEventListener("click", fecharModal);
+
+
+  document
+    .getElementById("btnSalvarEdicao")
+    .addEventListener(
+      "click",
+      salvarEdicao
+    );
+
+}
+
+
+/* =====================================================
+   VERIFICAR PROFESSOR
+===================================================== */
+
+async function ehProfessor() {
+
+  try {
+
+    const {
+      data: { user }
+    } = await db.auth.getUser();
+
+    if (!user) {
+      return false;
     }
 
-    async function verificarSessaoInicial() {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (session) {
-            ativarInterfaceProfessor(true);
-        }
+
+    /*
+      Permite usar role professor no
+      metadata do usuário.
+    */
+
+    if (
+      user.app_metadata?.role === "professor" ||
+      user.user_metadata?.role === "professor"
+    ) {
+
+      return true;
+
     }
 
-    async function toggleModoProfessor() {
-        const body = document.body;
-        const btn = document.getElementById('btn-modo-professor');
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        
-        if (!session) {
-            let email = prompt("E-mail de acesso do professor:");
-            if (!email) return;
-            let senha = prompt("Senha de acesso:");
-            if (!senha) return;
 
-            let { data, error } = await supabaseClient.auth.signInWithPassword({ email: email, password: senha });
-            if (error) {
-                alert("Erro ao entrar: " + error.message);
-                return;
-            }
-            ativarInterfaceProfessor(true);
-            await inicializarBancoExperimentos();
-        } else {
-            await supabaseClient.auth.signOut();
-            ativarInterfaceProfessor(false);
-        }
-        carregarExperimentos();
+    /*
+      Também verifica a tabela professores,
+      caso ela exista.
+    */
+
+    try {
+
+      const { data, error } =
+        await db
+          .from("professores")
+          .select("id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+
+      if (!error && data) {
+        return true;
+      }
+
+    } catch (erro) {
+
+      console.warn(
+        "Tabela professores não disponível."
+      );
+
     }
 
-    function ativarInterfaceProfessor(ativo) {
-        const btn = document.getElementById('btn-modo-professor');
-        const painelAddContainer = document.getElementById('painel-adicionar-container');
-        
-        if (ativo) {
-            btn.innerText = "🔒 Painel do Professor (Ativo)";
-            btn.style.color = "#4CAF50";
-            painelAddContainer.style.display = "block";
-        } else {
-            btn.innerText = "🔓 Painel do Professor (Inativo)";
-            btn.style.color = "#ffeb3b";
-            painelAddContainer.style.display = "none";
-            document.getElementById('painel-admin').style.display = "none";
-        }
+  } catch (erro) {
+
+    console.error(
+      "Erro ao verificar professor:",
+      erro
+    );
+
+  }
+
+  return false;
+}
+
+
+/* =====================================================
+   CARREGAR EXPERIMENTOS
+===================================================== */
+
+async function carregarExperimentos(
+  professor = false
+) {
+
+  const container =
+    document.getElementById(
+      "listaExperimentos"
+    );
+
+
+  try {
+
+    const {
+      data,
+      error
+    } = await db
+      .from("experimentos")
+      .select("*")
+      .order("criado_em", {
+        ascending: false
+      });
+
+
+    if (error) {
+
+      console.warn(
+        "Não foi possível carregar experimentos do banco:",
+        error
+      );
+
+      renderizarExperimentos(
+        experimentosPadrao,
+        professor
+      );
+
+      return;
+
     }
 
-    function converterParaEmbed(url) {
-        if (!url) return "";
-        if (url.includes('/embed/')) return url;
 
-        let videoId = "";
-        if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1]?.split('?')[0];
-        } else if (url.includes('watch?v=')) {
-            videoId = url.split('watch?v=')[1]?.split('&')[0];
-        }
+    if (!data || data.length === 0) {
 
-        if (videoId) {
-            return "https://www.youtube.com/embed/" + videoId;
-        }
-        return url;
+      renderizarExperimentos(
+        experimentosPadrao,
+        professor
+      );
+
+      return;
+
     }
 
-    async function obterExperimentos() {
-        let { data, error } = await supabaseClient.from('experimentos').select('*').order('id', { ascending: true });
-        return data || [];
+
+    renderizarExperimentos(
+      data,
+      professor
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao carregar experimentos:",
+      erro
+    );
+
+    renderizarExperimentos(
+      experimentosPadrao,
+      professor
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDERIZAR EXPERIMENTOS
+===================================================== */
+
+async function renderizarExperimentos(
+  experimentos,
+  professor
+) {
+
+  const container =
+    document.getElementById(
+      "listaExperimentos"
+    );
+
+
+  if (!experimentos.length) {
+
+    container.innerHTML = `
+      <div class="mensagem-vazia">
+        <h3>🧪 Nenhum experimento encontrado</h3>
+        <p>Em breve novos experimentos serão adicionados.</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  for (
+    let index = 0;
+    index < experimentos.length;
+    index++
+  ) {
+
+    const exp =
+      experimentos[index];
+
+
+    const id =
+      exp.id ??
+      `padrao-${index}`;
+
+
+    const itemId =
+      `experimento:${id}`;
+
+
+    const card =
+      document.createElement("article");
+
+    card.className =
+      "card-experimento";
+
+
+    const imagem =
+      exp.imagem ||
+      exp.image ||
+      "";
+
+
+    const titulo =
+      exp.titulo ||
+      "Experimento de Química";
+
+
+    const descricao =
+      exp.descricao ||
+      "";
+
+
+    const materiais =
+      exp.materiais ||
+      "";
+
+
+    const passos =
+      exp.passos ||
+      exp.passo_a_passo ||
+      "";
+
+
+    card.innerHTML = `
+
+      ${
+        imagem
+          ? `
+            <div class="imagem-experimento">
+              <img
+                src="${escaparHTML(imagem)}"
+                alt="${escaparHTML(titulo)}"
+                loading="lazy"
+                onerror="this.parentElement.style.display='none';"
+              >
+            </div>
+          `
+          : ""
+      }
+
+
+      <div class="conteudo-experimento">
+
+        <h3>
+          ${escaparHTML(titulo)}
+        </h3>
+
+
+        ${
+          descricao
+            ? `
+              <p class="descricao-experimento">
+                ${escaparHTML(descricao)}
+              </p>
+            `
+            : ""
+        }
+
+
+        ${
+          materiais
+            ? `
+              <div class="bloco-experimento">
+
+                <h4>🧰 Materiais</h4>
+
+                <p>
+                  ${formatarTexto(materiais)}
+                </p>
+
+              </div>
+            `
+            : ""
+        }
+
+
+        ${
+          passos
+            ? `
+              <div class="bloco-experimento">
+
+                <h4>🧪 Como fazer</h4>
+
+                <p>
+                  ${formatarTexto(passos)}
+                </p>
+
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="acoes-experimento">
+
+          <button
+            class="btn-like"
+            data-id="${escaparHTML(itemId)}"
+            type="button">
+
+            ❤️ Curtir
+
+            <span
+              class="contador-likes"
+              id="likes-${escaparHTML(id)}">
+              0
+            </span>
+
+          </button>
+
+
+          <button
+            class="btn-comentario"
+            type="button"
+            onclick="abrirComentarios('${escaparJS(itemId)}')">
+
+            💬 Comentários
+
+          </button>
+
+        </div>
+
+
+        <div
+          class="area-comentarios"
+          id="comentarios-${escaparHTML(id)}"
+          style="display:none;">
+
+          <div class="lista-comentarios"
+            id="lista-comentarios-${escaparHTML(id)}">
+          </div>
+
+
+          <div class="novo-comentario">
+
+            <input
+              type="text"
+              id="autor-${escaparHTML(id)}"
+              placeholder="Seu nome"
+              maxlength="80">
+
+
+            <textarea
+              id="texto-${escaparHTML(id)}"
+              placeholder="Escreva um comentário..."
+              maxlength="500"></textarea>
+
+
+            <button
+              type="button"
+              onclick="enviarComentario('${escaparJS(itemId)}', '${escaparJS(id)}')">
+
+              💬 Enviar comentário
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        ${
+          professor && exp.id
+            ? `
+              <div class="acoes-professor">
+
+                <button
+                  type="button"
+                  onclick="abrirEdicao(${index})">
+
+                  ✏️ Editar
+
+                </button>
+
+
+                <button
+                  type="button"
+                  onclick="excluirExperimento('${escaparJS(exp.id)}')">
+
+                  🗑️ Excluir
+
+                </button>
+
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+    `;
+
+
+    container.appendChild(card);
+
+
+    const botaoCurtir =
+      card.querySelector(
+        ".btn-like"
+      );
+
+
+    botaoCurtir.addEventListener(
+      "click",
+      () => curtir(itemId, botaoCurtir)
+    );
+
+
+    await carregarLikes(
+      itemId,
+      id,
+      botaoCurtir
+    );
+
+
+    await carregarComentarios(
+      itemId,
+      id,
+      professor
+    );
+
+  }
+
+
+  /*
+    Guarda os experimentos para o modal
+    de edição.
+  */
+
+  window.listaExperimentosAtual =
+    experimentos;
+
+}
+
+
+/* =====================================================
+   LIKES
+===================================================== */
+
+async function carregarLikes(
+  itemId,
+  id,
+  botao
+) {
+
+  try {
+
+    const {
+      count,
+      error
+    } = await db
+      .from("likes")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+      .eq(
+        "item_id",
+        itemId
+      );
+
+
+    if (!error) {
+
+      const contador =
+        document.getElementById(
+          `likes-${id}`
+        );
+
+
+      if (contador) {
+
+        contador.textContent =
+          count || 0;
+
+      }
+
     }
 
-    async function carregarExperimentos() {
-        let container = document.getElementById('container-experimentos');
-        container.innerHTML = "";
-        let experimentos = await obterExperimentos();
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        let eProfessor = !!session;
 
-        experimentos.forEach((exp) => {
-            let cardDiv = document.createElement('div');
-            cardDiv.className = "card";
-            
-            let curtido = localStorage.getItem('exp_' + exp.id + '_curtido') === 'true';
-            let corBtnCurtir = curtido ? '#dc2626' : '#2563eb';
-            let linkVideoEmbed = converterParaEmbed(exp.video);
+    /*
+      Evita que a mesma pessoa
+      clique várias vezes no mesmo
+      navegador.
 
-            let botoesAdminHtml = eProfessor ? `
-                <div>
-                    <button onclick="abrirPainelEditar('${exp.id}', '${encodeURIComponent(exp.titulo)}', '${encodeURIComponent(exp.video)}', '${encodeURIComponent(exp.acontece)}', '${encodeURIComponent(exp.materiais)}', '${encodeURIComponent(exp.conteudo)}')" style="background: #374151; color: white; border: none; padding: 3px 6px; border-radius: 3px; cursor: pointer; font-size: 11px;">✏️ Editar</button>
-                    <button onclick="excluirExperimento('${exp.id}')" style="background: #b91c1c; color: white; border: none; padding: 3px 6px; border-radius: 3px; cursor: pointer; font-size: 11px;">🗑️ Excluir</button>
+      O contador verdadeiro fica no
+      Supabase.
+    */
+
+    if (
+      localStorage.getItem(
+        `curtiu_${itemId}`
+      )
+    ) {
+
+      botao.classList.add(
+        "curtido"
+      );
+
+      botao.disabled = true;
+
+    }
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao carregar likes:",
+      erro
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CURTIR
+===================================================== */
+
+async function curtir(
+  itemId,
+  botao
+) {
+
+  if (
+    localStorage.getItem(
+      `curtiu_${itemId}`
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  botao.disabled = true;
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("likes")
+      .insert({
+
+        item_id: itemId
+
+      });
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível registrar a curtida."
+      );
+
+      botao.disabled = false;
+
+      return;
+
+    }
+
+
+    localStorage.setItem(
+      `curtiu_${itemId}`,
+      "true"
+    );
+
+
+    botao.classList.add(
+      "curtido"
+    );
+
+
+    /*
+      Atualiza o número diretamente
+      depois do insert.
+    */
+
+    const {
+      count
+    } = await db
+      .from("likes")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+      .eq(
+        "item_id",
+        itemId
+      );
+
+
+    const id =
+      itemId
+        .replace(
+          "experimento:",
+          ""
+        );
+
+
+    const contador =
+      document.getElementById(
+        `likes-${id}`
+      );
+
+
+    if (contador) {
+
+      contador.textContent =
+        count || 0;
+
+    }
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao registrar a curtida."
+    );
+
+    botao.disabled = false;
+
+  }
+
+}
+
+
+/* =====================================================
+   COMENTÁRIOS
+===================================================== */
+
+async function abrirComentarios(
+  itemId
+) {
+
+  const id =
+    itemId.replace(
+      "experimento:",
+      ""
+    );
+
+
+  const area =
+    document.getElementById(
+      `comentarios-${id}`
+    );
+
+
+  if (!area) {
+    return;
+  }
+
+
+  if (
+    area.style.display === "none" ||
+    !area.style.display
+  ) {
+
+    area.style.display =
+      "block";
+
+    const professor =
+      await ehProfessor();
+
+    await carregarComentarios(
+      itemId,
+      id,
+      professor
+    );
+
+  } else {
+
+    area.style.display =
+      "none";
+
+  }
+
+}
+
+
+/* =====================================================
+   CARREGAR COMENTÁRIOS
+===================================================== */
+
+async function carregarComentarios(
+  itemId,
+  id,
+  professor
+) {
+
+  const lista =
+    document.getElementById(
+      `lista-comentarios-${id}`
+    );
+
+
+  if (!lista) {
+    return;
+  }
+
+
+  try {
+
+    const {
+      data,
+      error
+    } = await db
+      .from("comentarios")
+      .select("*")
+      .eq(
+        "item_id",
+        itemId
+      )
+      .order(
+        "criado_em",
+        {
+          ascending: false
+        }
+      );
+
+
+    if (error) {
+
+      console.error(
+        "Erro ao carregar comentários:",
+        error
+      );
+
+      lista.innerHTML = `
+        <p class="erro-comentarios">
+          Não foi possível carregar os comentários.
+        </p>
+      `;
+
+      return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+      lista.innerHTML = `
+        <p class="sem-comentarios">
+          Ainda não há comentários. Seja o primeiro! 💬
+        </p>
+      `;
+
+      return;
+
+    }
+
+
+    lista.innerHTML = "";
+
+
+    data.forEach(
+      comentario => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "comentario";
+
+
+        div.innerHTML = `
+
+          <div class="comentario-cabecalho">
+
+            <strong>
+              ${escaparHTML(
+                comentario.autor ||
+                "Visitante"
+              )}
+            </strong>
+
+            <span>
+              ${formatarData(
+                comentario.criado_em
+              )}
+            </span>
+
+          </div>
+
+
+          <p>
+            ${escaparHTML(
+              comentario.texto ||
+              ""
+            )}
+          </p>
+
+
+          ${
+            professor
+              ? `
+                <div class="acoes-comentario">
+
+                  <button
+                    type="button"
+                    onclick="editarComentario('${escaparJS(comentario.id)}', '${escaparJS(itemId)}', '${escaparJS(id)}')">
+
+                    ✏️ Editar
+
+                  </button>
+
+
+                  <button
+                    type="button"
+                    onclick="excluirComentario('${escaparJS(comentario.id)}', '${escaparJS(itemId)}', '${escaparJS(id)}')">
+
+                    🗑️ Excluir
+
+                  </button>
+
                 </div>
-            ` : '';
+              `
+              : ""
+          }
 
-            cardDiv.innerHTML = `
-                <div>
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
-                        <h3 style="margin-top: 0; color: #fff;">${exp.titulo}</h3>
-                        ${botoesAdminHtml}
-                    </div>
+        `;
 
-                    <iframe width="100%" height="220" src="${linkVideoEmbed}" style="border: none; border-radius: 4px;" allowfullscreen></iframe>
 
-                    <p style="margin-top: 15px;"><strong>O que acontece?</strong></p>
-                    <p>${exp.acontece}</p>
+        lista.appendChild(div);
 
-                    <p><strong>Materiais:</strong></p>
-                    <p>${exp.materiais}</p>
+      }
+    );
 
-                    <p><strong>Conteúdo relacionado:</strong><br>${exp.conteudo}</p>
-                </div>
 
-                <div class="secao-comentarios-card">
-                    <button id="btn-${exp.id}" onclick="curtir('${exp.id}', ${exp.likes || 0})" style="background: ${corBtnCurtir}; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;" data-curtido="${curtido}">❤️ Curtir (<span id="likes-${exp.id}">${exp.likes || 0}</span>)</button>
-                    <div style="margin-top: 10px;">
-                        <div class="form-inputs-comentario">
-                            <input type="text" id="autor-${exp.id}" placeholder="Seu nome..." style="width: 32%; padding: 5px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-                            <input type="text" id="input-${exp.id}" placeholder="Escreva um comentário... (Enter)" onkeypress="verificarEnter(event, 'autor-${exp.id}', 'input-${exp.id}', '${exp.id}')" style="width: 66%; padding: 5px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-                        </div>
-                        <button onclick="comentar('autor-${exp.id}', 'input-${exp.id}', '${exp.id}')" style="background: #16a34a; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 5px;">Enviar Comentário</button>
-                    </div>
-                    <div id="lista-${exp.id}" style="margin-top: 10px; text-align: left;"></div>
-                </div>
-            `;
+  } catch (erro) {
 
-            container.appendChild(cardDiv);
-            carregarComentariosDoCard(exp.id);
-        });
+    console.error(
+      erro
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ENVIAR COMENTÁRIO
+===================================================== */
+
+async function enviarComentario(
+  itemId,
+  id
+) {
+
+  const autorInput =
+    document.getElementById(
+      `autor-${id}`
+    );
+
+
+  const textoInput =
+    document.getElementById(
+      `texto-${id}`
+    );
+
+
+  if (!autorInput || !textoInput) {
+    return;
+  }
+
+
+  const autor =
+    autorInput.value.trim();
+
+
+  const texto =
+    textoInput.value.trim();
+
+
+  if (!autor) {
+
+    alert(
+      "Digite seu nome."
+    );
+
+    autorInput.focus();
+
+    return;
+
+  }
+
+
+  if (!texto) {
+
+    alert(
+      "Digite um comentário."
+    );
+
+    textoInput.focus();
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("comentarios")
+      .insert({
+
+        autor: autor,
+
+        texto: texto,
+
+        item_id: itemId
+
+      });
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível enviar o comentário."
+      );
+
+      return;
+
     }
 
-    function abrirPainelAdicionar() {
-        document.getElementById('edit-id-experimento').value = '';
-        document.getElementById('titulo-painel-admin').innerText = '➕ Adicionar Novo Experimento';
-        document.getElementById('novo-titulo').value = '';
-        document.getElementById('novo-video').value = '';
-        document.getElementById('novo-acontece').value = '';
-        document.getElementById('novo-materiais').value = '';
-        document.getElementById('novo-conteudo').value = '';
-        
-        let painel = document.getElementById('painel-admin');
-        painel.style.display = "block";
-        painel.scrollIntoView({ behavior: 'smooth' });
+
+    autorInput.value = "";
+    textoInput.value = "";
+
+
+    const professor =
+      await ehProfessor();
+
+
+    await carregarComentarios(
+      itemId,
+      id,
+      professor
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao enviar comentário."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   EDITAR COMENTÁRIO
+===================================================== */
+
+async function editarComentario(
+  comentarioId,
+  itemId,
+  id
+) {
+
+  if (!(await ehProfessor())) {
+
+    alert(
+      "Apenas o professor pode editar comentários."
+    );
+
+    return;
+
+  }
+
+
+  const novoTexto =
+    prompt(
+      "Digite o novo comentário:"
+    );
+
+
+  if (
+    novoTexto === null ||
+    !novoTexto.trim()
+  ) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("comentarios")
+      .update({
+
+        texto:
+          novoTexto.trim()
+
+      })
+      .eq(
+        "id",
+        comentarioId
+      );
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível editar o comentário."
+      );
+
+      return;
+
     }
 
-    function abrirPainelEditar(id, titulo, video, acontece, materiais, conteudo) {
-        document.getElementById('edit-id-experimento').value = id;
-        document.getElementById('titulo-painel-admin').innerText = '✏️ Editar Experimento';
-        document.getElementById('novo-titulo').value = decodeURIComponent(titulo);
-        document.getElementById('novo-video').value = decodeURIComponent(video);
-        document.getElementById('novo-acontece').value = decodeURIComponent(acontece);
-        document.getElementById('novo-materiais').value = decodeURIComponent(materiais).replace(/<br>/g, '\n');
-        document.getElementById('novo-conteudo').value = decodeURIComponent(conteudo);
 
-        let painel = document.getElementById('painel-admin');
-        painel.style.display = "block";
-        painel.scrollIntoView({ behavior: 'smooth' });
+    await carregarComentarios(
+      itemId,
+      id,
+      true
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao editar comentário."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   EXCLUIR COMENTÁRIO
+===================================================== */
+
+async function excluirComentario(
+  comentarioId,
+  itemId,
+  id
+) {
+
+  if (!(await ehProfessor())) {
+
+    alert(
+      "Apenas o professor pode excluir comentários."
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !confirm(
+      "Deseja realmente excluir este comentário?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("comentarios")
+      .delete()
+      .eq(
+        "id",
+        comentarioId
+      );
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível excluir o comentário."
+      );
+
+      return;
+
     }
 
-    function fecharPainelAdmin() {
-        document.getElementById('painel-admin').style.display = 'none';
+
+    await carregarComentarios(
+      itemId,
+      id,
+      true
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao excluir comentário."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ABRIR EDIÇÃO DO EXPERIMENTO
+===================================================== */
+
+function abrirEdicao(
+  index
+) {
+
+  const lista =
+    window.listaExperimentosAtual ||
+    [];
+
+
+  const experimento =
+    lista[index];
+
+
+  if (
+    !experimento ||
+    !experimento.id
+  ) {
+
+    alert(
+      "Este experimento padrão não pode ser editado."
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "editarId"
+  ).value =
+    experimento.id;
+
+
+  document.getElementById(
+    "editarTitulo"
+  ).value =
+    experimento.titulo ||
+    "";
+
+
+  document.getElementById(
+    "editarDescricao"
+  ).value =
+    experimento.descricao ||
+    "";
+
+
+  document.getElementById(
+    "editarMateriais"
+  ).value =
+    converterParaTexto(
+      experimento.materiais ||
+      ""
+    );
+
+
+  document.getElementById(
+    "editarPassos"
+  ).value =
+    converterParaTexto(
+      experimento.passos ||
+      experimento.passo_a_passo ||
+      ""
+    );
+
+
+  document.getElementById(
+    "editarImagem"
+  ).value =
+    experimento.imagem ||
+    experimento.image ||
+    "";
+
+
+  document.getElementById(
+    "modalEditar"
+  ).style.display =
+    "flex";
+
+}
+
+
+/* =====================================================
+   FECHAR MODAL
+===================================================== */
+
+function fecharModal() {
+
+  document.getElementById(
+    "modalEditar"
+  ).style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+   SALVAR EDIÇÃO
+===================================================== */
+
+async function salvarEdicao() {
+
+  if (!(await ehProfessor())) {
+
+    alert(
+      "Apenas o professor pode editar experimentos."
+    );
+
+    return;
+
+  }
+
+
+  const id =
+    document.getElementById(
+      "editarId"
+    ).value;
+
+
+  const titulo =
+    document.getElementById(
+      "editarTitulo"
+    ).value.trim();
+
+
+  const descricao =
+    document.getElementById(
+      "editarDescricao"
+    ).value.trim();
+
+
+  const materiais =
+    document.getElementById(
+      "editarMateriais"
+    ).value.trim();
+
+
+  const passos =
+    document.getElementById(
+      "editarPassos"
+    ).value.trim();
+
+
+  const imagem =
+    document.getElementById(
+      "editarImagem"
+    ).value.trim();
+
+
+  if (!titulo) {
+
+    alert(
+      "Digite um título."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("experimentos")
+      .update({
+
+        titulo: titulo,
+
+        descricao: descricao,
+
+        materiais:
+          materiais.replace(
+            /\n/g,
+            "<br>"
+          ),
+
+        passos:
+          passos.replace(
+            /\n/g,
+            "<br>"
+          ),
+
+        imagem: imagem
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível salvar as alterações."
+      );
+
+      return;
+
     }
 
-    async function salvarExperimento() {
-        let id = document.getElementById('edit-id-experimento').value;
-        let titulo = document.getElementById('novo-titulo').value.trim();
-        let video = document.getElementById('novo-video').value.trim();
-        let acontece = document.getElementById('novo-acontece').value.trim();
-        let materiais = document.getElementById('novo-materiais').value.trim().replace(/\n/g, '<br>');
-        let conteudo = document.getElementById('novo-conteudo').value.trim();
 
-        if (!titulo || !video) {
-            alert("Preencha pelo menos o Título e o Link do Vídeo!");
-            return;
-        }
+    alert(
+      "Experimento atualizado com sucesso! ✅"
+    );
 
-        if (id) {
-            // Atualizar
-            let { error } = await supabaseClient.from('experimentos').update({
-                titulo, video, acontece, materiais, conteudo
-            }).eq('id', id);
 
-            if (error) {
-                alert("Erro ao atualizar: " + error.message);
-                return;
-            }
-            alert("Experimento atualizado com sucesso!");
-        } else {
-            // Inserir novo
-            let { error } = await supabaseClient.from('experimentos').insert([{
-                titulo, video, acontece, materiais, conteudo, likes: 0
-            }]);
+    fecharModal();
 
-            if (error) {
-                alert("Erro ao salvar: " + error.message);
-                return;
-            }
-            alert("Experimento adicionado com sucesso!");
-        }
 
-        fecharPainelAdmin();
-        carregarExperimentos();
+    await carregarExperimentos(
+      true
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao salvar alterações."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   EXCLUIR EXPERIMENTO
+===================================================== */
+
+async function excluirExperimento(
+  id
+) {
+
+  if (!(await ehProfessor())) {
+
+    alert(
+      "Apenas o professor pode excluir experimentos."
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !confirm(
+      "Deseja realmente excluir este experimento?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      error
+    } = await db
+      .from("experimentos")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+    if (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Não foi possível excluir o experimento."
+      );
+
+      return;
+
     }
 
-    async function excluirExperimento(id) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
-            alert("Acesso restrito ao professor.");
-            return;
-        }
 
-        if (confirm("Tem certeza que deseja apagar este experimento?")) {
-            let { error } = await supabaseClient.from('experimentos').delete().eq('id', id);
-            if (error) {
-                alert("Erro ao excluir: " + error.message);
-                return;
-            }
-            carregarExperimentos();
-        }
+    alert(
+      "Experimento excluído com sucesso! ✅"
+    );
+
+
+    await carregarExperimentos(
+      true
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      erro
+    );
+
+    alert(
+      "Erro ao excluir experimento."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   FORMATAR TEXTO
+===================================================== */
+
+function formatarTexto(
+  texto
+) {
+
+  return escaparHTML(
+    String(texto || "")
+  )
+  .replace(
+    /&lt;br\s*\/?&gt;/gi,
+    "<br>"
+  )
+  .replace(
+    /\n/g,
+    "<br>"
+  );
+
+}
+
+
+/* =====================================================
+   CONVERTER BR PARA TEXTO
+===================================================== */
+
+function converterParaTexto(
+  texto
+) {
+
+  return String(
+    texto || ""
+  )
+  .replace(
+    /<br\s*\/?>/gi,
+    "\n"
+  );
+
+}
+
+
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function escaparHTML(
+  valor
+) {
+
+  return String(
+    valor ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+/* =====================================================
+   ESCAPAR PARA JAVASCRIPT
+===================================================== */
+
+function escaparJS(
+  valor
+) {
+
+  return String(
+    valor ?? ""
+  )
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /\r/g,
+    "\\r"
+  )
+  .replace(
+    /\n/g,
+    "\\n"
+  );
+
+}
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+function formatarData(
+  data
+) {
+
+  if (!data) {
+    return "";
+  }
+
+
+  const d =
+    new Date(data);
+
+
+  if (Number.isNaN(
+    d.getTime()
+  )) {
+
+    return "";
+
+  }
+
+
+  return d.toLocaleDateString(
+    "pt-BR",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ERRO
+===================================================== */
+
+function mostrarErro(
+  mensagem
+) {
+
+  const container =
+    document.getElementById(
+      "listaExperimentos"
+    );
+
+
+  container.innerHTML = `
+
+    <div class="mensagem-erro">
+
+      <h3>⚠️ Ocorreu um problema</h3>
+
+      <p>
+        ${escaparHTML(mensagem)}
+      </p>
+
+      <button
+        type="button"
+        onclick="location.reload()">
+
+        🔄 Tentar novamente
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   FECHAR MODAL CLICANDO FORA
+===================================================== */
+
+document.addEventListener(
+  "click",
+  function(event) {
+
+    const modal =
+      document.getElementById(
+        "modalEditar"
+      );
+
+
+    if (
+      event.target === modal
+    ) {
+
+      fecharModal();
+
     }
 
-    async function curtir(idExp, likesAtuais) {
-        let span = document.getElementById('likes-' + idExp);
-        let btn = document.getElementById('btn-' + idExp);
-        let curtido = btn.dataset.curtido === 'true';
+  }
+);
 
-        let novosLikes = curtido ? likesAtuais - 1 : likesAtuais + 1;
-        if (novosLikes < 0) novosLikes = 0;
-
-        let { error } = await supabaseClient.from('experimentos').update({ likes: novosLikes }).eq('id', idExp);
-        if (!error) {
-            span.innerText = novosLikes;
-            btn.dataset.curtido = (!curtido).toString();
-            btn.style.background = !curtido ? '#dc2626' : '#2563eb';
-            localStorage.setItem('exp_' + idExp + '_curtido', (!curtido).toString());
-        }
-    }
-
-    async function comentar(idAutorElem, idInputElem, idExp) {
-        let inputAutor = document.getElementById(idAutorElem);
-        let inputTexto = document.getElementById(idInputElem);
-        
-        let autor = inputAutor.value.trim() || "Visitante";
-        let texto = inputTexto.value.trim();
-        
-        if (texto !== "") {
-            let comentariosSalvos = JSON.parse(localStorage.getItem('exp_' + idExp + '_comentarios')) || [];
-            comentariosSalvos.push({ autor, texto, timestamp: new Date().getTime() });
-            localStorage.setItem('exp_' + idExp + '_comentarios', JSON.stringify(comentariosSalvos));
-
-            carregarComentariosDoCard(idExp);
-            inputTexto.value = "";
-            inputAutor.value = "";
-        }
-    }
-
-    function verificarEnter(event, idAutorElem, idInputElem, idExp) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            comentar(idAutorElem, idInputElem, idExp);
-        }
-    }
-
-    function editarComentario(idExp, index) {
-        let comentariosSalvos = JSON.parse(localStorage.getItem('exp_' + idExp + '_comentarios')) || [];
-        let comentarioAtual = comentariosSalvos[index];
-
-        let novoTexto = prompt("Edite seu comentário:", comentarioAtual.texto);
-        if (novoTexto !== null && novoTexto.trim() !== "") {
-            comentariosSalvos[index].texto = novoTexto.trim();
-            localStorage.setItem('exp_' + idExp + '_comentarios', JSON.stringify(comentariosSalvos));
-            carregarComentariosDoCard(idExp);
-        }
-    }
-
-    async function excluirComentario(idExp, index) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
-            alert("Apenas o Professor pode apagar comentários. Ative o Painel do Professor primeiro!");
-            return;
-        }
-
-        if (confirm("Tem certeza que deseja apagar este comentário?")) {
-            let comentariosSalvos = JSON.parse(localStorage.getItem('exp_' + idExp + '_comentarios')) || [];
-            comentariosSalvos.splice(index, 1);
-            localStorage.setItem('exp_' + idExp + '_comentarios', JSON.stringify(comentariosSalvos));
-            carregarComentariosDoCard(idExp);
-        }
-    }
-
-    function carregarComentariosDoCard(idExp) {
-        let lista = document.getElementById('lista-' + idExp);
-        if (!lista) return;
-        lista.innerHTML = "";
-
-        let dadosSalvos = JSON.parse(localStorage.getItem('exp_' + idExp + '_comentarios')) || [];
-        dadosSalvos.forEach((item, index) => {
-            let autor = item.autor || "Visitante";
-            let tempoFormatado = calcularTempoRelativo(item.timestamp || new Date().getTime());
-            adicionarElementoComentario(lista, autor, item.texto, tempoFormatado, idExp, index);
-        });
-    }
-
-    function calcularTempoRelativo(timestamp) {
-        let agora = new Date().getTime();
-        let diferencaSegundos = Math.floor((agora - timestamp) / 1000);
-
-        if (diferencaSegundos < 60) return "agora mesmo";
-        let diferencaMinutos = Math.floor(diferencaSegundos / 60);
-        if (diferencaMinutos < 60) return "há " + diferencaMinutos + (diferencaMinutos === 1 ? " minuto" : " minutos");
-        let diferencaHoras = Math.floor(diferencaMinutos / 60);
-        if (diferencaHoras < 24) return "há " + diferencaHoras + (diferencaHoras === 1 ? " hora" : " horas");
-        let diferencaDias = Math.floor(diferencaHoras / 24);
-        return "há " + diferencaDias + (diferencaDias === 1 ? " dia" : " dias");
-    }
-
-    async function adicionarElementoComentario(lista, autor, texto, tempo, idExp, index) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        let eProfessor = !!session;
-
-        let novoComentario = document.createElement("div");
-        novoComentario.style.background = "#2a2a2a";
-        novoComentario.style.borderLeft = "4px solid #16a34a";
-        novoComentario.style.padding = "8px 10px";
-        novoComentario.style.borderRadius = "4px";
-        novoComentario.style.marginTop = "6px";
-        novoComentario.style.fontSize = "14px";
-
-        let cabecalho = document.createElement("div");
-        cabecalho.style.display = "flex";
-        cabecalho.style.justifyContent = "space-between";
-        cabecalho.style.marginBottom = "4px";
-
-        let autorSpan = document.createElement("span");
-        autorSpan.innerText = "👤 " + autor;
-        autorSpan.style.fontWeight = "bold";
-        autorSpan.style.color = "#4ade80";
-
-        let horaSpan = document.createElement("span");
-        horaSpan.innerText = tempo;
-        horaSpan.style.fontSize = "11px";
-        horaSpan.style.color = "#aaa";
-
-        cabecalho.appendChild(autorSpan);
-        cabecalho.appendChild(horaSpan);
-
-        let corpo = document.createElement("div");
-        corpo.style.display = "flex";
-        corpo.style.justifyContent = "space-between";
-        corpo.style.alignItems = "center";
-
-        let textoSpan = document.createElement("span");
-        textoSpan.innerText = texto;
-        textoSpan.style.wordBreak = "break-word";
-        textoSpan.style.marginRight = "10px";
-        textoSpan.style.color = "#fff";
-
-        let acoesDiv = document.createElement("div");
-        acoesDiv.style.display = "flex";
-        acoesDiv.style.gap = "4px";
-        acoesDiv.style.whiteSpace = "nowrap";
-
-        let btnEditar = document.createElement("button");
-        btnEditar.innerText = "✏️";
-        btnEditar.style.background = "#374151";
-        btnEditar.style.color = "white";
-        btnEditar.style.border = "none";
-        btnEditar.style.padding = "3px 6px";
-        btnEditar.style.borderRadius = "3px";
-        btnEditar.style.cursor = "pointer";
-        btnEditar.style.fontSize = "11px";
-        btnEditar.title = "Editar comentário";
-        btnEditar.onclick = function() {
-            editarComentario(idExp, index);
-        };
-        acoesDiv.appendChild(btnEditar);
-
-        if (eProfessor) {
-            let btnExcluir = document.createElement("button");
-            btnExcluir.innerText = "🗑️";
-            btnExcluir.style.background = "#b91c1c";
-            btnExcluir.style.color = "white";
-            btnExcluir.style.border = "none";
-            btnExcluir.style.padding = "3px 6px";
-            btnExcluir.style.borderRadius = "3px";
-            btnExcluir.style.cursor = "pointer";
-            btnExcluir.style.fontSize = "11px";
-            btnExcluir.title = "Apagar comentário (Modo Professor)";
-            btnExcluir.onclick = function() {
-                excluirComentario(idExp, index);
-            };
-            acoesDiv.appendChild(btnExcluir);
-        }
-
-        corpo.appendChild(textoSpan);
-        corpo.appendChild(acoesDiv);
-
-        novoComentario.appendChild(cabecalho);
-        novoComentario.appendChild(corpo);
-        lista.appendChild(novoComentario);
-    }
 </script>
 
 </body>

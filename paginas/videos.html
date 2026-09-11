@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Vídeos de Química - Professor Wendel</title>
+
     <link rel="stylesheet" href="../css/style.css">
 
-    <!-- Supabase JS Client -->
-   <!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/supabaseClient.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabaseClient.js"></script>
+
     <style>
         .container {
             display: grid !important;
@@ -54,6 +56,18 @@
             gap: 2%;
             margin-bottom: 4px;
         }
+
+        @media (max-width: 600px) {
+            .form-inputs-comentario {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .form-inputs-comentario input {
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 
@@ -61,8 +75,12 @@
 
 <header>
     <div class="logo">
-        <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
-            <img src="../assets/imagens/logo/logo.png" alt="Logo Química com Professor Wendel">
+        <a href="../index.html"
+           style="text-decoration:none;display:flex;align-items:center;gap:10px;color:inherit;">
+
+            <img src="../assets/imagens/logo/logo.png"
+                 alt="Logo Química com Professor Wendel">
+
             <span>Química com Professor Wendel</span>
         </a>
     </div>
@@ -85,33 +103,182 @@
 </section>
 
 <section>
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
-        <h2 style="margin: 0;">Catálogo de Videoaulas</h2>
-        <div style="display: flex; gap: 10px;">
-            <button onclick="abrirPainelAdicionar()" id="btn-novo-vid" style="background: #16a34a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; display: none;">➕ Novo Vídeo</button>
-            <button onclick="alternarPainelAdmin()" id="btn-painel-toggle" style="background: #7c3aed; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">🔐 Painel do Professor</button>
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:10px;
+        margin-bottom:10px;
+    ">
+
+        <h2 style="margin:0;">
+            Catálogo de Videoaulas
+        </h2>
+
+        <div style="display:flex;gap:10px;">
+
+            <button
+                onclick="abrirPainelAdicionar()"
+                id="btn-novo-vid"
+                style="
+                    background:#16a34a;
+                    color:white;
+                    border:none;
+                    padding:6px 12px;
+                    border-radius:4px;
+                    cursor:pointer;
+                    font-weight:bold;
+                    display:none;
+                ">
+                ➕ Novo Vídeo
+            </button>
+
+            <button
+                onclick="alternarPainelAdmin()"
+                id="btn-painel-toggle"
+                style="
+                    background:#7c3aed;
+                    color:white;
+                    border:none;
+                    padding:6px 12px;
+                    border-radius:4px;
+                    cursor:pointer;
+                    font-weight:bold;
+                ">
+                🔐 Painel do Professor
+            </button>
+
         </div>
     </div>
 
-    <div id="painel-admin" style="display: none; background: #18181b; border: 1px solid #7c3aed; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h3 style="color: #c084fc; margin: 0;">➕ Adicionar Novo Vídeo</h3>
-            <button onclick="sairModoProfessor()" style="background: #374151; color: #f87171; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">🔒 Sair do modo Professor</button>
+    <div
+        id="painel-admin"
+        style="
+            display:none;
+            background:#18181b;
+            border:1px solid #7c3aed;
+            padding:15px;
+            border-radius:8px;
+            margin-bottom:15px;
+        ">
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:8px;
+        ">
+
+            <h3 style="color:#c084fc;margin:0;">
+                ➕ Adicionar Novo Vídeo
+            </h3>
+
+            <button
+                onclick="sairModoProfessor()"
+                style="
+                    background:#374151;
+                    color:#f87171;
+                    border:none;
+                    padding:4px 8px;
+                    border-radius:4px;
+                    cursor:pointer;
+                    font-size:11px;
+                ">
+                🔒 Sair do modo Professor
+            </button>
+
         </div>
-        <div style="display: grid; gap: 8px;">
-            <select id="novo-categoria" style="padding: 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-                <option value="6º Ano - Química Básica">🟢 6º Ano - Química Básica</option>
-                <option value="7º Ano - Átomos">🟡 7º Ano - Átomos</option>
-                <option value="8º Ano - Tabela Periódica e Ligações">🟠 8º Ano - Tabela Periódica e Ligações</option>
-                <option value="9º Ano - Química Avançada">🔴 9º Ano - Química Avançada</option>
-                <option value="Ensino Médio">🔵 Ensino Médio</option>
+
+        <div style="display:grid;gap:8px;">
+
+            <select
+                id="novo-categoria"
+                style="
+                    padding:6px;
+                    border-radius:4px;
+                    border:1px solid #555;
+                    background:#222;
+                    color:white;
+                ">
+
+                <option value="6º Ano - Química Básica">
+                    🟢 6º Ano - Química Básica
+                </option>
+
+                <option value="7º Ano - Átomos">
+                    🟡 7º Ano - Átomos
+                </option>
+
+                <option value="8º Ano - Tabela Periódica e Ligações">
+                    🟠 8º Ano - Tabela Periódica e Ligações
+                </option>
+
+                <option value="9º Ano - Química Avançada">
+                    🔴 9º Ano - Química Avançada
+                </option>
+
+                <option value="Ensino Médio">
+                    🔵 Ensino Médio
+                </option>
+
             </select>
-            <input type="text" id="novo-titulo" placeholder="Título do Vídeo (ex: Átomos e Moléculas)" style="padding: 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-            <input type="text" id="novo-link" placeholder="Link normal do YouTube (ex: https://www.youtube.com/watch?v=...)" style="padding: 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white;">
-            <textarea id="novo-descricao" placeholder="Breve descrição do vídeo..." rows="2" style="padding: 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; resize: vertical;"></textarea>
-            <button onclick="salvarNovoVideo()" style="background: #16a34a; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Salvar e Publicar Vídeo</button>
+
+            <input
+                type="text"
+                id="novo-titulo"
+                placeholder="Título do Vídeo"
+                style="
+                    padding:6px;
+                    border-radius:4px;
+                    border:1px solid #555;
+                    background:#222;
+                    color:white;
+                ">
+
+            <input
+                type="text"
+                id="novo-link"
+                placeholder="Link normal do YouTube"
+                style="
+                    padding:6px;
+                    border-radius:4px;
+                    border:1px solid #555;
+                    background:#222;
+                    color:white;
+                ">
+
+            <textarea
+                id="novo-descricao"
+                placeholder="Breve descrição do vídeo..."
+                rows="2"
+                style="
+                    padding:6px;
+                    border-radius:4px;
+                    border:1px solid #555;
+                    background:#222;
+                    color:white;
+                    resize:vertical;
+                "></textarea>
+
+            <button
+                onclick="salvarNovoVideo()"
+                style="
+                    background:#16a34a;
+                    color:white;
+                    border:none;
+                    padding:8px;
+                    border-radius:4px;
+                    cursor:pointer;
+                    font-weight:bold;
+                ">
+                Salvar e Publicar Vídeo
+            </button>
+
         </div>
     </div>
+
 </section>
 
 <div id="container-categorias-videos"></div>
@@ -121,476 +288,1650 @@
 </footer>
 
 <script>
-    // CONFIGURAÇÃO DO SUPABASE
-    const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const videosPadrao = [
-        { id: 'vid-1', categoria: '6º Ano - Química Básica', titulo: 'Substâncias e Misturas', video: 'https://www.youtube.com/embed/hbwKwNhIFM4', descricao: 'Introdução à Química, matéria, objetos e substâncias.' },
-        { id: 'vid-2', categoria: '6º Ano - Química Básica', titulo: 'Tipos de Misturas', video: 'https://www.youtube.com/embed/L7cfPRNIfxQ', descricao: 'Misturas homogêneas e heterogêneas.' },
-        { id: 'vid-3', categoria: '6º Ano - Química Básica', titulo: 'Mistura Homogênea e Heterogênea', video: 'https://www.youtube.com/embed/2zU_3ganVj4', descricao: 'Diferenças entre tipos de misturas.' },
-        { id: 'vid-4', categoria: '7º Ano - Átomos', titulo: 'Estrutura Atômica', video: 'https://www.youtube.com/embed/jPL78QD6hBk', descricao: 'Como é formado o átomo?' },
-        { id: 'vid-5', categoria: '7º Ano - Átomos', titulo: 'Prótons, Nêutrons e Elétrons', video: 'https://www.youtube.com/embed/eav23HYcowI', descricao: 'Partículas presentes no átomo.' },
-        { id: 'vid-6', categoria: '8º Ano - Tabela Periódica e Ligações', titulo: 'Tabela Periódica', video: 'https://www.youtube.com/embed/Vsnq2hJ2UZc', descricao: 'Famílias, períodos e elementos químicos.' },
-        { id: 'vid-7', categoria: '8º Ano - Tabela Periódica e Ligações', titulo: 'Ligações Químicas', video: 'https://www.youtube.com/embed/99b6_HneB64', descricao: 'Formação de moléculas e ligações.' },
-        { id: 'vid-8', categoria: '9º Ano - Química Avançada', titulo: 'Reações Químicas e Balanceamento', video: 'https://www.youtube.com/embed/O9vPOw9dvM8', descricao: 'Reagentes, produtos e equações químicas.' },
-        { id: 'vid-9', categoria: '9º Ano - Química Avançada', titulo: 'Balanceamento de Equações', video: 'https://www.youtube.com/embed/yF8o5vTOGc4', descricao: 'Como equilibrar uma reação química.' },
-        { id: 'vid-10', categoria: 'Ensino Médio', titulo: 'Modelos Atômicos', video: 'https://www.youtube.com/embed/5-fa4IKp5bU', descricao: 'Modelos atômicos e evolução da ciência.' },
-        { id: 'vid-11', categoria: 'Ensino Médio', titulo: 'Termoquímica', video: 'https://www.youtube.com/embed/Phr3DSKLLhA', descricao: 'Energia nas reações químicas.' },
-        { id: 'vid-12', categoria: 'Ensino Médio', titulo: 'Eletroquímica', video: 'https://www.youtube.com/embed/-RU1ywag0Dg', descricao: 'Pilhas, eletrólise e oxirredução.' }
-    ];
+const db = window.meuClienteSupabase || window.supabaseClient;
 
-    document.addEventListener("DOMContentLoaded", async function() {
-        await inicializarBancoVideos();
-        carregarVideos();
-        verificarEstadoProfessorInicial();
+if (!db) {
+    console.error("Cliente Supabase não encontrado.");
+}
+
+/* =========================================================
+   VÍDEOS PADRÃO
+========================================================= */
+
+const videosPadrao = [
+
+    {
+        id: 'vid-1',
+        categoria: '6º Ano - Química Básica',
+        titulo: 'Substâncias e Misturas',
+        video: 'https://www.youtube.com/embed/hbwKwNhIFM4',
+        descricao: 'Introdução à Química, matéria, objetos e substâncias.'
+    },
+
+    {
+        id: 'vid-2',
+        categoria: '6º Ano - Química Básica',
+        titulo: 'Tipos de Misturas',
+        video: 'https://www.youtube.com/embed/L7cfPRNIfxQ',
+        descricao: 'Misturas homogêneas e heterogêneas.'
+    },
+
+    {
+        id: 'vid-3',
+        categoria: '6º Ano - Química Básica',
+        titulo: 'Mistura Homogênea e Heterogênea',
+        video: 'https://www.youtube.com/embed/2zU_3ganVj4',
+        descricao: 'Diferenças entre tipos de misturas.'
+    },
+
+    {
+        id: 'vid-4',
+        categoria: '7º Ano - Átomos',
+        titulo: 'Estrutura Atômica',
+        video: 'https://www.youtube.com/embed/jPL78QD6hBk',
+        descricao: 'Como é formado o átomo?'
+    },
+
+    {
+        id: 'vid-5',
+        categoria: '7º Ano - Átomos',
+        titulo: 'Prótons, Nêutrons e Elétrons',
+        video: 'https://www.youtube.com/embed/eav23HYcowI',
+        descricao: 'Partículas presentes no átomo.'
+    },
+
+    {
+        id: 'vid-6',
+        categoria: '8º Ano - Tabela Periódica e Ligações',
+        titulo: 'Tabela Periódica',
+        video: 'https://www.youtube.com/embed/Vsnq2hJ2UZc',
+        descricao: 'Famílias, períodos e elementos químicos.'
+    },
+
+    {
+        id: 'vid-7',
+        categoria: '8º Ano - Tabela Periódica e Ligações',
+        titulo: 'Ligações Químicas',
+        video: 'https://www.youtube.com/embed/99b6_HneB64',
+        descricao: 'Formação de moléculas e ligações.'
+    },
+
+    {
+        id: 'vid-8',
+        categoria: '9º Ano - Química Avançada',
+        titulo: 'Reações Químicas e Balanceamento',
+        video: 'https://www.youtube.com/embed/O9vPOw9dvM8',
+        descricao: 'Reagentes, produtos e equações químicas.'
+    },
+
+    {
+        id: 'vid-9',
+        categoria: '9º Ano - Química Avançada',
+        titulo: 'Balanceamento de Equações',
+        video: 'https://www.youtube.com/embed/yF8o5vTOGc4',
+        descricao: 'Como equilibrar uma reação química.'
+    },
+
+    {
+        id: 'vid-10',
+        categoria: 'Ensino Médio',
+        titulo: 'Modelos Atômicos',
+        video: 'https://www.youtube.com/embed/5-fa4IKp5bU',
+        descricao: 'Modelos atômicos e evolução da ciência.'
+    },
+
+    {
+        id: 'vid-11',
+        categoria: 'Ensino Médio',
+        titulo: 'Termoquímica',
+        video: 'https://www.youtube.com/embed/Phr3DSKLLhA',
+        descricao: 'Energia nas reações químicas.'
+    },
+
+    {
+        id: 'vid-12',
+        categoria: 'Ensino Médio',
+        titulo: 'Eletroquímica',
+        video: 'https://www.youtube.com/embed/-RU1ywag0Dg',
+        descricao: 'Pilhas, eletrólise e oxirredução.'
+    }
+
+];
+
+
+/* =========================================================
+   INÍCIO
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    await inicializarBancoVideos();
+
+    await verificarEstadoProfessorInicial();
+
+    await carregarVideos();
+
+});
+
+
+/* =========================================================
+   PROFESSOR
+========================================================= */
+
+async function ehProfessor() {
+
+    try {
+
+        const {
+            data: { user }
+        } = await db.auth.getUser();
+
+        if (!user) return false;
+
+        /*
+         * Primeiro verifica role no metadata.
+         * Isso evita considerar qualquer usuário logado como professor.
+         */
+
+        if (
+            user.app_metadata?.role === "professor" ||
+            user.user_metadata?.role === "professor"
+        ) {
+            return true;
+        }
+
+        /*
+         * Caso exista uma tabela professores configurada,
+         * também tenta verificar o usuário nela.
+         */
+
+        try {
+
+            const { data } = await db
+                .from("professores")
+                .select("id")
+                .eq("user_id", user.id)
+                .maybeSingle();
+
+            if (data) return true;
+
+        } catch (erroTabela) {
+            console.warn("Tabela professores não disponível.");
+        }
+
+        return false;
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        return false;
+
+    }
+
+}
+
+
+async function verificarEstadoProfessorInicial() {
+
+    const professor = await ehProfessor();
+
+    const botao = document.getElementById("btn-painel-toggle");
+    const novoVideo = document.getElementById("btn-novo-vid");
+
+    if (professor) {
+
+        botao.style.background = "#16a34a";
+        botao.innerText = "🔓 Painel do Professor (Ativo)";
+
+        novoVideo.style.display = "block";
+
+    } else {
+
+        novoVideo.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   ABRIR / FECHAR PAINEL
+========================================================= */
+
+async function alternarPainelAdmin() {
+
+    const professor = await ehProfessor();
+
+    if (!professor) {
+
+        const {
+            data: { session }
+        } = await db.auth.getSession();
+
+        if (!session) {
+
+            window.location.href =
+                "../login.html?redirect=paginas/videos.html";
+
+            return;
+
+        }
+
+        alert("Sua conta não possui permissão de professor.");
+
+        return;
+    }
+
+    const painel = document.getElementById("painel-admin");
+
+    painel.style.display =
+        painel.style.display === "none"
+            ? "block"
+            : "none";
+
+}
+
+
+async function abrirPainelAdicionar() {
+
+    if (!(await ehProfessor())) {
+
+        alert("Acesso restrito ao professor.");
+
+        return;
+
+    }
+
+    const painel =
+        document.getElementById("painel-admin");
+
+    painel.style.display = "block";
+
+    painel.scrollIntoView({
+        behavior: "smooth"
     });
 
-    async function inicializarBancoVideos() {
-        let { data, error } = await supabaseClient.from('videos').select('*');
-        if (!data || data.length === 0) {
-            for (let v of videosPadrao) {
-                await supabaseClient.from('videos').insert([v]);
-            }
-        }
-    }
+}
 
-    function verificarSeProfessor() {
-        return sessionStorage.getItem('professor_autenticado') === 'true';
-    }
 
-    function verificarEstadoProfessorInicial() {
-        if (verificarSeProfessor()) {
-            document.getElementById('btn-painel-toggle').style.background = '#16a34a';
-            document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
-            document.getElementById('btn-novo-vid').style.display = 'block';
-        } else {
-            document.getElementById('btn-novo-vid').style.display = 'none';
-        }
-    }
+async function sairModoProfessor() {
 
-    async function alternarPainelAdmin() {
-        let painel = document.getElementById('painel-admin');
-        
-        if (!verificarSeProfessor()) {
-            let email = prompt("E-mail de acesso do professor:");
-            if (!email) return;
-            let senha = prompt("Senha de acesso:");
-            if (!senha) return;
+    await db.auth.signOut();
 
-            let { data, error } = await supabaseClient.auth.signInWithPassword({ email, senha });
-            if (error) {
-                alert("Erro ao entrar: " + error.message);
-                return;
-            }
+    document.getElementById("painel-admin").style.display = "none";
 
-            sessionStorage.setItem('professor_autenticado', 'true');
-            document.getElementById('btn-painel-toggle').style.background = '#16a34a';
-            document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
-            document.getElementById('btn-novo-vid').style.display = 'block';
-            carregarVideos();
-        }
+    document.getElementById("btn-painel-toggle").style.background =
+        "#7c3aed";
 
-        painel.style.display = painel.style.display === "none" ? "block" : "none";
-    }
+    document.getElementById("btn-painel-toggle").innerText =
+        "🔐 Painel do Professor";
 
-    async function abrirPainelAdicionar() {
-        if (!verificarSeProfessor()) {
-            if (!(await pedirSenhaOuLiberar())) return;
-        }
-        let painel = document.getElementById('painel-admin');
-        painel.style.display = "block";
-        painel.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById("btn-novo-vid").style.display =
+        "none";
 
-    async function sairModoProfessor() {
-        await supabaseClient.auth.signOut();
-        sessionStorage.removeItem('professor_autenticado');
-        document.getElementById('painel-admin').style.display = 'none';
-        document.getElementById('btn-painel-toggle').style.background = '#7c3aed';
-        document.getElementById('btn-painel-toggle').innerText = '🔐 Painel do Professor';
-        document.getElementById('btn-novo-vid').style.display = 'none';
-        carregarVideos();
-    }
+    carregarVideos();
 
-    async function pedirSenhaOuLiberar() {
-        if (verificarSeProfessor()) return true;
+}
 
-        let email = prompt("E-mail de acesso do professor:");
-        if (!email) return false;
-        let senha = prompt("Senha de acesso:");
-        if (!senha) return false;
 
-        let { data, error } = await supabaseClient.auth.signInWithPassword({ email, senha });
+/* =========================================================
+   BANCO DE VÍDEOS
+========================================================= */
+
+async function inicializarBancoVideos() {
+
+    try {
+
+        const {
+            data,
+            error
+        } = await db
+            .from("videos")
+            .select("*");
+
         if (error) {
-            alert("Senha ou e-mail incorretos!");
-            return false;
+
+            console.warn("Não foi possível consultar vídeos.");
+
+            return;
+
         }
 
-        sessionStorage.setItem('professor_autenticado', 'true');
-        document.getElementById('btn-painel-toggle').style.background = '#16a34a';
-        document.getElementById('btn-painel-toggle').innerText = '🔓 Painel do Professor (Ativo)';
-        document.getElementById('btn-novo-vid').style.display = 'block';
-        carregarVideos();
-        return true;
+        if (!data || data.length === 0) {
+
+            /*
+             * Insere os vídeos padrão sem campo de curtidas.
+             * As curtidas ficam na tabela likes.
+             */
+
+            for (const video of videosPadrao) {
+
+                const { id, categoria, titulo, video: link, descricao } = video;
+
+                await db
+                    .from("videos")
+                    .insert([{
+                        id,
+                        categoria,
+                        titulo,
+                        video: link,
+                        descricao
+                    }]);
+
+            }
+
+        }
+
+    } catch (erro) {
+
+        console.warn("Banco de vídeos indisponível.");
+
     }
 
-    function converterParaEmbed(url) {
-        if (!url) return "";
-        if (url.includes('/embed/')) return url;
+}
 
-        let videoId = "";
-        if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1]?.split('?')[0];
-        } else if (url.includes('watch?v=')) {
-            videoId = url.split('watch?v=')[1]?.split('&')[0];
+
+async function obterVideos() {
+
+    try {
+
+        const {
+            data,
+            error
+        } = await db
+            .from("videos")
+            .select("*");
+
+        if (error || !data || data.length === 0) {
+
+            return videosPadrao;
+
         }
 
-        if (videoId) {
-            return "https://www.youtube.com/embed/" + videoId;
-        }
+        return data;
+
+    } catch {
+
+        return videosPadrao;
+
+    }
+
+}
+
+
+/* =========================================================
+   EMBED YOUTUBE
+========================================================= */
+
+function converterParaEmbed(url) {
+
+    if (!url) return "";
+
+    if (url.includes("/embed/")) {
         return url;
     }
 
-    async function obterVideos() {
-        let { data, error } = await supabaseClient.from('videos').select('*');
-        return data || [];
+    let videoId = "";
+
+    if (url.includes("youtu.be/")) {
+
+        videoId =
+            url
+                .split("youtu.be/")[1]
+                ?.split("?")[0];
+
+    } else if (url.includes("watch?v=")) {
+
+        videoId =
+            url
+                .split("watch?v=")[1]
+                ?.split("&")[0];
+
     }
 
-    async function carregarVideos() {
-        let containerPrincipal = document.getElementById('container-categorias-videos');
-        containerPrincipal.innerHTML = "";
-        let videos = await obterVideos();
-        let eProfessor = verificarSeProfessor();
+    if (videoId) {
 
-        let categoriasOrdem = [
-            '6º Ano - Química Básica',
-            '7º Ano - Átomos',
-            '8º Ano - Tabela Periódica e Ligações',
-            '9º Ano - Química Avançada',
-            'Ensino Médio'
-        ];
+        return "https://www.youtube.com/embed/" + videoId;
 
-        categoriasOrdem.forEach(catNome => {
-            let videosDaCategoria = videos.filter(v => v.categoria === catNome);
-            let secao = document.createElement('section');
-            
-            let tituloSecao = document.createElement('h2');
-            tituloSecao.innerText = catNome;
-            tituloSecao.style.marginBottom = "10px";
-            secao.appendChild(tituloSecao);
-
-            let gridDiv = document.createElement('div');
-            gridDiv.className = 'container';
-
-            videosDaCategoria.forEach(vid => {
-                let cardDiv = document.createElement('div');
-                cardDiv.className = "card";
-
-                let likes = localStorage.getItem(vid.id + '_likes') || '0';
-                let curtido = localStorage.getItem(vid.id + '_curtido') === 'true';
-                let corBtnCurtir = curtido ? '#dc2626' : '#2563eb';
-                let linkVideoEmbed = converterParaEmbed(vid.video);
-
-                let botoesAdminHtml = eProfessor ? `
-                    <div>
-                        <button onclick="editarVideo('${vid.id}')" style="background: #374151; color: white; border: none; padding: 2px 5px; border-radius: 3px; cursor: pointer; font-size: 11px;">✏️ Editar</button>
-                        <button onclick="excluirVideo('${vid.id}')" style="background: #b91c1c; color: white; border: none; padding: 2px 5px; border-radius: 3px; cursor: pointer; font-size: 11px;">🗑️ Excluir</button>
-                    </div>
-                ` : '';
-
-                cardDiv.innerHTML = `
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
-                            <h3 style="margin-top: 0; margin-bottom: 6px; color: #fff; font-size: 16px;">${vid.titulo}</h3>
-                            ${botoesAdminHtml}
-                        </div>
-
-                        <iframe width="100%" height="180" src="${linkVideoEmbed}" style="border: none; border-radius: 4px;" allowfullscreen></iframe>
-
-                        <p style="margin-top: 8px; margin-bottom: 0; font-size: 14px;">${vid.descricao}</p>
-                    </div>
-
-                    <div class="secao-comentarios-card">
-                        <button id="btn-${vid.id}" onclick="curtir('${vid.id}')" style="background: ${corBtnCurtir}; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px;" data-curtido="${curtido}">❤️ Curtir (<span id="likes-${vid.id}">${likes}</span>)</button>
-                        <div style="margin-top: 8px;">
-                            <div class="form-inputs-comentario">
-                                <input type="text" id="autor-${vid.id}" placeholder="Seu nome..." style="width: 32%; padding: 4px 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; font-size: 13px;">
-                                <input type="text" id="input-${vid.id}" placeholder="Escreva um comentário..." onkeypress="verificarEnter(event, 'autor-${vid.id}', 'input-${vid.id}', '${vid.id}')" style="width: 66%; padding: 4px 6px; border-radius: 4px; border: 1px solid #555; background: #222; color: white; font-size: 13px;">
-                            </div>
-                            <button onclick="comentar('autor-${vid.id}', 'input-${vid.id}', '${vid.id}')" style="background: #16a34a; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 4px; font-size: 13px;">Enviar Comentário</button>
-                        </div>
-                        <div id="lista-${vid.id}" style="margin-top: 8px; text-align: left;"></div>
-                    </div>
-                `;
-
-                gridDiv.appendChild(cardDiv);
-                carregarComentariosDoCard(vid.id);
-            });
-
-            secao.appendChild(gridDiv);
-            containerPrincipal.appendChild(secao);
-        });
     }
 
-    async function salvarNovoVideo() {
-        let categoria = document.getElementById('novo-categoria').value;
-        let titulo = document.getElementById('novo-titulo').value.trim();
-        let video = document.getElementById('novo-link').value.trim();
-        let descricao = document.getElementById('novo-descricao').value.trim();
+    return url;
 
-        if (!titulo || !video) {
-            alert("Preencha pelo menos o Título e o Link do Vídeo!");
-            return;
-        }
+}
 
-        let novoId = 'vid-' + new Date().getTime();
-        let { error } = await supabaseClient.from('videos').insert([{
-            id: novoId,
-            categoria: categoria,
-            titulo: titulo,
-            video: video,
-            descricao: descricao
-        }]);
+
+/* =========================================================
+   CURTIDAS
+========================================================= */
+
+function chaveLike(id) {
+
+    return "video:" + id;
+
+}
+
+
+async function obterLikes(id) {
+
+    try {
+
+        const {
+            count,
+            error
+        } = await db
+            .from("likes")
+            .select("id", {
+                count: "exact",
+                head: true
+            })
+            .eq("item_id", chaveLike(id));
 
         if (error) {
-            alert("Erro ao salvar vídeo: " + error.message);
-            return;
+
+            console.warn("Erro ao carregar likes:", error);
+
+            return 0;
+
         }
 
-        document.getElementById('novo-titulo').value = '';
-        document.getElementById('novo-link').value = '';
-        document.getElementById('novo-descricao').value = '';
-        document.getElementById('painel-admin').style.display = 'none';
+        return count || 0;
 
-        carregarVideos();
+    } catch {
+
+        return 0;
+
     }
 
-    async function excluirVideo(idVid) {
-        if (!(await pedirSenhaOuLiberar())) return;
+}
 
-        if (confirm("Tem certeza que deseja apagar este vídeo?")) {
-            await supabaseClient.from('videos').delete().eq('id', idVid);
-            carregarVideos();
+
+async function atualizarLike(id) {
+
+    const quantidade =
+        await obterLikes(id);
+
+    const span =
+        document.getElementById("likes-" + id);
+
+    if (span) {
+
+        span.innerText = quantidade;
+
+    }
+
+}
+
+
+async function curtir(id) {
+
+    const chave =
+        "like_video_" + id;
+
+    if (localStorage.getItem(chave) === "true") {
+
+        alert("Você já curtiu este vídeo neste navegador.");
+
+        return;
+
+    }
+
+    const { error } =
+        await db
+            .from("likes")
+            .insert([{
+                item_id: chaveLike(id)
+            }]);
+
+    if (error) {
+
+        alert("Não foi possível registrar a curtida.");
+
+        console.error(error);
+
+        return;
+
+    }
+
+    localStorage.setItem(chave, "true");
+
+    await atualizarLike(id);
+
+    const botao =
+        document.getElementById("btn-" + id);
+
+    if (botao) {
+
+        botao.style.background = "#dc2626";
+
+    }
+
+}
+
+
+/* =========================================================
+   CARREGAR VÍDEOS
+========================================================= */
+
+async function carregarVideos() {
+
+    const container =
+        document.getElementById(
+            "container-categorias-videos"
+        );
+
+    container.innerHTML = "";
+
+    const videos =
+        await obterVideos();
+
+    const professor =
+        await ehProfessor();
+
+    const categoriasOrdem = [
+
+        "6º Ano - Química Básica",
+
+        "7º Ano - Átomos",
+
+        "8º Ano - Tabela Periódica e Ligações",
+
+        "9º Ano - Química Avançada",
+
+        "Ensino Médio"
+
+    ];
+
+
+    for (const categoria of categoriasOrdem) {
+
+        const videosDaCategoria =
+            videos.filter(
+                video =>
+                    video.categoria === categoria
+            );
+
+        if (videosDaCategoria.length === 0) {
+            continue;
         }
-    }
 
-    async function editarVideo(idVid) {
-        if (!(await pedirSenhaOuLiberar())) return;
 
-        let { data } = await supabaseClient.from('videos').select('*').eq('id', idVid);
-        let vid = data ? data[0] : null;
-        if (!vid) return;
+        const secao =
+            document.createElement("section");
 
-        let novoTitulo = prompt("Edite o Título:", vid.titulo);
-        if (novoTitulo === null) return;
-        
-        let novoLink = prompt("Edite o Link do YouTube:", vid.video);
-        if (novoLink === null) return;
-        
-        let novaDescricao = prompt("Edite a Descrição:", vid.descricao);
-        if (novaDescricao === null) return;
 
-        await supabaseClient.from('videos').update({
-            titulo: novoTitulo,
-            video: novoLink,
-            descricao: novaDescricao
-        }).eq('id', idVid);
+        const titulo =
+            document.createElement("h2");
 
-        carregarVideos();
-    }
+        titulo.innerText = categoria;
 
-    function curtir(idVid) {
-        let span = document.getElementById('likes-' + idVid);
-        let btn = document.getElementById('btn-' + idVid);
-        let atual = parseInt(span.innerText);
-        let curtido = btn.dataset.curtido === 'true';
+        titulo.style.marginBottom = "10px";
 
-        if (curtido) {
-            atual -= 1;
-            btn.dataset.curtido = 'false';
-            btn.style.background = '#2563eb';
-        } else {
-            atual += 1;
-            btn.dataset.curtido = 'true';
-            btn.style.background = '#dc2626';
+        secao.appendChild(titulo);
+
+
+        const grid =
+            document.createElement("div");
+
+        grid.className = "container";
+
+
+        for (const vid of videosDaCategoria) {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "card";
+
+
+            const likes =
+                await obterLikes(vid.id);
+
+
+            const jaCurtiu =
+                localStorage.getItem(
+                    "like_video_" + vid.id
+                ) === "true";
+
+
+            const embed =
+                converterParaEmbed(vid.video);
+
+
+            const admin =
+                professor
+                    ? `
+                        <div>
+                            <button
+                                onclick="editarVideo('${vid.id}')"
+                                style="
+                                    background:#374151;
+                                    color:white;
+                                    border:none;
+                                    padding:2px 5px;
+                                    border-radius:3px;
+                                    cursor:pointer;
+                                    font-size:11px;
+                                ">
+                                ✏️ Editar
+                            </button>
+
+                            <button
+                                onclick="excluirVideo('${vid.id}')"
+                                style="
+                                    background:#b91c1c;
+                                    color:white;
+                                    border:none;
+                                    padding:2px 5px;
+                                    border-radius:3px;
+                                    cursor:pointer;
+                                    font-size:11px;
+                                ">
+                                🗑️ Excluir
+                            </button>
+                        </div>
+                    `
+                    : "";
+
+
+            card.innerHTML = `
+
+                <div>
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:flex-start;
+                        margin-bottom:4px;
+                    ">
+
+                        <h3 style="
+                            margin-top:0;
+                            margin-bottom:6px;
+                            color:#fff;
+                            font-size:16px;
+                        ">
+                            ${escaparHTML(vid.titulo)}
+                        </h3>
+
+                        ${admin}
+
+                    </div>
+
+
+                    <iframe
+                        width="100%"
+                        height="180"
+                        src="${escaparAtributo(embed)}"
+                        style="
+                            border:none;
+                            border-radius:4px;
+                        "
+                        allowfullscreen>
+                    </iframe>
+
+
+                    <p style="
+                        margin-top:8px;
+                        margin-bottom:0;
+                        font-size:14px;
+                    ">
+                        ${escaparHTML(vid.descricao || "")}
+                    </p>
+
+                </div>
+
+
+                <div class="secao-comentarios-card">
+
+                    <button
+                        id="btn-${vid.id}"
+                        onclick="curtir('${vid.id}')"
+                        style="
+                            background:${jaCurtiu ? "#dc2626" : "#2563eb"};
+                            color:white;
+                            border:none;
+                            padding:5px 10px;
+                            border-radius:4px;
+                            cursor:pointer;
+                            font-size:13px;
+                        ">
+
+                        ❤️ Curtir
+                        (<span id="likes-${vid.id}">
+                            ${likes}
+                        </span>)
+
+                    </button>
+
+
+                    <div style="margin-top:8px;">
+
+                        <div class="form-inputs-comentario">
+
+                            <input
+                                type="text"
+                                id="autor-${vid.id}"
+                                placeholder="Seu nome..."
+                                style="
+                                    width:32%;
+                                    padding:4px 6px;
+                                    border-radius:4px;
+                                    border:1px solid #555;
+                                    background:#222;
+                                    color:white;
+                                    font-size:13px;
+                                ">
+
+
+                            <input
+                                type="text"
+                                id="input-${vid.id}"
+                                placeholder="Escreva um comentário..."
+                                onkeypress="
+                                    verificarEnter(
+                                        event,
+                                        'autor-${vid.id}',
+                                        'input-${vid.id}',
+                                        '${vid.id}'
+                                    )
+                                "
+                                style="
+                                    width:66%;
+                                    padding:4px 6px;
+                                    border-radius:4px;
+                                    border:1px solid #555;
+                                    background:#222;
+                                    color:white;
+                                    font-size:13px;
+                                ">
+
+                        </div>
+
+
+                        <button
+                            onclick="
+                                comentar(
+                                    'autor-${vid.id}',
+                                    'input-${vid.id}',
+                                    '${vid.id}'
+                                )
+                            "
+                            style="
+                                background:#16a34a;
+                                color:white;
+                                border:none;
+                                padding:5px 8px;
+                                border-radius:4px;
+                                cursor:pointer;
+                                width:100%;
+                                margin-top:4px;
+                                font-size:13px;
+                            ">
+                            Enviar Comentário
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="lista-${vid.id}"
+                        style="
+                            margin-top:8px;
+                            text-align:left;
+                        ">
+                    </div>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+            await carregarComentariosDoCard(vid.id);
+
         }
 
-        span.innerText = atual;
-        localStorage.setItem(idVid + '_likes', atual);
-        localStorage.setItem(idVid + '_curtido', btn.dataset.curtido);
+
+        secao.appendChild(grid);
+
+        container.appendChild(secao);
+
     }
 
-    async function comentar(idAutorElem, idInputElem, idVid) {
-        let inputAutor = document.getElementById(idAutorElem);
-        let inputTexto = document.getElementById(idInputElem);
-        
-        let autor = inputAutor.value.trim();
-        if (autor === "") autor = "Visitante";
-        
-        let texto = inputTexto.value.trim();
-        
-        if (texto !== "") {
-            let timestampAtual = new Date().getTime();
-            let { data } = await supabaseClient.from('comentarios_videos').insert([{
-                video_id: idVid,
+}
+
+
+/* =========================================================
+   NOVO VÍDEO
+========================================================= */
+
+async function salvarNovoVideo() {
+
+    if (!(await ehProfessor())) {
+
+        alert("Acesso restrito ao professor.");
+
+        return;
+
+    }
+
+
+    const categoria =
+        document.getElementById("novo-categoria").value;
+
+    const titulo =
+        document.getElementById("novo-titulo").value.trim();
+
+    const video =
+        document.getElementById("novo-link").value.trim();
+
+    const descricao =
+        document.getElementById("novo-descricao").value.trim();
+
+
+    if (!titulo || !video) {
+
+        alert(
+            "Preencha pelo menos o Título e o Link do Vídeo!"
+        );
+
+        return;
+
+    }
+
+
+    const novoId =
+        "vid-" + Date.now();
+
+
+    const { error } =
+        await db
+            .from("videos")
+            .insert([{
+                id: novoId,
+                categoria,
+                titulo,
+                video,
+                descricao
+            }]);
+
+
+    if (error) {
+
+        alert(
+            "Erro ao salvar vídeo: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById("novo-titulo").value = "";
+    document.getElementById("novo-link").value = "";
+    document.getElementById("novo-descricao").value = "";
+
+    document.getElementById("painel-admin").style.display =
+        "none";
+
+
+    await carregarVideos();
+
+}
+
+
+/* =========================================================
+   EXCLUIR VÍDEO
+========================================================= */
+
+async function excluirVideo(id) {
+
+    if (!(await ehProfessor())) {
+
+        alert("Acesso restrito ao professor.");
+
+        return;
+
+    }
+
+
+    if (!confirm("Tem certeza que deseja apagar este vídeo?")) {
+        return;
+    }
+
+
+    const { error } =
+        await db
+            .from("videos")
+            .delete()
+            .eq("id", id);
+
+
+    if (error) {
+
+        alert(
+            "Erro ao excluir vídeo: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    await carregarVideos();
+
+}
+
+
+/* =========================================================
+   EDITAR VÍDEO
+========================================================= */
+
+async function editarVideo(id) {
+
+    if (!(await ehProfessor())) {
+
+        alert("Acesso restrito ao professor.");
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("videos")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+
+
+    if (error || !data) {
+
+        alert("Vídeo não encontrado.");
+
+        return;
+
+    }
+
+
+    const titulo =
+        prompt(
+            "Edite o Título:",
+            data.titulo
+        );
+
+    if (titulo === null) return;
+
+
+    const link =
+        prompt(
+            "Edite o Link do YouTube:",
+            data.video
+        );
+
+    if (link === null) return;
+
+
+    const descricao =
+        prompt(
+            "Edite a Descrição:",
+            data.descricao || ""
+        );
+
+    if (descricao === null) return;
+
+
+    const { error: erroUpdate } =
+        await db
+            .from("videos")
+            .update({
+                titulo: titulo.trim(),
+                video: link.trim(),
+                descricao: descricao.trim()
+            })
+            .eq("id", id);
+
+
+    if (erroUpdate) {
+
+        alert(
+            "Erro ao atualizar: " +
+            erroUpdate.message
+        );
+
+        return;
+
+    }
+
+
+    await carregarVideos();
+
+}
+
+
+/* =========================================================
+   COMENTÁRIOS
+========================================================= */
+
+function chaveComentario(id) {
+
+    return "video:" + id;
+
+}
+
+
+async function comentar(
+    idAutor,
+    idInput,
+    idVideo
+) {
+
+    const autorInput =
+        document.getElementById(idAutor);
+
+    const textoInput =
+        document.getElementById(idInput);
+
+
+    const autor =
+        autorInput.value.trim() ||
+        "Visitante";
+
+    const texto =
+        textoInput.value.trim();
+
+
+    if (!texto) return;
+
+
+    const { error } =
+        await db
+            .from("comentarios")
+            .insert([{
                 autor: autor,
                 texto: texto,
-                timestamp: timestampAtual
-            }]).select();
+                item_id: chaveComentario(idVideo)
+            }]);
 
-            if (data) {
-                recarregarListaComentarios(idVid);
-                inputTexto.value = "";
-                inputAutor.value = "";
+
+    if (error) {
+
+        alert(
+            "Erro ao enviar comentário: " +
+            error.message
+        );
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    textoInput.value = "";
+    autorInput.value = "";
+
+
+    await carregarComentariosDoCard(idVideo);
+
+}
+
+
+function verificarEnter(
+    event,
+    idAutor,
+    idInput,
+    idVideo
+) {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        comentar(
+            idAutor,
+            idInput,
+            idVideo
+        );
+
+    }
+
+}
+
+
+async function carregarComentariosDoCard(idVideo) {
+
+    const lista =
+        document.getElementById(
+            "lista-" + idVideo
+        );
+
+    if (!lista) return;
+
+
+    lista.innerHTML = "";
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("comentarios")
+        .select("*")
+        .eq(
+            "item_id",
+            chaveComentario(idVideo)
+        )
+        .order(
+            "criado_em",
+            {
+                ascending: true
             }
-        }
+        );
+
+
+    if (error) {
+
+        console.warn(
+            "Erro ao carregar comentários:",
+            error
+        );
+
+        return;
+
     }
 
-    function verificarEnter(event, idAutorElem, idInputElem, idVid) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            comentar(idAutorElem, idInputElem, idVid);
-        }
+
+    for (const item of data || []) {
+
+        adicionarElementoComentario(
+            lista,
+            item.autor || "Visitante",
+            item.texto || "",
+            calcularTempoRelativo(item.criado_em),
+            idVideo,
+            item.id
+        );
+
     }
 
-    async function editarComentario(dbId, idVid) {
-        let novoTexto = prompt("Edite seu comentário:");
-        if (novoTexto !== null && novoTexto.trim() !== "") {
-            await supabaseClient.from('comentarios_videos').update({ texto: novoTexto.trim() }).eq('id', dbId);
-            recarregarListaComentarios(idVid);
-        }
+}
+
+
+/* =========================================================
+   EDITAR COMENTÁRIO
+========================================================= */
+
+async function editarComentario(
+    dbId,
+    idVideo
+) {
+
+    if (!(await ehProfessor())) {
+
+        alert(
+            "Apenas o Professor pode editar comentários."
+        );
+
+        return;
+
     }
 
-    async function excluirComentario(dbId, idVid) {
-        if (!verificarSeProfessor()) {
-            alert("Apenas o Professor pode apagar comentários. Ative o Painel do Professor primeiro!");
-            return;
-        }
 
-        if (confirm("Tem certeza que deseja apagar este comentário?")) {
-            await supabaseClient.from('comentarios_videos').delete().eq('id', dbId);
-            recarregarListaComentarios(idVid);
-        }
+    const novoTexto =
+        prompt("Edite o comentário:");
+
+    if (
+        novoTexto === null ||
+        !novoTexto.trim()
+    ) {
+        return;
     }
 
-    async function carregarComentariosDoCard(idVid) {
-        let lista = document.getElementById('lista-' + idVid);
-        if (!lista) return;
-        lista.innerHTML = "";
 
-        let { data: dadosSalvos } = await supabaseClient.from('comentarios_videos').select('*').eq('video_id', idVid).order('id', { ascending: true });
-        if (dadosSalvos) {
-            dadosSalvos.forEach((item) => {
-                let autor = item.autor || "Visitante";
-                let tempoFormatado = calcularTempoRelativo(item.timestamp || new Date().getTime());
-                adicionarElementoComentario(lista, autor, item.texto, tempoFormatado, idVid, item.id);
-            });
-        }
+    const { error } =
+        await db
+            .from("comentarios")
+            .update({
+                texto: novoTexto.trim()
+            })
+            .eq("id", dbId);
+
+
+    if (error) {
+
+        alert(
+            "Erro ao editar comentário: " +
+            error.message
+        );
+
+        return;
+
     }
 
-    function recarregarListaComentarios(idVid) {
-        carregarComentariosDoCard(idVid);
+
+    await carregarComentariosDoCard(idVideo);
+
+}
+
+
+/* =========================================================
+   EXCLUIR COMENTÁRIO
+========================================================= */
+
+async function excluirComentario(
+    dbId,
+    idVideo
+) {
+
+    if (!(await ehProfessor())) {
+
+        alert(
+            "Apenas o Professor pode apagar comentários."
+        );
+
+        return;
+
     }
 
-    function calcularTempoRelativo(timestamp) {
-        let agora = new Date().getTime();
-        let diferencaSegundos = Math.floor((agora - timestamp) / 1000);
 
-        if (diferencaSegundos < 60) return "agora mesmo";
-        let diferencaMinutos = Math.floor(diferencaSegundos / 60);
-        if (diferencaMinutos < 60) return "há " + diferencaMinutos + (diferencaMinutos === 1 ? " minuto" : " minutos");
-        let diferencaHoras = Math.floor(diferencaMinutos / 60);
-        if (diferencaHoras < 24) return "há " + diferencaHoras + (diferencaHoras === 1 ? " hora" : " horas");
-        let diferencaDias = Math.floor(diferencaHoras / 24);
-        return "há " + diferencaDias + (diferencaDias === 1 ? " dia" : " dias");
+    if (
+        !confirm(
+            "Tem certeza que deseja apagar este comentário?"
+        )
+    ) {
+        return;
     }
 
-    function adicionarElementoComentario(lista, autor, texto, tempo, idVid, dbId) {
-        let eProfessor = verificarSeProfessor();
 
-        let novoComentario = document.createElement("div");
-        novoComentario.style.background = "#2a2a2a";
-        novoComentario.style.borderLeft = "4px solid #16a34a";
-        novoComentario.style.padding = "6px 8px";
-        novoComentario.style.borderRadius = "4px";
-        novoComentario.style.marginTop = "4px";
-        novoComentario.style.fontSize = "13px";
+    const { error } =
+        await db
+            .from("comentarios")
+            .delete()
+            .eq("id", dbId);
 
-        let cabecalho = document.createElement("div");
-        cabecalho.style.display = "flex";
-        cabecalho.style.justifyContent = "space-between";
-        cabecalho.style.marginBottom = "2px";
 
-        let autorSpan = document.createElement("span");
-        autorSpan.innerText = "👤 " + autor;
-        autorSpan.style.fontWeight = "bold";
-        autorSpan.style.color = "#4ade80";
+    if (error) {
 
-        let horaSpan = document.createElement("span");
-        horaSpan.innerText = tempo;
-        horaSpan.style.fontSize = "10px";
-        horaSpan.style.color = "#aaa";
+        alert(
+            "Erro ao excluir comentário: " +
+            error.message
+        );
 
-        cabecalho.appendChild(autorSpan);
-        cabecalho.appendChild(horaSpan);
+        return;
 
-        let corpo = document.createElement("div");
-        corpo.style.display = "flex";
-        corpo.style.justifyContent = "space-between";
-        corpo.style.alignItems = "center";
-
-        let textoSpan = document.createElement("span");
-        textoSpan.innerText = texto;
-        textoSpan.style.wordBreak = "break-word";
-        textoSpan.style.marginRight = "8px";
-        textoSpan.style.color = "#fff";
-
-        let acoesDiv = document.createElement("div");
-        acoesDiv.style.display = "flex";
-        acoesDiv.style.gap = "4px";
-        acoesDiv.style.whiteSpace = "nowrap";
-
-        let btnEditar = document.createElement("button");
-        btnEditar.innerText = "✏️";
-        btnEditar.style.background = "#374151";
-        btnEditar.style.color = "white";
-        btnEditar.style.border = "none";
-        btnEditar.style.padding = "2px 5px";
-        btnEditar.style.borderRadius = "3px";
-        btnEditar.style.cursor = "pointer";
-        btnEditar.style.fontSize = "10px";
-        btnEditar.title = "Editar comentário";
-        btnEditar.onclick = function() {
-            editarComentario(dbId, idVid);
-        };
-        acoesDiv.appendChild(btnEditar);
-
-        if (eProfessor) {
-            let btnExcluir = document.createElement("button");
-            btnExcluir.innerText = "🗑️";
-            btnExcluir.style.background = "#b91c1c";
-            btnExcluir.style.color = "white";
-            btnExcluir.style.border = "none";
-            btnExcluir.style.padding = "2px 5px";
-            btnExcluir.style.borderRadius = "3px";
-            btnExcluir.style.cursor = "pointer";
-            btnExcluir.style.fontSize = "10px";
-            btnExcluir.title = "Apagar comentário (Modo Professor)";
-            btnExcluir.onclick = function() {
-                excluirComentario(dbId, idVid);
-            };
-            acoesDiv.appendChild(btnExcluir);
-        }
-
-        corpo.appendChild(textoSpan);
-        corpo.appendChild(acoesDiv);
-
-        novoComentario.appendChild(cabecalho);
-        novoComentario.appendChild(corpo);
-        lista.appendChild(novoComentario);
     }
+
+
+    await carregarComentariosDoCard(idVideo);
+
+}
+
+
+/* =========================================================
+   ELEMENTO DO COMENTÁRIO
+========================================================= */
+
+async function adicionarElementoComentario(
+    lista,
+    autor,
+    texto,
+    tempo,
+    idVideo,
+    dbId
+) {
+
+    const professor =
+        await ehProfessor();
+
+
+    const comentario =
+        document.createElement("div");
+
+
+    comentario.style.background =
+        "#2a2a2a";
+
+    comentario.style.borderLeft =
+        "4px solid #16a34a";
+
+    comentario.style.padding =
+        "6px 8px";
+
+    comentario.style.borderRadius =
+        "4px";
+
+    comentario.style.marginTop =
+        "4px";
+
+    comentario.style.fontSize =
+        "13px";
+
+
+    const cabecalho =
+        document.createElement("div");
+
+
+    cabecalho.style.display =
+        "flex";
+
+    cabecalho.style.justifyContent =
+        "space-between";
+
+    cabecalho.style.marginBottom =
+        "2px";
+
+
+    const autorSpan =
+        document.createElement("span");
+
+
+    autorSpan.innerText =
+        "👤 " + autor;
+
+    autorSpan.style.fontWeight =
+        "bold";
+
+    autorSpan.style.color =
+        "#4ade80";
+
+
+    const horaSpan =
+        document.createElement("span");
+
+
+    horaSpan.innerText =
+        tempo;
+
+    horaSpan.style.fontSize =
+        "10px";
+
+    horaSpan.style.color =
+        "#aaa";
+
+
+    cabecalho.appendChild(
+        autorSpan
+    );
+
+    cabecalho.appendChild(
+        horaSpan
+    );
+
+
+    const corpo =
+        document.createElement("div");
+
+
+    corpo.style.display =
+        "flex";
+
+    corpo.style.justifyContent =
+        "space-between";
+
+    corpo.style.alignItems =
+        "center";
+
+
+    const textoSpan =
+        document.createElement("span");
+
+
+    textoSpan.innerText =
+        texto;
+
+    textoSpan.style.wordBreak =
+        "break-word";
+
+    textoSpan.style.marginRight =
+        "8px";
+
+    textoSpan.style.color =
+        "#fff";
+
+
+    const acoes =
+        document.createElement("div");
+
+
+    acoes.style.display =
+        "flex";
+
+    acoes.style.gap =
+        "4px";
+
+    acoes.style.whiteSpace =
+        "nowrap";
+
+
+    if (professor) {
+
+        const editar =
+            document.createElement("button");
+
+        editar.innerText =
+            "✏️";
+
+        editar.title =
+            "Editar comentário";
+
+        editar.style.background =
+            "#374151";
+
+        editar.style.color =
+            "white";
+
+        editar.style.border =
+            "none";
+
+        editar.style.padding =
+            "2px 5px";
+
+        editar.style.borderRadius =
+            "3px";
+
+        editar.style.cursor =
+            "pointer";
+
+        editar.style.fontSize =
+            "10px";
+
+
+        editar.onclick = () =>
+            editarComentario(
+                dbId,
+                idVideo
+            );
+
+
+        acoes.appendChild(
+            editar
+        );
+
+
+        const excluir =
+            document.createElement("button");
+
+        excluir.innerText =
+            "🗑️";
+
+        excluir.title =
+            "Apagar comentário";
+
+        excluir.style.background =
+            "#b91c1c";
+
+        excluir.style.color =
+            "white";
+
+        excluir.style.border =
+            "none";
+
+        excluir.style.padding =
+            "2px 5px";
+
+        excluir.style.borderRadius =
+            "3px";
+
+        excluir.style.cursor =
+            "pointer";
+
+        excluir.style.fontSize =
+            "10px";
+
+
+        excluir.onclick = () =>
+            excluirComentario(
+                dbId,
+                idVideo
+            );
+
+
+        acoes.appendChild(
+            excluir
+        );
+
+    }
+
+
+    corpo.appendChild(
+        textoSpan
+    );
+
+    corpo.appendChild(
+        acoes
+    );
+
+
+    comentario.appendChild(
+        cabecalho
+    );
+
+    comentario.appendChild(
+        corpo
+    );
+
+
+    lista.appendChild(
+        comentario
+    );
+
+}
+
+
+/* =========================================================
+   TEMPO
+========================================================= */
+
+function calcularTempoRelativo(data) {
+
+    const timestamp =
+        new Date(data).getTime();
+
+    if (isNaN(timestamp)) {
+        return "agora";
+    }
+
+
+    const agora =
+        Date.now();
+
+    const segundos =
+        Math.floor(
+            (agora - timestamp) / 1000
+        );
+
+
+    if (segundos < 60) {
+        return "agora mesmo";
+    }
+
+
+    const minutos =
+        Math.floor(
+            segundos / 60
+        );
+
+
+    if (minutos < 60) {
+
+        return (
+            "há " +
+            minutos +
+            (minutos === 1
+                ? " minuto"
+                : " minutos")
+        );
+
+    }
+
+
+    const horas =
+        Math.floor(
+            minutos / 60
+        );
+
+
+    if (horas < 24) {
+
+        return (
+            "há " +
+            horas +
+            (horas === 1
+                ? " hora"
+                : " horas")
+        );
+
+    }
+
+
+    const dias =
+        Math.floor(
+            horas / 24
+        );
+
+
+    return (
+        "há " +
+        dias +
+        (dias === 1
+            ? " dia"
+            : " dias")
+    );
+
+}
+
+
+/* =========================================================
+   SEGURANÇA DO HTML
+========================================================= */
+
+function escaparHTML(valor) {
+
+    return String(valor ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function escaparAtributo(valor) {
+
+    return escaparHTML(valor);
+
+}
+
 </script>
 
 </body>

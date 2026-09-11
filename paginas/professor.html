@@ -139,7 +139,7 @@
 
 <section>
 <div class="container" id="containerCards">
-    <!-- Os cards serão carregados dinamicamente aqui via Supabase -->
+    <!-- Os cards serão carregados dinamicamente aqui -->
 </div>
 </section>
 
@@ -153,32 +153,35 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Cards padrão iniciais
+    // Cards padrão iniciais (garantem exibição imediata caso o banco esteja vazio ou inacessível)
     const cardsIniciais = [
         {
             id: 'card-1',
             tipo: 'sobre',
             titulo: 'Sobre o Professor',
-            conteudo: 'Olá, eu sou o Professor Wendel, professor de Química e criador deste espaço de aprendizagem.<br><br>Este site foi desenvolvido para ajudar alunos a aprenderem Química de uma maneira mais simples, interativa e prática.<br><br>Aqui você encontrará conteúdos, vídeos, experimentos, perguntas e quizzes para melhorar seus conhecimentos.',
+            texto: 'Olá, eu sou o Professor Wendel, professor de Química e criador deste espaço de aprendizagem.<br><br>Este site foi desenvolvido para ajudar alunos a aprenderem Química de uma maneira mais simples, interativa e prática.<br><br>Aqui você encontrará conteúdos, vídeos, experimentos, perguntas e quizzes para melhorar seus conhecimentos.',
             imagem: '../assets/imagens/professor/wendel.png'
         },
         {
             id: 'card-2',
             tipo: 'normal',
             titulo: '🎯 Objetivo do Site',
-            conteudo: 'O objetivo deste projeto é tornar o estudo da Química mais interessante e acessível para todos os alunos.<br><br>Através de explicações, exemplos do cotidiano, experimentos e atividades interativas, o aprendizado fica mais fácil e divertido.'
+            texto: 'O objetivo deste projeto é tornar o estudo da Química mais interessante e acessível para todos os alunos.<br><br>Através de explicações, exemplos do cotidiano, experimentos e atividades interativas, o aprendizado fica mais fácil e divertido.',
+            imagem: null
         },
         {
             id: 'card-3',
             tipo: 'normal',
             titulo: '📚 O que você encontra aqui?',
-            conteudo: '🧪 Experimentos de Química<br><br>🎥 Vídeos educativos<br><br>📖 Conteúdos separados por séries<br><br>❓ Perguntas e respostas<br><br>🧠 Quiz interativo'
+            texto: '🧪 Experimentos de Química<br><br>🎥 Vídeos educativos<br><br>📖 Conteúdos separados por séries<br><br>❓ Perguntas e respostas<br><br>🧠 Quiz interativo',
+            imagem: null
         },
         {
             id: 'card-4',
             tipo: 'normal',
             titulo: '💬 Mensagem aos alunos',
-            conteudo: '"A Química está presente em tudo ao nosso redor. Meu objetivo é mostrar que aprender Química pode ser simples, interessante e divertido."<br><br>Estudem, pratiquem e nunca tenham medo de fazer perguntas. A curiosidade é o primeiro passo para aprender ciência.'
+            texto: '"A Química está presente em tudo ao nosso redor. Meu objetivo é mostrar que aprender Química pode ser simples, interessante e divertido."<br><br>Estudem, pratiquem e nunca tenham medo de fazer perguntas. A curiosidade é o primeiro passo para aprender ciência.',
+            imagem: null
         }
     ];
 
@@ -189,10 +192,16 @@
     });
 
     async function inicializarBancoCards() {
-        let { data, error } = await supabaseClient.from('professor_cards').select('*');
-        if (!data || data.length === 0) {
+        let { data, error } = await supabaseClient.from('cards_professor').select('*');
+        if (error || !data || data.length === 0) {
             for (let c of cardsIniciais) {
-                await supabaseClient.from('professor_cards').insert([c]);
+                await supabaseClient.from('cards_professor').insert([{
+                    id: c.id,
+                    titulo: c.titulo,
+                    texto: c.texto,
+                    tipo: c.tipo || 'normal',
+                    imagem: c.imagem || null
+                }]).select();
             }
         }
     }
@@ -240,8 +249,11 @@
     }
 
     async function obterCards() {
-        let { data, error } = await supabaseClient.from('professor_cards').select('*');
-        return data || [];
+        let { data, error } = await supabaseClient.from('cards_professor').select('*');
+        if (error || !data || data.length === 0) {
+            return cardsIniciais; // Fallback para garantir que os cards apareçam
+        }
+        return data;
     }
 
     async function renderizarCards() {
@@ -267,7 +279,7 @@
             }
 
             htmlConteudo += `<h2>${card.titulo}</h2>`;
-            htmlConteudo += `<p style="margin-bottom: 15px; text-align: left; padding: 0 10px;">${card.conteudo}</p>`;
+            htmlConteudo += `<p style="margin-bottom: 15px; text-align: left; padding: 0 10px;">${card.texto}</p>`;
 
             let estiloAcoes = logado ? 'display: block;' : 'display: none;';
             htmlConteudo += `
@@ -295,10 +307,11 @@
             id: novoId,
             tipo: 'normal',
             titulo: titulo,
-            conteudo: texto
+            texto: texto,
+            imagem: null
         };
 
-        let { error } = await supabaseClient.from('professor_cards').insert([novoCard]);
+        let { error } = await supabaseClient.from('cards_professor').insert([novoCard]);
         if (error) {
             alert("Erro ao adicionar card: " + error.message);
             return;
@@ -313,7 +326,7 @@
         if (!verificarSeProfessor()) return;
 
         if (confirm('Tem certeza que deseja excluir este card completamente?')) {
-            let { error } = await supabaseClient.from('professor_cards').delete().eq('id', id);
+            let { error } = await supabaseClient.from('cards_professor').delete().eq('id', id);
             if (error) {
                 alert("Erro ao excluir: " + error.message);
                 return;
@@ -326,23 +339,23 @@
     async function editarCard(id) {
         if (!verificarSeProfessor()) return;
 
-        let { data } = await supabaseClient.from('professor_cards').select('*').eq('id', id);
+        let { data } = await supabaseClient.from('cards_professor').select('*').eq('id', id);
         let card = data ? data[0] : null;
         if (!card) return;
 
-        let conteudoLimpo = card.conteudo.replace(/<br\s*[\/]?>/gi, '\n');
+        let textoLimpo = card.texto.replace(/<br\s*[\/]?>/gi, '\n');
 
         let novoTitulo = prompt("Edite o Título do Card:", card.titulo);
         if (novoTitulo === null) return;
 
-        let novoConteudo = prompt("Edite o Texto do Card:", conteudoLimpo);
-        if (novoConteudo === null) return;
+        let novoTexto = prompt("Edite o Texto do Card:", textoLimpo);
+        if (novoTexto === null) return;
 
-        novoConteudo = novoConteudo.replace(/\n/g, '<br>');
+        novoTexto = novoTexto.replace(/\n/g, '<br>');
 
-        let { error } = await supabaseClient.from('professor_cards').update({
+        let { error } = await supabaseClient.from('cards_professor').update({
             titulo: novoTitulo,
-            conteudo: novoConteudo
+            texto: novoTexto
         }).eq('id', id);
 
         if (error) {

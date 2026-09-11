@@ -7,18 +7,18 @@
 <title>6º Ano - Química</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client -->
+<!-- Supabase JS Client & Configuração Centralizada -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
 <style>
     /* Estilos do Painel do Professor */
     #barra-admin { background: #1b3b2b; padding: 12px; text-align: center; border-bottom: 2px solid #a3e4d7; font-family: Arial, sans-serif; position: sticky; top: 0; z-index: 1000; }
-    #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; }
+    #barra-admin input { padding: 6px; border-radius: 4px; border: none; outline: none; margin-right: 5px; background: #2a352f; color: white; }
     #barra-admin button { padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; border: none; }
     
     .modal-admin { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-    .modal-content-admin { background: #1e2621; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; color: white; border: 1px solid #a3e4d7; text-align: left; font-family: Arial, sans-serif; max-height: 90vh; overflow-y: auto; }
+    .modal-content-admin { background: #1e2621; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; color: white; border: 1px solid #a3e4d7; text-align: left; font-family: Arial, sans-serif; max-height: 90vh; overflow-y: auto; box-sizing: border-box; }
     .modal-content-admin input, .modal-content-admin textarea, .modal-content-admin select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #555; background: #2a352f; color: white; box-sizing: border-box; }
     
     .acoes-card { display: none !important; }
@@ -82,8 +82,8 @@
         <input type="text" id="card-btn-texto" placeholder="Explorar Matéria">
         
         <div style="text-align: right; margin-top: 10px;">
-            <button onclick="salvarCard()" style="background: #28a745; color: white;">Salvar</button>
-            <button onclick="fecharModalCard()" style="background: #6c757d; color: white; margin-left: 5px;">Cancelar</button>
+            <button onclick="salvarCard()" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Salvar</button>
+            <button onclick="fecharModalCard()" style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-left: 5px;">Cancelar</button>
         </div>
     </div>
 </div>
@@ -97,12 +97,12 @@
 </div>
 
 <nav>
-        <a href="index.html">Início</a>
-        <a href="paginas/experimentos.html">Experimentos</a>
-        <a href="paginas/videos.html">Vídeos</a>
-        <a href="paginas/perguntas.html">Perguntas</a>
-        <a href="paginas/professor.html">Professor</a>
-        <a href="sugestoes.html">Sugestões</a>
+    <a href="../index.html">Início</a>
+    <a href="experimentos.html">Experimentos</a>
+    <a href="videos.html">Vídeos</a>
+    <a href="perguntas.html">Perguntas</a>
+    <a href="professor.html">Professor</a>
+    <a href="../sugestoes.html">Sugestões</a>
 </nav>
 </header>
 
@@ -122,32 +122,7 @@
 <h2>Trilhas de Aprendizagem do 6º Ano</h2>
 
 <div class="container" id="container-cards">
-
-<!-- Cards Padrões Iniciais -->
-<div class="card" data-id="1">
-<h3>🧪 O que é a Química?</h3>
-<p>Descubra a ciência por trás de tudo e veja como ela transforma o nosso cotidiano.</p>
-<a href="../conteudos/6ano/introducao-quimica.html">Começar Trilha</a>
-</div>
-
-<div class="card" data-id="2">
-<h3>⚛️ O Mundo da Matéria</h3>
-<p>Explore tudo o que tem massa, ocupa espaço e forma o universo visível.</p>
-<a href="../conteudos/6ano/materia.html">Explorar Matéria</a>
-</div>
-
-<div class="card" data-id="3">
-<h3>🌡️ Estados Físicos</h3>
-<p>Entenda as transformações entre sólido, líquido e gasoso com exemplos práticos.</p>
-<a href="../conteudos/6ano/estados-fisicos.html">Ver Estados</a>
-</div>
-
-<div class="card" data-id="4">
-<h3>❓ Desafio 6º Ano</h3>
-<p>Coloque seus conhecimentos à prova com um quiz dinâmico e divertido.</p>
-<a href="../quiz/quiz.html">Jogar Quiz</a>
-</div>
-
+    <!-- Cards carregados dinamicamente via Supabase -->
 </div>
 </section>
 
@@ -157,25 +132,65 @@
 </footer>
 
 <script>
-    // Configuração do Supabase
-    const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIGci...'; // Complete com a chave completa se necessário, usando a que forneceu
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    let modoAdminAtivo = false;
+    const cardsPadrao6Ano = [
+        {
+            titulo: '🧪 O que é a Química?',
+            texto: 'Descubra a ciência por trás de tudo e veja como ela transforma o nosso cotidiano.',
+            btn_texto: 'Começar Trilha',
+            btn_link: '../conteudos/6ano/introducao-quimica.html'
+        },
+        {
+            titulo: '⚛️ O Mundo da Matéria',
+            texto: 'Explore tudo o que tem massa, ocupa espaço e forma o universo visível.',
+            btn_texto: 'Explorar Matéria',
+            btn_link: '../conteudos/6ano/materia.html'
+        },
+        {
+            titulo: '🌡️ Estados Físicos',
+            texto: 'Entenda as transformações entre sólido, líquido e gasoso com exemplos práticos.',
+            btn_texto: 'Ver Estados',
+            btn_link: '../conteudos/6ano/estados-fisicos.html'
+        },
+        {
+            titulo: '❓ Desafio 6º Ano',
+            texto: 'Coloque seus conhecimentos à prova com um quiz dinâmico e divertido.',
+            btn_texto: 'Jogar Quiz',
+            btn_link: '../quiz/quiz.html'
+        }
+    ];
 
     document.addEventListener("DOMContentLoaded", async () => {
-        // Verificar se já existe uma sessão ativa no Supabase
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (session) {
-            modoAdminAtivo = true;
-            ativarInterfaceAdmin();
-        }
-        carregarCardsDoSupabase();
+        await inicializarBancoCards6Ano();
+        await verificarSessaoInicial();
+        await carregarCardsSalvos();
     });
 
+    async function inicializarBancoCards6Ano() {
+        try {
+            let { data, error } = await supabaseClient.from('cards_6ano').select('*');
+            if (error || !data || data.length === 0) {
+                for (let card of cardsPadrao6Ano) {
+                    await supabaseClient.from('cards_6ano').insert([card]);
+                }
+            }
+        } catch (e) {
+            console.log("Modo offline ativado para os cards do 6º ano.");
+        }
+    }
+
+    async function verificarSessaoInicial() {
+        try {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                ativarInterfaceAdmin();
+            }
+        } catch (e) {
+            console.log("Sessão não verificada.");
+        }
+    }
+
     async function entrarAdmin() {
-        const email = document.getElementById('email-prof').value;
+        const email = document.getElementById('email-prof').value.trim();
         const senha = document.getElementById('senha-prof').value;
 
         if (!email || !senha) {
@@ -183,31 +198,24 @@
             return;
         }
 
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: senha
-        });
-
+        let { data, error } = await supabaseClient.auth.signInWithPassword({ email, senha });
         if (error) {
             alert("Erro ao entrar: " + error.message);
-        } else {
-            modoAdminAtivo = true;
-            ativarInterfaceAdmin();
-            carregarCardsDoSupabase();
+            return;
         }
+        ativarInterfaceAdmin();
+        window.location.reload();
+    }
+
+    async function sairAdmin() {
+        await supabaseClient.auth.signOut();
+        window.location.reload();
     }
 
     function ativarInterfaceAdmin() {
         document.getElementById('status-admin').innerText = "🔓 Modo Professor Ativo";
         document.getElementById('bloco-login').style.display = 'none';
         document.getElementById('botoes-admin').style.display = 'inline-block';
-        aplicarModoAdmin();
-    }
-
-    async function sairAdmin() {
-        await supabaseClient.auth.signOut();
-        modoAdminAtivo = false;
-        window.location.reload();
     }
 
     function tratarMudancaTipoLink() {
@@ -233,7 +241,6 @@
     }
 
     function abrirModalCard(id = "", titulo = "", texto = "", linkAtual = "", btnTextoAtual = "") {
-        if (!modoAdminAtivo) return;
         document.getElementById('card-id').value = id;
         document.getElementById('card-titulo').value = titulo;
         document.getElementById('card-texto').value = texto;
@@ -276,23 +283,34 @@
     }
 
     async function salvarCard() {
-        if (!modoAdminAtivo) return;
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            alert("Acesso restrito ao professor.");
+            return;
+        }
+
         const id = document.getElementById('card-id').value;
-        const titulo = document.getElementById('card-titulo').value;
-        const texto = document.getElementById('card-texto').value;
-        let btnTexto = document.getElementById('card-btn-texto').value || "Explorar Matéria";
+        const titulo = document.getElementById('card-titulo').value.trim();
+        const texto = document.getElementById('card-texto').value.trim();
+        let btn_texto = document.getElementById('card-btn-texto').value.trim() || "Explorar Matéria";
         
         const selectVal = document.getElementById('card-link-select').value;
-        let btnLink = "";
+        let btn_link = "";
 
         if (selectVal === 'tipo_pdf') {
-            btnLink = document.getElementById('card-input-pdf').value.trim();
-            if (!btnLink) { alert("Cole o link do PDF!"); return; }
+            btn_link = document.getElementById('card-input-pdf').value.trim();
+            if (!btn_link) {
+                alert("Cole o link do PDF!");
+                return;
+            }
         } else if (selectVal === 'tipo_externo') {
-            btnLink = document.getElementById('card-input-externo').value.trim();
-            if (!btnLink) { alert("Digite o endereço do site externo!"); return; }
+            btn_link = document.getElementById('card-input-externo').value.trim();
+            if (!btn_link) {
+                alert("Digite o endereço do site externo!");
+                return;
+            }
         } else {
-            btnLink = selectVal;
+            btn_link = selectVal;
         }
 
         if (!titulo || !texto) {
@@ -301,116 +319,97 @@
         }
 
         if (id) {
-            // Atualizar card existente
-            const { error } = await supabaseClient
-                .from('cards_6ano')
-                .update({ titulo, texto, btn_texto: btnTexto, btn_link: btnLink })
-                .eq('id', id);
+            let { error } = await supabaseClient.from('cards_6ano').update({
+                titulo, texto, btn_texto, btn_link
+            }).eq('id', id);
 
-            if (error) alert("Erro ao atualizar: " + error.message);
+            if (error) {
+                alert("Erro ao atualizar: " + error.message);
+                return;
+            }
         } else {
-            // Inserir novo card
-            const { error } = await supabaseClient
-                .from('cards_6ano')
-                .insert([{ titulo, texto, btn_texto: btnTexto, btn_link: btnLink }]);
+            let { error } = await supabaseClient.from('cards_6ano').insert([{
+                titulo, texto, btn_texto, btn_link
+            }]);
 
-            if (error) alert("Erro ao salvar: " + error.message);
+            if (error) {
+                alert("Erro ao salvar: " + error.message);
+                return;
+            }
         }
         
         fecharModalCard();
-        window.location.reload();
+        carregarCardsSalvos();
     }
 
-    async function carregarCardsDoSupabase() {
-        const { data, error } = await supabaseClient
-            .from('cards_6ano')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (error) {
-            console.error("Erro ao buscar dados do Supabase:", error.message);
-            return;
-        }
-
+    async function carregarCardsSalvos() {
         const container = document.getElementById('container-cards');
+        container.innerHTML = "";
 
-        if (data) {
-            data.forEach(item => {
-                let existente = document.querySelector(`[data-id="${item.id}"]`);
-                let deveAbrirNovaAba = item.btn_link.startsWith('http') || item.btn_link.toLowerCase().includes('.pdf');
-                let targetAttr = deveAbrirNovaAba ? 'target="_blank"' : '';
-
-                if (existente) {
-                    existente.querySelector('h3').innerText = item.titulo;
-                    existente.querySelector('p').innerText = item.texto;
-                    let btn = existente.querySelector('a');
-                    if(btn) {
-                        btn.innerText = item.btn_texto;
-                        btn.href = item.btn_link;
-                        if(deveAbrirNovaAba) btn.setAttribute('target', '_blank');
-                    }
-                } else {
-                    const div = document.createElement('div');
-                    div.className = 'card';
-                    div.setAttribute('data-id', item.id);
-                    div.innerHTML = `
-                        <h3>${item.titulo}</h3>
-                        <p>${item.texto}</p>
-                        <a href="${item.btn_link}" ${targetAttr}>${item.btn_texto}</a>
-                        <div class="acoes-card">
-                            <button onclick="editarItem('${item.id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
-                            <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
-                        </div>
-                    `;
-                    if (modoAdminAtivo) div.classList.add('modo-admin');
-                    container.appendChild(div);
-                }
-            });
-        }
-    }
-
-    function aplicarModoAdmin() {
-        document.querySelectorAll('.card').forEach(card => {
-            card.classList.add('modo-admin');
-            const id = card.getAttribute('data-id');
-            if (id && !card.querySelector('.acoes-card')) {
-                const divAcoes = document.createElement('div');
-                divAcoes.className = 'acoes-card';
-                divAcoes.innerHTML = `
-                    <button onclick="editarItem('${id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
-                    <button onclick="excluirItem('${id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
-                `;
-                card.appendChild(divAcoes);
+        let customizados = [];
+        try {
+            let { data, error } = await supabaseClient.from('cards_6ano').select('*').order('id', { ascending: true });
+            if (!error && data && data.length > 0) {
+                customizados = data;
+            } else {
+                customizados = cardsPadrao6Ano; // Fallback visual
             }
+        } catch (e) {
+            customizados = cardsPadrao6Ano;
+        }
+
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        let modoAdminAtivo = !!session;
+
+        customizados.forEach(item => {
+            let linkDestino = item.btn_link || '#';
+            let deveAbrirNovaAba = linkDestino.startsWith('http') || linkDestino.toLowerCase().includes('.pdf');
+            let targetAttr = deveAbrirNovaAba ? 'target="_blank"' : '';
+
+            const div = document.createElement('div');
+            div.className = 'card';
+            if (modoAdminAtivo) div.classList.add('modo-admin');
+            if (item.id) div.setAttribute('data-id', item.id);
+
+            let acoesHtml = modoAdminAtivo && item.id ? `
+                <div class="acoes-card" style="display: flex !important;">
+                    <button onclick="editarItem('${item.id}', '${encodeURIComponent(item.titulo)}', '${encodeURIComponent(item.texto)}', '${encodeURIComponent(linkDestino)}', '${encodeURIComponent(item.btn_texto || item.btn_text || 'Explorar Matéria')}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                    <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
+                </div>
+            ` : '';
+
+            div.innerHTML = `
+                <div>
+                    <h3>${item.titulo}</h3>
+                    <p>${item.texto}</p>
+                </div>
+                <div>
+                    <a href="${linkDestino}" ${targetAttr} style="display: inline-block; margin-top: 10px;">${item.btn_texto || item.btn_text || 'Explorar Matéria'}</a>
+                    ${acoesHtml}
+                </div>
+            `;
+            container.appendChild(div);
         });
     }
 
-    async function editarItem(id) {
-        if (!modoAdminAtivo) return;
-        const { data, error } = await supabaseClient
-            .from('cards_6ano')
-            .select('*')
-            .eq('id', id)
-            .single();
-
-        if (data) {
-            abrirModalCard(data.id, data.titulo, data.texto, data.btn_link, data.btn_texto);
-        }
+    function editarItem(id, titulo, texto, link, btnTexto) {
+        abrirModalCard(id, decodeURIComponent(titulo), decodeURIComponent(texto), decodeURIComponent(link), decodeURIComponent(btnTexto));
     }
 
     async function excluirItem(id) {
-        if (!modoAdminAtivo) return;
-        if (confirm("Deseja realmente excluir este card do banco de dados?")) {
-            const { error } = await supabaseClient
-                .from('cards_6ano')
-                .delete()
-                .eq('id', id);
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (!session) {
+            alert("Acesso restrito ao professor.");
+            return;
+        }
 
+        if (confirm("Deseja realmente excluir este card do banco de dados?")) {
+            let { error } = await supabaseClient.from('cards_6ano').delete().eq('id', id);
             if (error) {
                 alert("Erro ao excluir: " + error.message);
-            } else {
-                window.location.reload();
+                return;
             }
+            carregarCardsSalvos();
         }
     }
 </script>

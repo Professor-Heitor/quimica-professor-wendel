@@ -7,7 +7,7 @@
 <title>8º Ano - Química</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client -->
+<!-- Supabase JS Client & Configuração Centralizada -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
@@ -120,11 +120,6 @@ Química com Professor Wendel
 </footer>
 
 <script>
-    // CONFIGURAÇÃO DO SUPABASE
-    const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     const cardsPadrao8Ano = [
         {
             titulo: '🧬 Tabela Periódica',
@@ -159,18 +154,26 @@ Química com Professor Wendel
     });
 
     async function inicializarBancoCards8Ano() {
-        let { data, error } = await supabaseClient.from('conteudos_8ano').select('*');
-        if (!data || data.length === 0) {
-            for (let card of cardsPadrao8Ano) {
-                await supabaseClient.from('conteudos_8ano').insert([card]);
+        try {
+            let { data, error } = await supabaseClient.from('conteudos_8ano').select('*');
+            if (error || !data || data.length === 0) {
+                for (let card of cardsPadrao8Ano) {
+                    await supabaseClient.from('conteudos_8ano').insert([card]);
+                }
             }
+        } catch (e) {
+            console.log("Modo offline ativado para os cards do 8º ano.");
         }
     }
 
     async function verificarSessaoInicial() {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (session) {
-            ativarInterfaceAdmin();
+        try {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                ativarInterfaceAdmin();
+            }
+        } catch (e) {
+            console.log("Sessão não verificada.");
         }
     }
 
@@ -303,7 +306,6 @@ Química com Professor Wendel
         }
 
         if (id) {
-            // Atualizar
             let { error } = await supabaseClient.from('conteudos_8ano').update({
                 titulo, texto, btn_texto, btn_link
             }).eq('id', id);
@@ -313,7 +315,6 @@ Química com Professor Wendel
                 return;
             }
         } else {
-            // Inserir novo
             let { error } = await supabaseClient.from('conteudos_8ano').insert([{
                 titulo, texto, btn_texto, btn_link
             }]);
@@ -332,33 +333,47 @@ Química com Professor Wendel
         const container = document.getElementById('container-cards');
         container.innerHTML = "";
 
-        let { data: customizados, error } = await supabaseClient.from('conteudos_8ano').select('*').order('id', { ascending: true });
-        if (error || !customizados) return;
+        let customizados = [];
+        try {
+            let { data, error } = await supabaseClient.from('conteudos_8ano').select('*').order('id', { ascending: true });
+            if (!error && data && data.length > 0) {
+                customizados = data;
+            } else {
+                customizados = cardsPadrao8Ano; // Fallback visual
+            }
+        } catch (e) {
+            customizados = cardsPadrao8Ano;
+        }
 
         const { data: { session } } = await supabaseClient.auth.getSession();
         let modoAdminAtivo = !!session;
 
         customizados.forEach(item => {
-            let deveAbrirNovaAba = item.btn_link.startsWith('http') || item.btn_link.toLowerCase().includes('.pdf');
+            let linkDestino = item.btn_link || '#';
+            let deveAbrirNovaAba = linkDestino.startsWith('http') || linkDestino.toLowerCase().includes('.pdf');
             let targetAttr = deveAbrirNovaAba ? 'target="_blank"' : '';
 
             const div = document.createElement('div');
             div.className = 'card';
             if (modoAdminAtivo) div.classList.add('modo-admin');
-            div.setAttribute('data-id', item.id);
+            if (item.id) div.setAttribute('data-id', item.id);
 
-            let acoesHtml = modoAdminAtivo ? `
+            let acoesHtml = modoAdminAtivo && item.id ? `
                 <div class="acoes-card" style="display: flex !important;">
-                    <button onclick="editarItem('${item.id}', '${encodeURIComponent(item.titulo)}', '${encodeURIComponent(item.texto)}', '${encodeURIComponent(item.btn_link)}', '${encodeURIComponent(item.btn_text || item.btn_texto)}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
+                    <button onclick="editarItem('${item.id}', '${encodeURIComponent(item.titulo)}', '${encodeURIComponent(item.texto)}', '${encodeURIComponent(linkDestino)}', '${encodeURIComponent(item.btn_texto || item.btn_text || 'Estudar')}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✏️ Editar</button>
                     <button onclick="excluirItem('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">🗑️ Excluir</button>
                 </div>
             ` : '';
 
             div.innerHTML = `
-                <h3>${item.titulo}</h3>
-                <p>${item.texto}</p>
-                <a href="${item.btn_link}" ${targetAttr}>${item.btn_texto || item.btn_text}</a>
-                ${acoesHtml}
+                <div>
+                    <h3>${item.titulo}</h3>
+                    <p>${item.texto}</p>
+                </div>
+                <div>
+                    <a href="${linkDestino}" ${targetAttr} style="display: inline-block; margin-top: 10px;">${item.btn_texto || item.btn_text || 'Estudar'}</a>
+                    ${acoesHtml}
+                </div>
             `;
             container.appendChild(div);
         });

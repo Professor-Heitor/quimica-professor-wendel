@@ -243,11 +243,15 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
     });
 
     async function inicializarBancoPerguntas() {
-        let { data, error } = await supabaseClient.from('perguntas_quimica').select('*');
-        if (!data || data.length === 0) {
-            for (let p of perguntasIniciais) {
-                await supabaseClient.from('perguntas_quimica').insert([p]);
+        try {
+            let { data, error } = await supabaseClient.from('perguntas_quimica').select('*');
+            if (error || !data || data.length === 0) {
+                for (let p of perguntasIniciais) {
+                    await supabaseClient.from('perguntas_quimica').insert([p]);
+                }
             }
+        } catch (e) {
+            console.warn("Usando dados locais de segurança devido a falha na conexão com o banco.");
         }
     }
 
@@ -282,8 +286,15 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
     }
 
     async function obterPerguntas() {
-        let { data, error } = await supabaseClient.from('perguntas_quimica').select('*');
-        return data || [];
+        try {
+            let { data, error } = await supabaseClient.from('perguntas_quimica').select('*');
+            if (error || !data || data.length === 0) {
+                return perguntasIniciais;
+            }
+            return data;
+        } catch (e) {
+            return perguntasIniciais;
+        }
     }
 
     async function renderizarPerguntas() {
