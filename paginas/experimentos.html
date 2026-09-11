@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <!-- Supabase JS Client -->
-<!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
@@ -180,7 +179,10 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     ];
 
     document.addEventListener("DOMContentLoaded", async function() {
-        await inicializarBancoExperimentos();
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session) {
+            await inicializarBancoExperimentos();
+        }
         await carregarExperimentos();
         verificarSessaoInicial();
     });
@@ -212,12 +214,13 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
             let senha = prompt("Senha de acesso:");
             if (!senha) return;
 
-            let { data, error } = await supabaseClient.auth.signInWithPassword({ email, senha });
+            let { data, error } = await supabaseClient.auth.signInWithPassword({ email: email, password: senha });
             if (error) {
                 alert("Erro ao entrar: " + error.message);
                 return;
             }
             ativarInterfaceProfessor(true);
+            await inicializarBancoExperimentos();
         } else {
             await supabaseClient.auth.signOut();
             ativarInterfaceProfessor(false);
