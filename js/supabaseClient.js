@@ -10,6 +10,10 @@ window.meuClienteSupabase =
         SUPABASE_ANON_KEY
     );
 
+window.supabaseClient = window.meuClienteSupabase;
+
+window.EMAIL_PROFESSOR = "wendel@gmail.com";
+
 async function obterSessao() {
 
     const {
