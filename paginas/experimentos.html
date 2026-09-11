@@ -10,7 +10,7 @@
 <!-- Supabase JS Client -->
 <!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/supabaseClient.js"></script>
+<script src="../js/supabaseclient.js"></script>
 
 <style>
     /* Organiza o container em grade moderna (Grid) para evitar quebra de layout */
@@ -186,10 +186,10 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     });
 
     async function inicializarBancoExperimentos() {
-        let { data, error } = await supabaseClient.from('experimentos_quimica').select('*');
+        let { data, error } = await supabaseClient.from('experimentos').select('*');
         if (!data || data.length === 0) {
             for (let exp of experimentosPadrao) {
-                await supabaseClient.from('experimentos_quimica').insert([exp]);
+                await supabaseClient.from('experimentos').insert([exp]);
             }
         }
     }
@@ -259,7 +259,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     }
 
     async function obterExperimentos() {
-        let { data, error } = await supabaseClient.from('experimentos_quimica').select('*').order('id', { ascending: true });
+        let { data, error } = await supabaseClient.from('experimentos').select('*').order('id', { ascending: true });
         return data || [];
     }
 
@@ -368,7 +368,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
 
         if (id) {
             // Atualizar
-            let { error } = await supabaseClient.from('experimentos_quimica').update({
+            let { error } = await supabaseClient.from('experimentos').update({
                 titulo, video, acontece, materiais, conteudo
             }).eq('id', id);
 
@@ -379,7 +379,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
             alert("Experimento atualizado com sucesso!");
         } else {
             // Inserir novo
-            let { error } = await supabaseClient.from('experimentos_quimica').insert([{
+            let { error } = await supabaseClient.from('experimentos').insert([{
                 titulo, video, acontece, materiais, conteudo, likes: 0
             }]);
 
@@ -402,7 +402,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         }
 
         if (confirm("Tem certeza que deseja apagar este experimento?")) {
-            let { error } = await supabaseClient.from('experimentos_quimica').delete().eq('id', id);
+            let { error } = await supabaseClient.from('experimentos').delete().eq('id', id);
             if (error) {
                 alert("Erro ao excluir: " + error.message);
                 return;
@@ -419,7 +419,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         let novosLikes = curtido ? likesAtuais - 1 : likesAtuais + 1;
         if (novosLikes < 0) novosLikes = 0;
 
-        let { error } = await supabaseClient.from('experimentos_quimica').update({ likes: novosLikes }).eq('id', idExp);
+        let { error } = await supabaseClient.from('experimentos').update({ likes: novosLikes }).eq('id', idExp);
         if (!error) {
             span.innerText = novosLikes;
             btn.dataset.curtido = (!curtido).toString();
