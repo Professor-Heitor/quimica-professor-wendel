@@ -1,5 +1,3 @@
-/* ESTILOS ESPECÍFICOS DO QUIZ */
-
 .quiz-container {
     padding: 60px 20px;
     display: flex;
@@ -114,7 +112,6 @@
     border: none;
 }
 
-/* CLASSE UTILITÁRIA PARA ESCONDER ELEMENTOS */
 .oculto {
     display: none !important;
 }

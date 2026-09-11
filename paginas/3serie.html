@@ -7,7 +7,6 @@
 <title>3ª Série - Química</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client & Configuração Centralizada -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
@@ -101,7 +100,6 @@
 <section>
 <h2>Conteúdos da 3ª Série</h2>
 <div class="container" id="container-cards">
-    <!-- Cards carregados dinamicamente via Supabase -->
 </div>
 </section>
 
@@ -329,7 +327,7 @@
             if (!error && data && data.length > 0) {
                 customizados = data;
             } else {
-                customizados = cardsPadrao3Serie; // Fallback visual
+                customizados = cardsPadrao3Serie;
             }
         } catch (e) {
             customizados = cardsPadrao3Serie;

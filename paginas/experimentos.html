@@ -7,12 +7,10 @@
 <title>Experimentos de Química - Professor Wendel</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
 <style>
-    /* Organiza o container em grade moderna (Grid) para evitar quebra de layout */
     .container {
         display: grid !important;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
@@ -20,7 +18,6 @@
         align-items: stretch !important;
     }
 
-    /* Cada card vira uma caixa estrita com alinhamento garantido */
     .card {
         background: #1e1e1e !important;
         border: 1px solid #333 !important;
@@ -179,7 +176,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     ];
 
     document.addEventListener("DOMContentLoaded", async function() {
-        // Garante que os experimentos padrão apareçam ou sejam inseridos se o banco estiver vazio
         await inicializarBancoExperimentos();
         await carregarExperimentos();
         await verificarSessaoInicial();
@@ -188,9 +184,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     async function inicializarBancoExperimentos() {
         try {
             let { data, error } = await supabaseClient.from('experimentos').select('*');
-            // Se houver erro de conexão ou o banco estiver vazio, não quebra a aplicação
             if (error || !data || data.length === 0) {
-                // Tenta inserir os padrões se tiver permissão, caso contrário apenas prossegue
                 for (let exp of experimentosPadrao) {
                     await supabaseClient.from('experimentos').insert([exp]);
                 }
@@ -267,11 +261,11 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         try {
             let { data, error } = await supabaseClient.from('experimentos').select('*').order('id', { ascending: true });
             if (error || !data || data.length === 0) {
-                return experimentosPadrao; // Retorna os padrões caso o banco retorne vazio
+                return experimentosPadrao;
             }
             return data;
         } catch (e) {
-            return experimentosPadrao; // Fallback se falhar
+            return experimentosPadrao;
         }
     }
 
@@ -286,7 +280,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
             let cardDiv = document.createElement('div');
             cardDiv.className = "card";
             
-            // Usa o id do banco ou o índice do array como identificador único local
             let expId = exp.id || index;
             let curtido = localStorage.getItem('exp_' + expId + '_curtido') === 'true';
             let corBtnCurtir = curtido ? '#dc2626' : '#2563eb';
@@ -431,7 +424,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         let novosLikes = curtido ? likesAtuais - 1 : likesAtuais + 1;
         if (novosLikes < 0) novosLikes = 0;
 
-        // Se for um ID numérico real do banco, atualiza no Supabase
         if (!isNaN(idExp)) {
             await supabaseClient.from('experimentos').update({ likes: novosLikes }).eq('id', idExp);
         }

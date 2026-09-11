@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* --- Estilos Globais do Corpo --- */
+/* --- Estilos Globais do blog --- */
 body {
     background: rgba(0, 77, 170, 1);
     color: #1f3324;
@@ -114,7 +114,6 @@ nav a:hover {
     text-align: left;
 }
 
-/* Tamanho exato da molécula na esquerda: 400x400 */
 .molecula-lateral {
     width: 400px;
     height: 400px;
@@ -127,7 +126,7 @@ nav a:hover {
     flex-shrink: 0;
 }
 
-/* Caixa dos emojis na direita com exatamente 400x400 para equiparar com a molécula */
+/* Caixa dos emojis na direita com exatamente o mesmo tamanho para equiparar com a molécula */
 .emojis-laterais {
     width: 400px;
     height: 400px;
@@ -307,60 +306,4 @@ footer {
     font-weight: bold;
     flex-shrink: 0;
     margin-top: auto;
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    nav {
-        margin-top: 10px;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    nav a {
-        margin-left: 0;
-        padding: 5px 8px;
-        font-size: 14px;
-    }
-
-    .banner {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .banner h1 {
-        font-size: 30px;
-        text-align: center;
-    }
-
-    .banner p {
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .emojis-laterais, .molecula-lateral {
-        width: 300px;
-        height: 300px;
-        min-width: 300px;
-        min-height: 300px;
-    }
-
-    .series {
-        padding: 15px 10px;
-    }
-
-    .series a {
-        flex: 1 1 42%;
-        max-width: none;
-        padding: 12px 10px;
-        font-size: 14px;
-    }
 }

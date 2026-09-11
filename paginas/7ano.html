@@ -7,7 +7,6 @@
 <title>7º Ano - Química</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client & Configuração Centralizada -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
@@ -109,7 +108,6 @@ Conteúdos do 7º Ano
 </h2>
 
 <div class="container" id="container-cards">
-    <!-- Cards carregados dinamicamente via Supabase -->
 </div>
 </section>
 
@@ -339,7 +337,7 @@ Química com Professor Wendel
             if (!error && data && data.length > 0) {
                 customizados = data;
             } else {
-                customizados = cardsPadrao7Ano; // Fallback visual
+                customizados = cardsPadrao7Ano;
             }
         } catch (e) {
             customizados = cardsPadrao7Ano;

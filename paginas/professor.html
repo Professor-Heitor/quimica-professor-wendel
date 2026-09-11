@@ -7,7 +7,6 @@
 <title>Professor Wendel - Química</title>
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- Supabase JS Client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
 
@@ -20,7 +19,7 @@
         max-width: 800px;
         border-radius: 12px;
         text-align: center;
-        display: none; /* Escondido por padrão */
+        display: none;
     }
     .painel-admin input, .painel-admin textarea {
         width: 100%;
@@ -68,7 +67,7 @@
         margin-top: 15px;
         border-top: 1px solid #444;
         padding-top: 10px;
-        display: none; /* Escondido por padrão nos cards */
+        display: none;
     }
     .btn-login-container {
         text-align: center;
@@ -121,12 +120,10 @@
 </div>
 </section>
 
-<!-- BOTÃO DE LOGIN / ACESSO DO PROFESSOR -->
 <div class="btn-login-container">
     <button id="btnAuth" class="btn-login" onclick="alternarAuth()">🔐 Entrar no Painel do Professor</button>
 </div>
 
-<!-- PAINEL DO PROFESSOR (Só aparece logado) -->
 <div class="painel-admin" id="painelAdmin">
     <h3>🛠️ Painel do Professor (Gerenciar Cards)</h3>
     <p style="font-size: 14px; color: #ccc;">Adicione um novo card preenchendo os campos abaixo.</p>
@@ -139,7 +136,6 @@
 
 <section>
 <div class="container" id="containerCards">
-    <!-- Os cards serão carregados dinamicamente aqui -->
 </div>
 </section>
 
@@ -148,12 +144,10 @@
 </footer>
 
 <script>
-    // CONFIGURAÇÃO DO SUPABASE
     const SUPABASE_URL = 'https://ahstdxgglfgjfeuurkqg.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhaHN0ZHhnbGZnamZldXVya3FnIi';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Cards padrão iniciais (garantem exibição imediata caso o banco esteja vazio ou inacessível)
     const cardsIniciais = [
         {
             id: 'card-1',
@@ -251,7 +245,7 @@
     async function obterCards() {
         let { data, error } = await supabaseClient.from('cards_professor').select('*');
         if (error || !data || data.length === 0) {
-            return cardsIniciais; // Fallback para garantir que os cards apareçam
+            return cardsIniciais;
         }
         return data;
     }
