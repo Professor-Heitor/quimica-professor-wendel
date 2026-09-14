@@ -1,0 +1,478 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --- Estilos Globais do blog --- */
+body {
+    background: rgba(0, 77, 170, 1);
+    color: #1f3324;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- Cabeçalho --- */
+header {
+    width: 100%;
+    background: #15291f;
+    color: #0f4c2c;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 90px;
+    width: auto;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+nav a:hover {
+    color: #a3e4d7;
+}
+
+/* --- Banner --- */
+.banner {
+    min-height: 500px;
+    background: 
+    linear-gradient(
+        rgba(0, 77, 170, 0.8),
+        rgba(0, 77, 170, 0.8)
+    ),
+    url("../assets/imagens/laboratorio.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    text-align: left;
+    color: #0f4c2c;
+    flex-shrink: 0;
+    padding: 40px 40px;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.banner > div:not(.molecula-lateral):not(.emojis-laterais) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    min-width: 250px;
+}
+
+.banner h1 {
+    font-size: 36px;
+    max-width: 700px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.banner p {
+    margin: 15px 0;
+    font-size: 16px;
+    color: #e0e0e0;
+    text-align: left;
+}
+
+.molecula-lateral {
+    width: 400px;
+    height: 400px;
+    min-width: 400px;
+    min-height: 400px;
+    z-index: 10;
+    display: block;
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+}
+
+/* Caixa dos emojis na direita com exatamente o mesmo tamanho para equiparar com a molécula */
+.emojis-laterais {
+    width: 400px;
+    height: 400px;
+    min-width: 400px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 80px;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.botao {
+    display: inline-block;
+    background: #0f4c2c;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: #198754;
+}
+
+section {
+    padding: 25px 8% !important;
+    flex-shrink: 0 !important;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0f4c2c;
+}
+
+/* --- Seção Sobre --- */
+.sobre {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 15px;
+    margin: 20px 8%;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.sobre h2 {
+    color: #0f4c2c;
+    text-align: center;
+}
+
+.sobre p {
+    color: #333333;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* --- Contêiner de Cards --- */
+.cards {
+    text-align: center;
+}
+
+.container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 25px !important;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    width: 100% !important;
+    max-width: 320px !important;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box !important;
+}
+
+.card h3 {
+    color: #0f4c2c;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.card a {
+    background: #0f4c2c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: auto;
+}
+
+.card a:hover {
+    background: #198754;
+}
+
+/* --- Seção Séries (Index) --- */
+.series {
+    background: rgba(125, 155, 138, 1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.series a {
+    background: #0f4c2c;
+    color: white;
+    padding: 14px 16px;
+    flex: 1 1 130px;
+    max-width: 160px;
+    text-align: center;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+    box-sizing: border-box;
+}
+
+.series a:hover {
+    background: #198754;
+}
+
+/* --- Seção Blog --- */
+.blog article {
+    background: white;
+    margin: 20px auto;
+    padding: 25px;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.blog h3 {
+    color: #0f4c2c;
+    margin-bottom: 10px;
+}
+
+.blog p {
+    color: #333333;
+}
+
+/* --- Rodapé --- */
+footer {
+    background: rgba(125, 155, 138, 1);
+    color: #0f4c2c;
+    text-align: center;
+    padding: 25px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+#barra-admin {
+    background: #1b3b2b;
+    padding: 12px; 
+    text-align: center; 
+    border-bottom: 2px solid #a3e4d7; 
+    font-family: Arial, sans-serif; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+}
+
+#barra-admin input {
+     padding: 6px; 
+     border-radius: 4px; 
+     border: none; 
+     outline: none; 
+     margin-right: 5px; 
+}
+
+#barra-admin button { 
+    padding: 6px 12px; 
+    border-radius: 4px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border: none; 
+}
+
+.modal-admin { 
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.8); 
+    z-index: 2000; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.modal-content-admin { 
+    background: #1e2621; 
+    padding: 30px; 
+    border-radius: 12px; 
+    width: 90%; 
+    max-width: 500px; 
+    color: white; 
+    border: 1px solid #a3e4d7; 
+    text-align: left; 
+}
+
+.modal-content-admin input, .modal-content-admin textarea { 
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 5px; 
+    margin-bottom: 15px; 
+    border-radius: 6px; 
+    border: 1px solid #555; 
+    background: #2a352f; 
+    color: white; 
+    box-sizing: border-box; 
+}
+
+.acoes-artigo { 
+    display: none !important; 
+}
+
+article.modo-admin { 
+    position: relative; 
+    border: 2px dashed #00b4d8; 
+    padding-bottom: 15px; 
+}
+
+article.modo-admin .acoes-artigo { 
+    display: flex !important; 
+    margin-top: 10px; gap: 8px; 
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav a {
+        margin-left: 0;
+        padding: 5px 8px;
+        font-size: 14px;
+    }
+
+    .banner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .banner p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .emojis-laterais, .molecula-lateral {
+        width: 300px;
+        height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .series {
+        padding: 15px 10px;
+    }
+
+    .series a {
+        flex: 1 1 42%;
+        max-width: none;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}
+
+.container-sugestoes {  
+    max-width: 600px;  
+    margin: 40px auto;  
+    padding: 20px;  
+    background: #1e2621;  
+    border-radius: 12px;  
+    color: white;  
+    border: 1px solid #a3e4d7;  
+    font-family: Arial, sans-serif;  
+}
+
+.container-sugestoes input,  
+.container-sugestoes textarea {  
+    width: 100%;  
+    padding: 10px;  
+    margin-top: 5px;  
+    margin-bottom: 15px;  
+    border-radius: 6px;  
+    border: 1px solid #555;  
+    background: #2a352f;  
+    color: white;  
+    box-sizing: border-box;  
+}
+
+.lista-sugestoes {  
+    margin-top: 30px;  
+}
+
+.item-sugestao {  
+    background: #2a352f;  
+    padding: 15px;  
+    border-radius: 8px;  
+    margin-bottom: 10px;  
+    border-left: 4px solid #00b4d8;  
+} 
