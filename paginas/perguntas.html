@@ -12,41 +12,6 @@
 <script src="../js/utils.js"></script>
 
 <style>
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-        padding: 15px 30px;
-    }
-
-    header .logo a {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: inherit;
-    }
-
-    header .logo img {
-        height: 40px;
-        width: 40px;
-        object-fit: contain;
-    }
-
-    header .logo span {
-        font-size: 20px;
-        font-weight: bold;
-        color: #fff;
-    }
-
-    header nav {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: nowrap;
-    }
-
     .acoes-professor {
         display: none;
         justify-content: flex-end;
@@ -109,10 +74,11 @@
 <div id="barra-admin">
     <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
     <div id="bloco-login" style="display: inline-block;">
-        <a href="../login.html" style="background: #00b4d8; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Entrar (Login)</a>
+        <input type="email" id="email-prof" placeholder="E-mail do Professor" style="width: 180px;">
+        <input type="password" id="senha-prof" placeholder="Senha" style="width: 140px;">
+        <button onclick="entrarAdmin()" style="background: #00b4d8; color: white;">Entrar</button>
     </div>
     <div id="botoes-admin" style="display: none;">
-        <button onclick="abrirModalCuriosidade()" style="background: #28a745; color: white;">➕ Adicionar Curiosidade</button>
         <button onclick="sairAdmin()" style="background: #dc3545; color: white; margin-left: 5px;">Sair</button>
     </div>
 </div>
@@ -135,7 +101,7 @@
 </nav>
 </header>
 
-<section class="banner">
+<section class="banner-paginas">
 <h1>
 ❓ Perguntas e Respostas de Química
 </h1>
@@ -145,7 +111,7 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
 </section>
 
 <section>
-<h2>🟢 Nível Fácil</h2>
+<h2 style="color: white">🟢 Nível Fácil</h2>
 <div class="painel-adicionar">
     <button class="btn-adicionar-card" onclick="adicionarCard('facil')">➕ Adicionar Pergunta (Fácil)</button>
 </div>
@@ -154,7 +120,7 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
 </section>
 
 <section>
-<h2>🟡 Nível Médio</h2>
+<h2 style="color: white">🟡 Nível Médio</h2>
 <div class="painel-adicionar">
     <button class="btn-adicionar-card" onclick="adicionarCard('medio')">➕ Adicionar Pergunta (Médio)</button>
 </div>
@@ -163,7 +129,7 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
 </section>
 
 <section>
-<h2>🔴 Nível Difícil</h2>
+<h2 style="color: white">🔴 Nível Difícil</h2>
 <div class="painel-adicionar">
     <button class="btn-adicionar-card" onclick="adicionarCard('dificil')">➕ Adicionar Pergunta (Difícil)</button>
 </div>
@@ -172,9 +138,7 @@ Revise os conteúdos e teste seus conhecimentos com níveis variados.
 </section>
 
 <footer>
-<p>
-© 2026 - Química com Professor Wendel
-</p>
+    <p>© 2026 - <a href="https://github.com/gustavohenrimerry" target="_blank" rel="noopener noreferrer">Desenvolvido por Gustavo</a></p>
 </footer>
 
 <script>

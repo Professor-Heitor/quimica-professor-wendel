@@ -61,10 +61,12 @@
 <div id="barra-admin">
     <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
     <div id="bloco-login" style="display: inline-block;">
-        <a href="../login.html" style="background: #00b4d8; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Entrar (Login)</a>
+        <input type="email" id="email-prof" placeholder="E-mail do Professor" style="width: 180px;">
+        <input type="password" id="senha-prof" placeholder="Senha" style="width: 140px;">
+        <button onclick="entrarAdmin()" style="background: #00b4d8; color: white;">Entrar</button>
     </div>
     <div id="botoes-admin" style="display: none;">
-        <button onclick="abrirModalCuriosidade()" style="background: #28a745; color: white;">➕ Adicionar Curiosidade</button>
+        <button onclick="abrirPainelAdicionar()" style="background: #28a745; color: white;">➕ Adicionar Vídeo</button>
         <button onclick="sairAdmin()" style="background: #dc3545; color: white; margin-left: 5px;">Sair</button>
     </div>
 </div>
@@ -87,7 +89,7 @@
     </nav>
 </header>
 
-<section class="banner">
+<section class="banner-paginas">
     <div>
         <h1>🎥 Vídeos de Química</h1>
         <p>Aulas e explicações para aprender Química de forma visual.</p>
@@ -96,7 +98,7 @@
 
 <section>
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
-        <h2 style="margin: 0;">Catálogo de Videoaulas</h2>
+        <h2 style="margin: 0; color: white;">Catálogo de Videoaulas</h2>
         <div style="display: flex; gap: 10px;">
             <button onclick="abrirPainelAdicionar()" id="btn-novo-vid" style="background: #16a34a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; display: none;">➕ Novo Vídeo</button>
             <button onclick="alternarPainelAdmin()" id="btn-painel-toggle" style="background: #7c3aed; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">🔐 Painel do Professor</button>
@@ -127,7 +129,7 @@
 <div id="container-categorias-videos"></div>
 
 <footer>
-    <p>© 2026 - Química com Professor Wendel</p>
+    <p>© 2026 - <a href="https://github.com/gustavohenrimerry" target="_blank" rel="noopener noreferrer">Desenvolvido por Gustavo</a></p>
 </footer>
 
 <script>
@@ -242,6 +244,7 @@
             let tituloSecao = document.createElement('h2');
             tituloSecao.innerText = catNome;
             tituloSecao.style.marginBottom = "10px";
+            tituloSecao.style.color = "white";
             secao.appendChild(tituloSecao);
 
             let gridDiv = document.createElement('div');

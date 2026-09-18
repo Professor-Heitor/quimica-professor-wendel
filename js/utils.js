@@ -61,6 +61,44 @@ async function loginViaPainel() {
 }
 
 /**
+ * Realiza login administrativo a partir dos inputs da barra admin (#email-prof e #senha-prof).
+ */
+async function entrarAdmin() {
+    const inputEmail = document.getElementById("email-prof");
+    const inputSenha = document.getElementById("senha-prof");
+
+    if (!inputEmail || !inputSenha) {
+        return await loginViaPainel();
+    }
+
+    const email = inputEmail.value.trim();
+    const senha = inputSenha.value;
+
+    if (!email || !senha) {
+        alert("Preencha o e-mail e a senha!");
+        return;
+    }
+
+    if (!window.meuClienteSupabase) {
+        alert("Serviço Supabase indisponível no momento.");
+        return;
+    }
+
+    const { error } = await window.meuClienteSupabase.auth.signInWithPassword({
+        email: email,
+        password: senha
+    });
+
+    if (error) {
+        alert("Erro ao entrar: " + error.message);
+        return;
+    }
+
+    alert("Login realizado com sucesso!");
+    window.location.reload();
+}
+
+/**
  * Encerra a sessão do professor e recarrega a página.
  */
 async function logoutProfessor() {
@@ -95,7 +133,7 @@ async function inicializarBarraAdmin() {
     const eProf = await verificarSeProfessor();
 
     if (eProf) {
-        if (status) status.innerText = "👨‍🏫 Modo Professor (Ativo)";
+        if (status) status.innerText = "🔓 Modo Professor Ativo";
         if (blocoLogin) blocoLogin.style.display = "none";
         if (botoesAdmin) botoesAdmin.style.display = "inline-block";
         botoesAdminGerais.forEach(el => el.style.display = "block");
