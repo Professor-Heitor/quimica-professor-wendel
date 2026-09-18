@@ -9,6 +9,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabaseClient.js"></script>
+<script src="../js/utils.js"></script>
 
 <style>
     .container {
@@ -52,6 +53,17 @@
 
 <body>
 
+<div id="barra-admin">
+    <span id="status-admin" style="color: #a3e4d7; font-weight: bold; margin-right: 15px;">🔒 Modo Visitante</span>
+    <div id="bloco-login" style="display: inline-block;">
+        <a href="../login.html" style="background: #00b4d8; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Entrar (Login)</a>
+    </div>
+    <div id="botoes-admin" style="display: none;">
+        <button onclick="abrirModalCuriosidade()" style="background: #28a745; color: white;">➕ Adicionar Curiosidade</button>
+        <button onclick="sairAdmin()" style="background: #dc3545; color: white; margin-left: 5px;">Sair</button>
+    </div>
+</div>
+
 <header>
 <div class="logo">
     <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
@@ -67,7 +79,6 @@
     <a href="perguntas.html">Perguntas</a>
     <a href="professor.html">Professor</a>
     <a href="../sugestoes.html">Sugestões</a>
-    <a href="#" id="btn-modo-professor" onclick="toggleModoProfessor()" style="color: #ffeb3b;">🔓 Painel do Professor (Inativo)</a>
 </nav>
 </header>
 
@@ -178,7 +189,9 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     document.addEventListener("DOMContentLoaded", async function() {
         await inicializarBancoExperimentos();
         await carregarExperimentos();
-        await verificarSessaoInicial();
+        if (await verificarSeProfessor()) {
+            ativarInterfaceProfessor(true);
+        }
     });
 
     async function inicializarBancoExperimentos() {
@@ -198,34 +211,12 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         }
     }
 
-    async function verificarSessaoInicial() {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (session) {
-            ativarInterfaceProfessor(true);
-        }
-    }
-
     async function toggleModoProfessor() {
-        const btn = document.getElementById('btn-modo-professor');
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        
-        if (!session) {
-            let email = prompt("E-mail de acesso do professor:");
-            if (!email) return;
-            let senha = prompt("Senha de acesso:");
-            if (!senha) return;
-
-            let { data, error } = await supabaseClient.auth.signInWithPassword({ email: email, password: senha });
-            if (error) {
-                alert("Erro ao entrar: " + error.message);
-                return;
-            }
-            ativarInterfaceProfessor(true);
+        if (!(await verificarSeProfessor())) {
+            await loginViaPainel();
         } else {
-            await supabaseClient.auth.signOut();
-            ativarInterfaceProfessor(false);
+            await logoutProfessor();
         }
-        carregarExperimentos();
     }
 
     function ativarInterfaceProfessor(ativo) {
@@ -233,32 +224,20 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         const painelAddContainer = document.getElementById('painel-adicionar-container');
         
         if (ativo) {
-            btn.innerText = "🔒 Painel do Professor (Ativo)";
-            btn.style.color = "#4CAF50";
-            painelAddContainer.style.display = "block";
+            if (btn) {
+                btn.innerText = "🔒 Painel do Professor (Ativo)";
+                btn.style.color = "#4CAF50";
+            }
+            if (painelAddContainer) painelAddContainer.style.display = "block";
         } else {
-            btn.innerText = "🔓 Painel do Professor (Inativo)";
-            btn.style.color = "#ffeb3b";
-            painelAddContainer.style.display = "none";
-            document.getElementById('painel-admin').style.display = "none";
+            if (btn) {
+                btn.innerText = "🔓 Painel do Professor (Inativo)";
+                btn.style.color = "#ffeb3b";
+            }
+            if (painelAddContainer) painelAddContainer.style.display = "none";
+            const painelAdmin = document.getElementById('painel-admin');
+            if (painelAdmin) painelAdmin.style.display = "none";
         }
-    }
-
-    function converterParaEmbed(url) {
-        if (!url) return "";
-        if (url.includes('/embed/')) return url;
-
-        let videoId = "";
-        if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1]?.split('?')[0];
-        } else if (url.includes('watch?v=')) {
-            videoId = url.split('watch?v=')[1]?.split('&')[0];
-        }
-
-        if (videoId) {
-            return "https://www.youtube.com/embed/" + videoId;
-        }
-        return url;
     }
 
     async function obterExperimentos() {
@@ -277,8 +256,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         let container = document.getElementById('container-experimentos');
         container.innerHTML = "";
         let experimentos = await obterExperimentos();
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        let eProfessor = !!session;
+        let eProfessor = await verificarSeProfessor();
 
         experimentos.forEach((exp, index) => {
             let cardDiv = document.createElement('div');
@@ -404,8 +382,7 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     }
 
     async function excluirExperimento(id) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
+        if (!(await verificarSeProfessor())) {
             alert("Acesso restrito ao professor.");
             return;
         }
@@ -459,13 +436,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
         }
     }
 
-    function verificarEnter(event, idAutorElem, idInputElem, idExp) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            comentar(idAutorElem, idInputElem, idExp);
-        }
-    }
-
     function editarComentario(idExp, index) {
         let comentariosSalvos = JSON.parse(localStorage.getItem('exp_' + idExp + '_comentarios')) || [];
         let comentarioAtual = comentariosSalvos[index];
@@ -479,9 +449,8 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
     }
 
     async function excluirComentario(idExp, index) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        if (!session) {
-            alert("Apenas o Professor pode apagar comentários. Ative o Painel do Professor primeiro!");
+        if (!(await verificarSeProfessor())) {
+            alert("Apenas o Professor pode apagar comentários.");
             return;
         }
 
@@ -504,105 +473,6 @@ Utilize equipamentos de proteção quando necessário e nunca misture produtos d
             let tempoFormatado = calcularTempoRelativo(item.timestamp || new Date().getTime());
             adicionarElementoComentario(lista, autor, item.texto, tempoFormatado, idExp, index);
         });
-    }
-
-    function calcularTempoRelativo(timestamp) {
-        let agora = new Date().getTime();
-        let diferencaSegundos = Math.floor((agora - timestamp) / 1000);
-
-        if (diferencaSegundos < 60) return "agora mesmo";
-        let diferencaMinutos = Math.floor(diferencaSegundos / 60);
-        if (diferencaMinutos < 60) return "há " + diferencaMinutos + (diferencaMinutos === 1 ? " minuto" : " minutos");
-        let diferencaHoras = Math.floor(diferencaMinutos / 60);
-        if (diferencaHoras < 24) return "há " + diferencaHoras + (diferencaHoras === 1 ? " hora" : " horas");
-        let diferencaDias = Math.floor(diferencaHoras / 24);
-        return "há " + diferencaDias + (diferencaDias === 1 ? " dia" : " dias");
-    }
-
-    async function adicionarElementoComentario(lista, autor, texto, tempo, idExp, index) {
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        let eProfessor = !!session;
-
-        let novoComentario = document.createElement("div");
-        novoComentario.style.background = "#2a2a2a";
-        novoComentario.style.borderLeft = "4px solid #16a34a";
-        novoComentario.style.padding = "8px 10px";
-        novoComentario.style.borderRadius = "4px";
-        novoComentario.style.marginTop = "6px";
-        novoComentario.style.fontSize = "14px";
-
-        let cabecalho = document.createElement("div");
-        cabecalho.style.display = "flex";
-        cabecalho.style.justifyContent = "space-between";
-        cabecalho.style.marginBottom = "4px";
-
-        let autorSpan = document.createElement("span");
-        autorSpan.innerText = "👤 " + autor;
-        autorSpan.style.fontWeight = "bold";
-        autorSpan.style.color = "#4ade80";
-
-        let horaSpan = document.createElement("span");
-        horaSpan.innerText = tempo;
-        horaSpan.style.fontSize = "11px";
-        horaSpan.style.color = "#aaa";
-
-        cabecalho.appendChild(autorSpan);
-        cabecalho.appendChild(horaSpan);
-
-        let corpo = document.createElement("div");
-        corpo.style.display = "flex";
-        corpo.style.justifyContent = "space-between";
-        corpo.style.alignItems= "center";
-
-        let textoSpan = document.createElement("span");
-        textoSpan.innerText = texto;
-        textoSpan.style.wordBreak = "break-word";
-        textoSpan.style.marginRight = "10px";
-        textoSpan.style.color = "#fff";
-
-        let acoesDiv = document.createElement("div");
-        acoesDiv.style.display = "flex";
-        acoesDiv.style.gap = "4px";
-        acoesDiv.style.whiteSpace = "nowrap";
-
-        let btnEditar = document.createElement("button");
-        btnEditar.innerText = "✏️";
-        btnEditar.style.background = "#374151";
-        btnEditar.style.color = "white";
-        btnEditar.style.border = "none";
-        btnEditar.style.padding = "3px 6px";
-        btnEditar.style.borderRadius = "3px";
-        btnEditar.style.cursor = "pointer";
-        btnEditar.style.fontSize = "11px";
-        btnEditar.title = "Editar comentário";
-        btnEditar.onclick = function() {
-            editarComentario(idExp, index);
-        };
-        acoesDiv.appendChild(btnEditar);
-
-        if (eProfessor) {
-            let btnExcluir = document.createElement("button");
-            btnExcluir.innerText = "🗑️";
-            btnExcluir.style.background = "#b91c1c";
-            btnExcluir.style.color = "white";
-            btnExcluir.style.border = "none";
-            btnExcluir.style.padding = "3px 6px";
-            btnExcluir.style.borderRadius = "3px";
-            btnExcluir.style.cursor = "pointer";
-            btnExcluir.style.fontSize = "11px";
-            btnExcluir.title = "Apagar comentário (Modo Professor)";
-            btnExcluir.onclick = function() {
-                excluirComentario(idExp, index);
-            };
-            acoesDiv.appendChild(btnExcluir);
-        }
-
-        corpo.appendChild(textoSpan);
-        corpo.appendChild(acoesDiv);
-
-        novoComentario.appendChild(cabecalho);
-        novoComentario.appendChild(corpo);
-        lista.appendChild(novoComentario);
     }
 </script>
 
